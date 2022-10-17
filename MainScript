@@ -27,6 +27,7 @@ getgenv().MKLN = 2.0
 getgenv().MKLK = false
 getgenv().CANFARM = false
 getgenv().GOMUM = false
+getgenv().PUNCHS = 7500
 flors2:Bind("Show/Hide UI", Enum.KeyCode.RightAlt, function()
 if game.CoreGui:FindFirstChild("Discord").Enabled == true then
 game.CoreGui:FindFirstChild("Discord").Enabled = false
@@ -58,8 +59,8 @@ end)
 	end
     end)
         flors:Textbox("Gomu Defense Farm Punchs Value", example : 7500 punchs, 6000 etc, default : 7500", true, function(t)
-	getgenv().MKLN = t
-    end)
+	getgenv().PUNCHS = t
+        end)
 	flors:Slider("Delay to use the attack", 5, 50, 0, function(t)
 	getgenv().Delay = t
         end)
