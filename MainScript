@@ -142,7 +142,7 @@ end)
     local args = {...}
     local met = getnamecallmethod()
     if tostring(self) == "RemoteEvent" and tostring(met) == "FireServer" and getgenv().MKLK == true and args[3] == "StopCharging" then
-    args[6] = (getgenv().MKLN * args[6])
+    args[6] = tostring((getgenv().MKLN * args[6]))
     return self.FireServer(self, unpack(args))
     end
     return hmm(self,...)
