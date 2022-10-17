@@ -23,6 +23,10 @@ for i,v in pairs(WhiteL) do
     local flors2 = serv:Channel("Misc")
 
 getgenv().Delay = 5
+getgenv().MKLN = 2.0
+getgenv().MKLK = false
+getgenv().CANFARM = false
+getgenv().GOMUM = false
 flors2:Bind("Show/Hide UI", Enum.KeyCode.RightAlt, function()
 if game.CoreGui:FindFirstChild("Discord").Enabled == true then
 game.CoreGui:FindFirstChild("Discord").Enabled = false
@@ -34,7 +38,7 @@ end)
     flors:Toggle("Affinity Changer (all holding moves)",false, function(bozo2)
     getgenv().MKLK = bozo2
     end)
-    flors:Textbox("Affinity Value", "put a number here, example : 2.0", true, function(t)
+    flors:Textbox("Affinity Value", "put a number here, example : 2.0, default : 2.0", true, function(t)
 	getgenv().MKLN = t
     end)
     flors:Toggle("Gomu Defense Farm",false, function(bool)
@@ -52,6 +56,9 @@ end)
     Event:FireServer(A_1, A_2, A_3, A_4)
 	end
 	end
+    end)
+        flors:Textbox("Gomu Defense Farm Punchs Value", example : 7500 punchs, 6000 etc, default : 7500", true, function(t)
+	getgenv().MKLN = t
     end)
 	flors:Slider("Delay to use the attack", 5, 50, 0, function(t)
 	getgenv().Delay = t
