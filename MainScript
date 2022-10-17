@@ -48,7 +48,7 @@ end)
 	while getgenv().CANFARM do task.wait(getgenv().Delay) 
 	local cf = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
     local lv = cf.lookVector
-    for i = 1,7500 do
+    for i = 1,getgenv().PUNCHS do
     local A_1 = a
     local A_2 = "GumPower3"
     local A_3 = "0"
