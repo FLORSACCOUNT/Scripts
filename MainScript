@@ -58,7 +58,7 @@ end)
 	end
 	end
     end)
-        flors:Textbox("Gomu Defense Farm Punchs Value", example : 7500 punchs, 6000 etc, default : 7500", true, function(t)
+        flors:Textbox("Gomu Defense Farm Punchs Value", example : 7500 punchs, 6000 punchs, default : 7500", true, function(t)
 	getgenv().PUNCHS = t
         end)
 	flors:Slider("Delay to use the attack", 5, 50, 0, function(t)
