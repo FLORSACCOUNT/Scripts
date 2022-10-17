@@ -42,6 +42,7 @@ end)
     flors:Textbox("Affinity Value", "put a number here, example : 2.0, default : 2.0", true, function(t)
 	getgenv().MKLN = t
     end)
+    flors:Seperator()
     flors:Toggle("Gomu Defense Farm",false, function(bool)
 	getgenv().CANFARM = bool
 	local a = game.Players.LocalPlayer.Character.Powers:FindFirstChild(workspace.UserData['User_'..game.Players.LocalPlayer.UserId].Data[getgenv().FRUIT].Value).RemoteEvent.RemoteFunction:InvokeServer()
@@ -58,7 +59,7 @@ end)
 	end
 	end
     end)
-        flors:Textbox("Gomu Defense Farm Punchs Value", example : 7500 punchs 6000 punchs, default : 7500", true, function(t)
+        flors:Textbox("Gomu Defense Farm Punchs Value", "example : 7500 punchs, 6000 punchs, default : 7500", true, function(t)
 	getgenv().PUNCHS = t
         end)
 	flors:Slider("Delay to use the attack", 5, 50, 0, function(t)
