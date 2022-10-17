@@ -34,7 +34,7 @@ end)
     flors:Toggle("Change Attack Size/Damage (all holding moves)",false, function(bozo2)
     getgenv().MKLK = bozo2
     end)
-    flors:Textbox("Size", "", true, function(t)
+    flors:Textbox("Value", "", true, function(t)
 	getgenv().MKLN = t
     end)
     flors:Toggle("Gomu Defense Farm",false, function(bool)
