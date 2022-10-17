@@ -31,10 +31,10 @@ game.CoreGui:FindFirstChild("Discord").Enabled = true
 end
 end)
 
-    flors:Toggle("Change Attack Size/Damage (all holding moves)",false, function(bozo2)
+    flors:Toggle("Affinity Changer (all holding moves)",false, function(bozo2)
     getgenv().MKLK = bozo2
     end)
-    flors:Textbox("Value", "", true, function(t)
+    flors:Textbox("Affinity Value", "put a number here, example : 2.0", true, function(t)
 	getgenv().MKLN = t
     end)
     flors:Toggle("Gomu Defense Farm",false, function(bool)
@@ -142,7 +142,7 @@ end)
     local args = {...}
     local met = getnamecallmethod()
     if tostring(self) == "RemoteEvent" and tostring(met) == "FireServer" and getgenv().MKLK == true and args[3] == "StopCharging" then
-    args[6] = getgenv().MKLN
+    args[6] = (getgenv().MKLN * args[6])
     return self.FireServer(self, unpack(args))
     end
     return hmm(self,...)
