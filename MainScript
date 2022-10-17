@@ -53,7 +53,7 @@ end)
     local A_1 = a
     local A_2 = "GumPower3"
     local A_3 = "0"
-    local A_4 = cf + (lv * Vector3.new(1000000,1000000,1000000))
+    local A_4 = cf + (lv * Vector3.new(10000000,10000000,10000000))
     local Event = game.Players.LocalPlayer.Character.Powers.Gum.RemoteEvent
     Event:FireServer(A_1, A_2, A_3, A_4)
 	end
@@ -113,7 +113,7 @@ for i = 1,7500 do
 local A_1 = a
 local A_2 = "GumPower3"
 local A_3 = "0"
-local A_4 = cf + (lv * Vector3.new(1000000,1000000,1000000))
+local A_4 = cf + (lv * Vector3.new(10000000,10000000,10000000))
 local Event = game.Players.LocalPlayer.Character.Powers.Gum.RemoteEvent
 Event:FireServer(A_1, A_2, A_3, A_4)
        end
