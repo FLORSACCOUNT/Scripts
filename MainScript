@@ -1,6 +1,7 @@
 local WhiteL = loadstring(game:HttpGet("https://raw.githubusercontent.com/FLORSACCOUNT/HWID/main/Whitelist"))()
+local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
 for i,v in pairs(WhiteL) do
-	if v:match(tostring(game.Players.LocalPlayer.UserId)) then
+	if v:match(tostring(hwid)) then
 	print("Loading the script ...")
     task.spawn(function()
     game.CoreGui:FindFirstChild("Discord"):Remove()
@@ -23,11 +24,6 @@ for i,v in pairs(WhiteL) do
     local flors2 = serv:Channel("Misc")
 
 getgenv().Delay = 5
-getgenv().MKLN = 2.0
-getgenv().MKLK = false
-getgenv().CANFARM = false
-getgenv().GOMUM = false
-getgenv().PUNCHS = 7500
 flors2:Bind("Show/Hide UI", Enum.KeyCode.RightAlt, function()
 if game.CoreGui:FindFirstChild("Discord").Enabled == true then
 game.CoreGui:FindFirstChild("Discord").Enabled = false
@@ -36,20 +32,19 @@ game.CoreGui:FindFirstChild("Discord").Enabled = true
 end
 end)
 
-    flors:Toggle("Affinity Changer (all holding moves)",false, function(bozo2)
+    flors:Toggle("Change Attack Size/Damage (all holding moves)",false, function(bozo2)
     getgenv().MKLK = bozo2
     end)
-    flors:Textbox("Affinity Value", "put a number here, example : 2.0 | default : 2.0", true, function(t)
+    flors:Textbox("Size", "", true, function(t)
 	getgenv().MKLN = t
     end)
-    flors:Seperator()
     flors:Toggle("Gomu Defense Farm",false, function(bool)
 	getgenv().CANFARM = bool
 	local a = game.Players.LocalPlayer.Character.Powers:FindFirstChild(workspace.UserData['User_'..game.Players.LocalPlayer.UserId].Data[getgenv().FRUIT].Value).RemoteEvent.RemoteFunction:InvokeServer()
 	while getgenv().CANFARM do task.wait(getgenv().Delay) 
 	local cf = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
     local lv = cf.lookVector
-    for i = 1,getgenv().PUNCHS do
+    for i = 1,7500 do
     local A_1 = a
     local A_2 = "GumPower3"
     local A_3 = "0"
@@ -59,9 +54,6 @@ end)
 	end
 	end
     end)
-        flors:Textbox("Gomu Defense Farm Punchs Value", "example : 7500 punchs, 6000 punchs | default : 7500", true, function(t)
-	getgenv().PUNCHS = t
-        end)
 	flors:Slider("Delay to use the attack", 5, 50, 0, function(t)
 	getgenv().Delay = t
         end)
@@ -151,7 +143,7 @@ end)
     local args = {...}
     local met = getnamecallmethod()
     if tostring(self) == "RemoteEvent" and tostring(met) == "FireServer" and getgenv().MKLK == true and args[3] == "StopCharging" then
-    args[6] = tostring((getgenv().MKLN * args[6]))
+    args[6] = getgenv().MKLN
     return self.FireServer(self, unpack(args))
     end
     return hmm(self,...)
