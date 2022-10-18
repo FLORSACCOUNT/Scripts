@@ -1,7 +1,7 @@
 local WhiteL = loadstring(game:HttpGet("https://raw.githubusercontent.com/FLORSACCOUNT/HWID/main/Whitelist"))()
 local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
 for i,v in pairs(WhiteL) do
-	if v:match(tostring(hwid)) then
+	if v == hwid then
 	print("Loading the script ...")
     task.spawn(function()
     game.CoreGui:FindFirstChild("Discord"):Remove()
