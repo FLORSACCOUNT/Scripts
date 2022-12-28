@@ -1,0 +1,248 @@
+local WhiteL = loadstring(game:HttpGet("https://raw.githubusercontent.com/FLORSACCOUNT/HWID/main/Inazuma%20White%20List"))()
+local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
+for i,v in pairs(WhiteL) do
+if v == hwid then
+print("Loading the script ...")
+getgenv().SpamAb = false
+getgenv().GK = false
+getgenv().HitBox = 50
+getgenv().HitBoxT = 1
+getgenv().NoCD = false
+getgenv().Working = false
+getgenv().Power = 2.5
+
+task.spawn(function()
+game.CoreGui:FindFirstChild("Discord"):Remove()
+end)
+
+local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/discord%20lib.txt")()
+
+local win = DiscordLib:Window("Inazuma Rebirth 😂 | FLORS#8223")
+
+local serv = win:Server("", "http://www.roblox.com/asset/?id=6031075938")
+
+local flors = serv:Channel("Power Mod | 😜")
+
+local flors2 = serv:Channel("Hissatsu | 😉")
+
+local flors3 = serv:Channel("GoalKeeper | 😁")
+
+local flors4 = serv:Channel("Misc | 😆")
+
+flors:Toggle("Power Changer",false, function(bool)
+getgenv().Working = bool
+end)
+
+flors:Textbox("Power Value", "Default : 2.5", true, function(t)
+getgenv().Power = tonumber(t)
+end)
+
+flors2:Toggle("Hissatsu Spam | Only Some",false, function(bool)
+getgenv().SpamAb = bool
+end)
+
+flors2:Toggle("Hissatsu No CD",false, function(bool)
+getgenv().NoCD = bool
+end)
+
+flors2:Toggle("Hissatsu Energy",false, function(bool)
+getgenv().Hissatsu = bool 
+end)
+
+flors3:Toggle("GK HitBox Modifier",false, function(bool)
+getgenv().GK = bool
+end)
+
+flors3:Textbox("HitBox Size | Normal GK", "Default : 50", true, function(t)
+getgenv().HitBox = tonumber(t)
+end)
+
+flors3:Textbox("HitBox Transparency", "Default : 1", true, function(t)
+getgenv().HitBoxT = tonumber(t)
+end)
+
+flors3:Seperator()
+
+flors3:Button("Give GK", function()
+game.Players.LocalPlayer.Character.Gk.ON:FireServer()
+end)
+
+flors3:Button("Remove GK", function()
+game.Players.LocalPlayer.Character.Gk.OFF:FireServer()
+end)
+flors3:Bind("Steal Ball", Enum.KeyCode.V, function()
+local aa = getgenv().HitBox
+getgenv().HitBox = 5000
+task.wait()
+getgenv().HitBox = aa
+end)
+
+flors4:Button("Server Hop", function()
+	local x = {}
+	for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+		if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
+			x[#x + 1] = v.id
+		end
+	end
+	if #x > 0 then
+		game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, x[math.random(1, #x)])
+	end
+end)
+
+flors4:Button("Rejoin", function()
+local g = game:GetService("TeleportService")
+g:Teleport(game.PlaceId)
+end)
+
+flors4:Bind("Show/Hide UI", Enum.KeyCode.RightAlt, function()
+if game.CoreGui:FindFirstChild("Discord").Enabled == true then
+game.CoreGui:FindFirstChild("Discord").Enabled = false
+elseif game.CoreGui:FindFirstChild("Discord").Enabled == false then
+game.CoreGui:FindFirstChild("Discord").Enabled = true
+end
+end)
+
+local h;
+h = hookmetamethod(game,'__namecall',function(self,...)
+local args = {...}
+local met = getnamecallmethod()
+if tostring(self) == "OFF" and met == "FireServer" and self.Parent.Name == "Shoot" and getgenv().Working == true then
+task.spawn(function()
+getgenv().GK = false
+task.wait(2)
+getgenv().GK = true
+end)
+args[2] = tonumber((args[2] * tonumber(getgenv().Power)))
+return self.FireServer(self,unpack(args))
+elseif tostring(self) == "OFF" and met == "FireServer" and self.Parent.Name == "Shoot" then
+task.spawn(function()
+getgenv().GK = false
+task.wait(2)
+getgenv().GK = true
+end)
+return self.FireServer(self,unpack(args))
+end
+return h(self,...)
+end)
+local user = game:GetService("UserInputService")
+user.InputBegan:Connect(function(input,gameProcessed)
+if not gameProcessed and getgenv().SpamAb == true then
+if input.KeyCode == Enum.KeyCode.One then
+for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+if v:IsA("StringValue") and v.Value == "One" then
+task.spawn(function()
+v.Parent.RemoteEvent:FireServer()
+end)
+end
+end
+end
+end
+end)
+task.spawn(function()
+while true do
+task.spawn(function()
+if getgenv().NoCD == true then
+game.Players.LocalPlayer.Character:WaitForChild('HissatsuCD',9e9):Remove()
+end
+end)
+task.wait()
+end
+end)
+task.spawn(function()
+while true do 
+game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("HissaPower",9e9).TextButton.TextButton.localscript.RemoteEvent:FireServer()
+task.wait(0.175)
+end
+end)
+task.spawn(function()
+while true do
+if getgenv().Hissatsu == true then
+game:GetService("Players").LocalPlayer.Character:WaitForChild("TPGaining").Get:FireServer()
+end
+task.wait()
+end
+end)
+task.spawn(function()
+while true do
+if getgenv().GK == true then
+for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+if v.Name:match("GKHitBox") then
+v.Size = Vector3.new(getgenv().HitBox, getgenv().HitBox, getgenv().HitBox)
+v.Transparency = getgenv().HitBoxT
+end
+end
+elseif getgenv().GK == false then
+for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+if v.Name:match("GKHitBox") then
+v.Size = Vector3.new(0,0,0)
+v.Transparency = 1
+end
+end
+end
+task.wait()
+end
+end)
+task.spawn(function()
+while true do
+task.spawn(function()
+for i,v in pairs(game.Players:GetChildren()) do
+if v ~= game.Players.LocalPlayer and v.Character then
+for i,v2 in pairs(v.Character:GetChildren()) do
+if v2.Name == "Invincible" then
+v2:Remove()
+end
+end
+end
+end
+end)
+task.wait(0.1)
+end
+end)
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+task.spawn(function()
+while true do
+task.spawn(function()
+if getgenv().NoCD == true then
+game.Players.LocalPlayer.Character:WaitForChild('HissatsuCD',9e9):Remove()
+end
+end)
+task.wait()
+end
+end)
+task.spawn(function()
+while true do
+game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("HissaPower",9e9).TextButton.TextButton.localscript.RemoteEvent:FireServer()
+task.wait(0.175)
+end
+end)
+task.spawn(function()
+while true do
+if getgenv().GK == true then
+for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+if v.Name:match("GKHitBox") then
+v.Size = Vector3.new(getgenv().HitBox, getgenv().HitBox, getgenv().HitBox)
+v.Transparency = getgenv().HitBoxT
+end
+end
+elseif getgenv().GK == false  then
+for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+if v.Name:match("GKHitBox") then
+v.Size = Vector3.new(0,0,0)
+v.Transparency = 1
+end
+end
+end
+task.wait()
+end
+end)
+task.spawn(function()
+while true do
+if getgenv().Hissatsu == true then
+game:GetService("Players").LocalPlayer.Character:WaitForChild("TPGaining").Get:FireServer()
+end
+task.wait()
+end
+end)
+end)
+	end
+end
