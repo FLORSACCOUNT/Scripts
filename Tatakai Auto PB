@@ -5,8 +5,8 @@ if v == hwid then
 print("Loading the script ...")
 local playerl = {}
 getgenv().Block = false
-getgenv().Distance = 12.5
-
+getgenv().Timer = 0.5
+getgenv().Distance = 10
 task.spawn(function()
 game.CoreGui:FindFirstChild("Discord"):Remove()
 end)
@@ -25,9 +25,14 @@ flors:Toggle("Auto PB",false, function(bool)
 	getgenv().Block = bool
 end)
 
-flors:Slider("Distance", 10, 20, 12.5, function(t)
-	getgenv().Distance = t
+flors:Textbox("Distance", "", true, function(t)
+	getgenv().Distance = tonumber(t)
 end)
+
+flors:Textbox("Timer", "", true, function(t)
+	getgenv().Timer = tonumber(t)
+end)
+
 
 flors2:Button("Server Hop", function()
 	local x = {}
@@ -44,7 +49,7 @@ flors2:Button("Rejoin", function()
 local g = game:GetService("TeleportService")
 g:Teleport(game.PlaceId)
 end)
-flors2:Bind("Show/Hide UI", Enum.KeyCode.RightAlt, function()
+flors2:Bind("Hide UI", Enum.KeyCode.RightAlt, function()
 if game.CoreGui:FindFirstChild("Discord").Enabled == true then
 game.CoreGui:FindFirstChild("Discord").Enabled = false
 elseif game.CoreGui:FindFirstChild("Discord").Enabled == false then
@@ -60,10 +65,13 @@ if v ~= game.Players.LocalPlayer and not table.find(playerl,v) then
 table.insert(playerl,v)
 task.spawn(function()
 v.ChildAdded:Connect(function(a)
-if (a.Name == "BlockBreakCD" or a.Name == "Combat") and getgenv().Block == true and game.Players.LocalPlayer:DistanceFromCharacter(v.Character.HumanoidRootPart.Position) <= getgenv().Distance then
-game:GetService("ReplicatedStorage").RemoteEvent:FireServer("Block",game:GetService("Players").LocalPlayer.Character.LocalHandler.Blocking,true)
-task.wait(0.325)
-game:GetService("ReplicatedStorage").RemoteEvent:FireServer("Block",game:GetService("Players").LocalPlayer.Character.LocalHandler.Blocking,false)
+if (a.Name == "Combat" or a.Name == "BlockBreakCD") and getgenv().Block == true and game.Players.LocalPlayer:DistanceFromCharacter(v.Character.HumanoidRootPart.Position) <= getgenv().Distance then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.lookAt(game.Players.LocalPlayer.Character.HumanoidRootPart.Position, v.Character.HumanoidRootPart.Position)
+if game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector:Dot(v.Character.HumanoidRootPart.CFrame.lookVector) >= -1 and game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector:Dot(v.Character.HumanoidRootPart.CFrame.lookVector) <= -0.6 then
+game:GetService("ReplicatedStorage").RemoteEvent:FireServer("Block",game:GetService("Workspace").Chars["Nick_Hyun"].LocalHandler.Blocking,true)
+task.wait(getgenv().Timer)
+game:GetService("ReplicatedStorage").RemoteEvent:FireServer("Block",game:GetService("Workspace").Chars["Nick_Hyun"].LocalHandler.Blocking,false)
+end
 end
 end)
 end)
