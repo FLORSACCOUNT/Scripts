@@ -3,150 +3,32 @@ local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
 for i,v in pairs(WhiteL) do
 	if v == hwid then
 	print("Loading the script ...")
-    task.spawn(function()
-    game.CoreGui:FindFirstChild("Discord"):Remove()
-    end)
-	task.spawn(function()
-	getgenv().FRUIT = nil
-    if workspace.UserData['User_'..game.Players.LocalPlayer.UserId].Data.DevilFruit.Value == "Gum" then
-	getgenv().FRUIT = "DevilFruit"
-	elseif workspace.UserData['User_'..game.Players.LocalPlayer.UserId].Data.DevilFruit2.Value == "Gum" then
-	getgenv().FRUIT = "DevilFruit2"
-     	end
-	end)
-    local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/discord%20lib.txt")()
-    local win = DiscordLib:Window("One Piece Legendary | FLORS#8223")
-    
-    local serv = win:Server("", "http://www.roblox.com/asset/?id=6031075938")
-
-    local flors = serv:Channel("Functions")
-
-    local flors2 = serv:Channel("Misc")
-
-getgenv().Delay = 5
-flors2:Bind("Show/Hide UI", Enum.KeyCode.RightAlt, function()
-if game.CoreGui:FindFirstChild("Discord").Enabled == true then
-game.CoreGui:FindFirstChild("Discord").Enabled = false
-elseif game.CoreGui:FindFirstChild("Discord").Enabled == false then
-game.CoreGui:FindFirstChild("Discord").Enabled = true
+for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+if v.Name == "SanguineVampiris" or v.Name == "Control" or v.Name == "Damage" then
+v:Remove()
 end
+end
+
+local h; 
+h = hookmetamethod(game,'__namecall',function(self,...)
+if tostring(self) == "Drown" and getnamecallmethod() == "FireServer" then
+return;
+end
+return h(self,...)
 end)
 
-    flors:Toggle("Change Attack Size/Damage (all holding moves)",false, function(bozo2)
-    getgenv().MKLK = bozo2
-    end)
-    flors:Textbox("Size", "", true, function(t)
-	getgenv().MKLN = t
-    end)
-    flors:Toggle("Gomu Defense Farm",false, function(bool)
-	getgenv().CANFARM = bool
-	local a = game.Players.LocalPlayer.Character.Powers:FindFirstChild(workspace.UserData['User_'..game.Players.LocalPlayer.UserId].Data[getgenv().FRUIT].Value).RemoteEvent.RemoteFunction:InvokeServer()
-	while getgenv().CANFARM do task.wait(getgenv().Delay) 
-	local cf = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-    local lv = cf.lookVector
-    for i = 1,7500 do
-    local A_1 = a
-    local A_2 = "GumPower3"
-    local A_3 = "0"
-    local A_4 = cf + (lv * Vector3.new(1000000,1000000,1000000))
-    local Event = game.Players.LocalPlayer.Character.Powers.Gum.RemoteEvent
-    Event:FireServer(A_1, A_2, A_3, A_4)
-	end
-	end
-    end)
-	flors:Slider("Delay to use the attack", 5, 50, 0, function(t)
-	getgenv().Delay = t
-        end)
-	flors:Toggle("Gomu modifier",false, function(bozo2)
-getgenv().GOMUM = bozo2
-local a = game.Players.LocalPlayer.Character.Powers:FindFirstChild(workspace.UserData['User_'..game.Players.LocalPlayer.UserId].Data[getgenv().FRUIT].Value).RemoteEvent.RemoteFunction:InvokeServer()
-local user = game:GetService("UserInputService")
-user.InputBegan:Connect(function(input, gameProcessed)
-if not gameProcessed then
-if getgenv().GOMUM == true then
-if input.KeyCode == Enum.KeyCode.One then
-local cf = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-local lv = cf.lookVector
-for i = 1,2500 do
-local A_1 = a
-local A_2 = "GumPower3"
-local A_3 = "0"
-local A_4 = cf + (lv * Vector3.new(1000000,1000000,1000000))
-local Event = game.Players.LocalPlayer.Character.Powers.Gum.RemoteEvent
-Event:FireServer(A_1, A_2, A_3, A_4)
-   end
-  end
-if input.KeyCode == Enum.KeyCode.Two then
-for i = 1,4000 do
-local A_1 = a
-local A_2 = "GumPower3"
-local A_3 = "0"
-local A_4 = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-local Event2 = game.Players.LocalPlayer.Character.Powers.Gum.RemoteEvent
-Event2:FireServer(A_1, A_2, A_3, A_4)
-   end
-  end
-if input.KeyCode == Enum.KeyCode.Five then
-local cf = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-local lv = cf.lookVector
-for i = 1,3500 do
-local A_1 = a
-local A_2 = "GumPower3"
-local A_3 = "0"
-local A_4 = cf + (lv * Vector3.new(70,70,70))
-local Event3 = game.Players.LocalPlayer.Character.Powers.Gum.RemoteEvent
-Event3:FireServer(A_1, A_2, A_3, A_4)
-  end
- end
-if input.KeyCode == Enum.KeyCode.Six then
-local cf = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-local lv = cf.lookVector
-for i = 1,7500 do
-local A_1 = a
-local A_2 = "GumPower3"
-local A_3 = "0"
-local A_4 = cf + (lv * Vector3.new(1000000,1000000,1000000))
-local Event = game.Players.LocalPlayer.Character.Powers.Gum.RemoteEvent
-Event:FireServer(A_1, A_2, A_3, A_4)
-       end
-    end
-if input.KeyCode == Enum.KeyCode.Four then
-local cf = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-local lv = cf.lookVector
-for i = 1,500 do
-local A_1 = a
-local A_2 = "GumPower3"
-local A_3 = "0"
-local A_4 = cf + (lv * Vector3.new(70,70,70))
-local Event = game.Players.LocalPlayer.Character.Powers.Gum.RemoteEvent
-Event:FireServer(A_1, A_2, A_3, A_4)
-       end
-    end
-if input.KeyCode == Enum.KeyCode.Three then
-local cf = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-local lv = cf.lookVector
-for i = 1,3000 do
-local A_1 = a
-local A_2 = "GumPower3"
-local A_3 = "0"
-local A_4 = cf + (lv * Vector3.new(20,20,20))
-local Event3 = game.Players.LocalPlayer.Character.Powers.Gum.RemoteEvent
-Event3:FireServer(A_1, A_2, A_3, A_4)
-      end
-    end
-  end
- end
+local h;
+h = hookmetamethod(game,'__namecall',function(self,...)
+local args = {...}
+if tostring(self) == "RemoteEvent" and getnamecallmethod() == "FireServer"  and args[3] == "StopCharging"then
+for i,v in pairs(args) do
+if typeof(v) == "number" and v ~= args[1] then
+args[i] = 100
+end
+end
+return self.FireServer(self,unpack(args))
+end
+return h(self,...)
 end)
-    end)
-    local hmm;
-    hmm = hookmetamethod(game, '__namecall', function(self,...)
-    local args = {...}
-    local met = getnamecallmethod()
-    if tostring(self) == "RemoteEvent" and tostring(met) == "FireServer" and getgenv().MKLK == true and args[3] == "StopCharging" then
-    args[6] = getgenv().MKLN
-    return self.FireServer(self, unpack(args))
-    end
-    return hmm(self,...)
-    end)
 	end
 end
