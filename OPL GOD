@@ -16,19 +16,5 @@ return;
 end
 return h(self,...)
 end)
-
-local h;
-h = hookmetamethod(game,'__namecall',function(self,...)
-local args = {...}
-if tostring(self) == "RemoteEvent" and getnamecallmethod() == "FireServer"  and args[3] == "StopCharging"then
-for i,v in pairs(args) do
-if typeof(v) == "number" and v ~= args[1] then
-args[i] = 100
-end
-end
-return self.FireServer(self,unpack(args))
-end
-return h(self,...)
-end)
 	end
 end
