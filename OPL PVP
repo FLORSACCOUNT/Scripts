@@ -72,6 +72,9 @@ RightGroupBox:AddToggle('AttackAC', {
 })
 RightGroupBox:AddButton('God Mode', function()
 workspace.UserData['User_'..game.Players.LocalPlayer.UserId].Stats:FireServer()
+while task.wait(0.5) do
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("FUI TROLLADO PELO FLORS KKKKKKKKKKK", "All")
+end
 end)
 RightGroupBox:AddToggle('ESP', {
     Text = 'ESP',
