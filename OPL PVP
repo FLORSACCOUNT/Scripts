@@ -71,18 +71,7 @@ RightGroupBox:AddToggle('AttackAC', {
     Tooltip = 'Auto fill your holding bar to the max', 
 })
 RightGroupBox:AddButton('God Mode', function()
-for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-if v.Name == "SanguineVampiris" or v.Name == "Control" or v.Name == "Damage" then
-v:Remove()
-end
-end
-local h; 
-h = hookmetamethod(game,'__namecall',function(self,...)
-if tostring(self) == "Drown" and getnamecallmethod() == "FireServer" then
-return;
-end
-return h(self,...)
-end)
+workspace.UserData['User_'..game.Players.LocalPlayer.UserId].Stats:FireServer()
 end)
 RightGroupBox:AddToggle('ESP', {
     Text = 'ESP',
