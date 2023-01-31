@@ -216,11 +216,11 @@ local args = {...}
 local met = getnamecallmethod()
 if tostring(self) == "RemoteEvent" and met == "FireServer" then
 for i,v in pairs(args) do
-	if typeof(v) == "CFrame" and getgenv().SILENT1 == true then
+	if typeof(v) == "CFrame" and getgenv().SILENT1 == true and flors().HumanoidRootPart then
 	args[i] = flors().HumanoidRootPart.CFrame
-	elseif typeof(v) == "Position" and getgenv().SILENT1 == true then
+	elseif typeof(v) == "Position" and getgenv().SILENT1 == true and flors().HumanoidRootPart then
     args[i] = flors().HumanoidRootPart.Position
-	elseif typeof(v) == "Instance" and getgenv().SILENT1 == true then
+	elseif typeof(v) == "Instance" and getgenv().SILENT1 == true and flors().HumanoidRootPart then
 	args[i] = flors().HumanoidRootPart
 	elseif typeof(v) == "number" and args[i] ~= args[1] and getgenv().AttackC == true then
 	args[i] = 999
