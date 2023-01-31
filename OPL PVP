@@ -195,7 +195,7 @@ function flors()
     local target = nil
     local maxDist = getgenv().FOV
     for _,v in pairs(plrs:GetPlayers()) do
-        if v.Character then
+        if v.Character and v ~= game.Players.LocalPlayer then
             if v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health ~= 0 and v.Character:FindFirstChild("HumanoidRootPart") and not v.Character:FindFirstChildOfClass("ForceField") then
                 local pos, vis = camera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
                 local dist = (Vector2.new(mouse.X, mouse.Y + 40) - Vector2.new(pos.X, pos.Y)).magnitude
@@ -216,11 +216,11 @@ local args = {...}
 local met = getnamecallmethod()
 if tostring(self) == "RemoteEvent" and met == "FireServer" then
 for i,v in pairs(args) do
-	if typeof(v) == "CFrame" and getgenv().SILENT1 == true and flors().HumanoidRootPart then
+	if typeof(v) == "CFrame" and getgenv().SILENT1 == true then
 	args[i] = flors().HumanoidRootPart.CFrame
-	elseif typeof(v) == "Position" and getgenv().SILENT1 == true and flors().HumanoidRootPart then
+	elseif typeof(v) == "Position" and getgenv().SILENT1 == true then
     args[i] = flors().HumanoidRootPart.Position
-	elseif typeof(v) == "Instance" and getgenv().SILENT1 == true and flors().HumanoidRootPart then
+	elseif typeof(v) == "Instance" and getgenv().SILENT1 == true then
 	args[i] = flors().HumanoidRootPart
 	elseif typeof(v) == "number" and args[i] ~= args[1] and getgenv().AttackC == true then
 	args[i] = 999
