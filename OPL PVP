@@ -3,9 +3,285 @@ local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
 for i,v in pairs(WhiteL) do
 if v == hwid then
 print("Loading the script ...")
-workspace.UserData['User_'..game.Players.LocalPlayer.UserId].Stats:FireServer()
-while task.wait(0.5) do
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("FUI TROLLADO PELO FLORS KKKKKKKKKKK", "All")
+getgenv().FOV = 100
+getgenv().Shoot = false
+getgenv().AttackC = false
+getgenv().ESP = false
+getgenv().holding = false
+getgenv().visible = false
+getgenv().SILENT1 = false
+task.spawn(function()
+	game.CoreGui.ScreenGui:Remove()
+end)
+
+local players = {}
+local plrs = game:GetService("Players")
+local plr = plrs.LocalPlayer
+local mouse = plr:GetMouse()
+local camera = game:GetService("Workspace").CurrentCamera
+
+local a = Drawing.new("Circle")
+if not game.CoreGui:FindFirstChild("ESP STORE") then
+local screen = Instance.new("ScreenGui", game.CoreGui)
+screen.Name = "ESP STORE"
 end
+
+local repo = 'https://raw.githubusercontent.com/wally-rblx/LinoriaLib/main/'
+
+local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
+local Window = Library:CreateWindow({
+    Title = 'OPL PVP | FLORS#8223 ☺',
+    Center = true, 
+    AutoShow = true,
+})
+local Tabs = {
+    Main = Window:AddTab('Main')
+}
+
+
+local LeftGroupBox = Tabs.Main:AddLeftGroupbox('Aim Functions')
+local RightGroupBox = Tabs.Main:AddRightGroupbox('Misc')
+LeftGroupBox:AddToggle('SilentAim', {
+    Text = 'Silent Aim (Only Focus Players)',
+    Default = false, 
+    Tooltip = 'Move the attack to the players body in the FOV', 
+})
+LeftGroupBox:AddToggle('ShootWall', {
+    Text = 'Aim Through The Walls',
+    Default = false, 
+    Tooltip = 'Makes the silent aim focus players behind the walls', 
+})
+LeftGroupBox:AddToggle('ShowFOV', {
+    Text = 'Show FOV',
+    Default = false, 
+    Tooltip = 'Show your FOV', 
+})
+LeftGroupBox:AddSlider('FOVSize', {
+    Text = 'FOVs Size',
+    Default = 100,
+    Min = 30,
+    Max = 500,
+    Rounding = 0,
+
+    Compact = false,
+})
+RightGroupBox:AddToggle('AttackAC', {
+    Text = 'Attack Auto Charge',
+    Default = false, 
+    Tooltip = 'Auto fill your holding bar to the max', 
+})
+RightGroupBox:AddButton('God Mode', function()
+for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+if v.Name == "SanguineVampiris" or v.Name == "Control" or v.Name == "Damage" then
+v:Remove()
+end
+end
+local h; 
+h = hookmetamethod(game,'__namecall',function(self,...)
+if tostring(self) == "Drown" and getnamecallmethod() == "FireServer" then
+return;
+end
+return h(self,...)
+end)
+end)
+RightGroupBox:AddToggle('ESP', {
+    Text = 'ESP',
+    Default = false, 
+    Tooltip = 'Show the players through the wall', 
+})
+RightGroupBox:AddButton('Low Graphics', function()
+	workspace:FindFirstChildOfClass('Terrain').WaterWaveSize = 0
+	workspace:FindFirstChildOfClass('Terrain').WaterWaveSpeed = 0
+	workspace:FindFirstChildOfClass('Terrain').WaterReflectance = 0
+	workspace:FindFirstChildOfClass('Terrain').WaterTransparency = 0
+	game:GetService("Lighting").GlobalShadows = false
+	game:GetService("Lighting").FogEnd = 9e9
+	settings().Rendering.QualityLevel = 1
+	for i,v in pairs(game:GetDescendants()) do
+		if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+			v.Material = "Plastic"
+			v.Reflectance = 0
+		elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+			v.Lifetime = NumberRange.new(0)
+		elseif v:IsA("Explosion") then
+			v.BlastPressure = 1
+			v.BlastRadius = 1
+		end
+	end
+	for i,v in pairs(game:GetService("Lighting"):GetDescendants()) do
+		if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+			v.Enabled = false
+		end
+	end
+	workspace.DescendantAdded:Connect(function(child)
+		coroutine.wrap(function()
+			if child:IsA('ForceField') then
+				game:GetService('RunService').Heartbeat:Wait()
+				child:Destroy()
+			elseif child:IsA('Sparkles') then
+				game:GetService('RunService').Heartbeat:Wait()
+				child:Destroy()
+			elseif child:IsA('Smoke') or child:IsA('Fire') then
+				game:GetService('RunService').Heartbeat:Wait()
+				child:Destroy()
+			end
+		end)()
+	end)
+end)
+local rejoin = RightGroupBox:AddButton('Rejoin', function()
+    game:GetService("TeleportService"):Teleport(game.PlaceId)
+end)
+rejoin:AddButton("Server Hop", function()
+	local x = {}
+	for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+		if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
+			x[#x + 1] = v.id
+		end
+	end
+	if #x > 0 then
+		game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, x[math.random(1, #x)])
+	end
+end)
+RightGroupBox:AddLabel('Menu Bind'):AddKeyPicker('MenuKeybind', { Default = 'RightAlt', NoUI = true, Text = 'Menu keybind' }) 
+Library.ToggleKeybind = Options.MenuKeybind
+Toggles["SilentAim"]:OnChanged(function()
+getgenv().SILENT1 = Toggles.SilentAim.Value
+if getgenv().SILENT1 == false then
+a.Visible = false
+end
+game:GetService("RunService").RenderStepped:Connect(function()
+a.Thickness = 0.1
+a.Position = Vector2.new(mouse.X, mouse.Y + 40)
+a.Radius = getgenv().FOV
+a.Visible = getgenv().visible
+a.Color = Color3.fromHSV(tick() * 24 % 255/255, 1, 1)
+     end)
+end)
+Toggles["ShowFOV"]:OnChanged(function()
+getgenv().visible = Toggles.ShowFOV.Value
+end)
+Toggles.ESP:OnChanged(function()
+getgenv().ESP = Toggles.ESP.Value
+end)
+Toggles.AttackAC:OnChanged(function()
+    getgenv().AttackC = Toggles.AttackAC.Value
+end)
+Toggles.ShootWall:OnChanged(function()
+    getgenv().Shoot = Toggles.ShootWall.Value
+end)
+Options.FOVSize:OnChanged(function()
+    getgenv().FOV = Options.FOVSize.Value
+end)
+function notBehindWall(target)
+    if getgenv().Shoot == true then
+	return true
+	end
+    local ray = Ray.new(plr.Character.Head.Position, (target.Position - plr.Character.Head.Position).Unit * 300)
+    local part, position = game:GetService("Workspace"):FindPartOnRayWithIgnoreList(ray, {plr.Character}, false, true)
+    if part then
+        local humanoid = part.Parent:FindFirstChildOfClass("Humanoid")
+        if not humanoid then
+            humanoid = part.Parent.Parent:FindFirstChildOfClass("Humanoid")
+        end
+        if humanoid and target and humanoid.Parent == target.Parent then
+            local pos, visible = camera:WorldToScreenPoint(target.Position)
+            if visible then
+                return true
+            end
+        end
+    end
+end
+function flors()
+    local target = nil
+    local maxDist = getgenv().FOV
+    for _,v in pairs(plrs:GetPlayers()) do
+        if v.Character and v ~= game.Players.LocalPlayer then
+            if v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health ~= 0 and v.Character:FindFirstChild("HumanoidRootPart") and not v.Character:FindFirstChildOfClass("ForceField") then
+                local pos, vis = camera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
+                local dist = (Vector2.new(mouse.X, mouse.Y + 40) - Vector2.new(pos.X, pos.Y)).magnitude
+                if dist < maxDist and vis then
+                    if notBehindWall(v.Character.Head) or notBehindWall(v.Character.HumanoidRootPart) then
+					target = v.Character
+					end
+                    maxDist = dist
+                end
+            end
+        end
+    end
+    return target
+end
+local h;
+h = hookmetamethod(game,'__namecall',function(self,...)
+local args = {...}
+local met = getnamecallmethod()
+if tostring(self) == "RemoteEvent" and met == "FireServer" then
+for i,v in pairs(args) do
+	if typeof(v) == "CFrame" and getgenv().SILENT1 == true then
+	args[i] = flors().HumanoidRootPart.CFrame
+	elseif typeof(v) == "Position" and getgenv().SILENT1 == true then
+    args[i] = flors().HumanoidRootPart.Position
+	elseif typeof(v) == "Instance" and getgenv().SILENT1 == true then
+	args[i] = flors().HumanoidRootPart
+	elseif typeof(v) == "number" and args[i] ~= args[1] and getgenv().AttackC == true then
+	args[i] = 999
+	end
+end
+return self.FireServer(self, unpack(args))
+end
+return h(self,...)
+end)
+function Convert(part)
+   local screen = workspace.CurrentCamera:WorldToViewportPoint(part.Position)
+   return Vector2.new(screen.X, screen.Y)
+   end
+   function ESP(part, text, humanoid)
+   local nome = Drawing.new("Text")
+   game:GetService("RunService").RenderStepped:Connect(function()
+   nome.Text = (text .. " | Health : " .. tostring(humanoid.Health))
+   end)
+   game:GetService("RunService").RenderStepped:Connect(function()
+   nome.Color = Color3.fromHSV(tick() * 24 % 255/255, 1, 1)
+   end)
+   nome.Position = Convert(part)
+   nome.Size = 20.0
+   nome.Outline = true
+   nome.Center = true
+   nome.Visible = true
+   game:GetService("RunService").Stepped:connect(function()
+   pcall(function()
+   local destroyed = not part:IsDescendantOf(workspace)
+   if destroyed and nome ~= nil then
+   nome:Remove()
+   end
+   if part ~= nil then
+   nome.Position = Convert(part)
+   end
+   local _,screen = workspace.CurrentCamera:WorldToViewportPoint(part.Position)
+   if screen then
+   nome.Visible = true
+   else
+   nome.Visible = false
+   end
+   end)
+   end)
+   local run_serv;
+   run_serv = game:GetService("RunService").RenderStepped:Connect(function()
+   if getgenv().ESP == false then
+   nome:Remove()
+   run_serv:Disconnect()
+   players = {}
+   end
+   end)
+   end
+game:GetService("RunService").RenderStepped:Connect(function()
+if getgenv().ESP == true then 
+for i,v in pairs(game.Players:GetPlayers()) do
+if v ~= game.Players.LocalPlayer and getgenv().ESP == true and v.Character and v.Character:FindFirstChild("Humanoid") and v.Character:FindFirstChild("Head") and not table.find(players, v.Character:FindFirstChild("Head")) then
+table.insert(players,v.Character.Head)
+ESP(v.Character.Head, v.Name, v.Character.Humanoid)
+end
+end
+end
+end)
     end
 end
