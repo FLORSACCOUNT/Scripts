@@ -283,13 +283,5 @@ end
 end
 end
 end)
-task.wait(20)
-game.StarterGui:SetCore("ChatMakeSystemMessage",{
-                    Text = ("[Server]: You got your data wiped for cheating.");
-                    Color = Color3.fromRGB(255, 255, 255);
-                })
-workspace.UserData['User_'..game.Players.LocalPlayer.UserId].Stats:FireServer()
-task.wait(5)
-game.Players.LocalPlayer:Kick("Data Wiped For Cheating Can't Be Appealed.")
     end
 end
