@@ -1,0 +1,669 @@
+local WhiteL = loadstring(game:HttpGet("https://raw.githubusercontent.com/FLORSACCOUNT/HWID/main/Rb%20World%204%20Whitelist"))()
+local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
+for i,v in pairs(WhiteL) do
+if v == hwid then
+if getgenv().Loaded ~= true then
+getgenv().Shooter = true
+getgenv().Dribble = true
+getgenv().Block = true
+getgenv().AutoGuard = true
+getgenv().Guarding = false
+getgenv().Timing = true
+getgenv().SelfIB = false
+getgenv().Pick = false
+getgenv().Position = "PG"
+getgenv().Distance = 6.5
+getgenv().Speed = 12
+getgenv().LagSwitch = false
+getgenv().TimingPost = 0.4169
+getgenv().TimingMK = 0.4164
+getgenv().TimingShoot = 0.505
+getgenv().FT = 0.705
+getgenv().TimingCentral = getgenv().TimingPost
+getgenv().Cf = nil
+getgenv().Anchored = false
+getgenv().Tweening = false
+getgenv().Ball = false
+local touch;
+local playc = {}
+local playerl = {}
+local Starter = game:GetService("StarterGui")
+function CreateNotification(Title,Text)
+    local SetCore = Starter:SetCore("SendNotification",{
+        Title = Title,
+        Text = Text,
+        Icon = "",
+        Duration = 5
+    })
+end
+
+local Spoofs = {}
+function spoof(instance,property)
+if not Spoofs[instance] or #Spoofs[instance] == 0 then
+task.spawn(function()
+for i,v in pairs(getconnections(instance:GetPropertyChangedSignal(property))) do
+   v:Disable()
+  end
+end)
+task.spawn(function()
+   for i,v in pairs(getconnections(instance.Changed)) do
+   v:Disable()
+   end
+end)
+task.spawn(function()
+   for i,v in pairs(getconnections(instance.Parent.DescendantRemoving)) do
+   v:Disable()
+   end
+end)
+task.spawn(function()
+   for i,v in pairs(getconnections(instance.Parent.ChildRemoved)) do
+   v:Disable()
+   end
+end)
+local newvalueg, newvaluee = instance[property], instance[property]
+Spoofs[instance] = {property,newvalueg,newvaluee}
+ end
+end
+function unspoof(instance,property)
+task.spawn(function()
+for i,v in pairs(getconnections(instance:GetPropertyChangedSignal(property))) do
+   v:Enable()
+  end
+end)
+task.spawn(function()
+   for i,v in pairs(getconnections(instance.Changed)) do
+   v:Enable()
+   end
+end)
+task.spawn(function()
+   for i,v in pairs(getconnections(instance.Parent.DescendantRemoving)) do
+   v:Enable()
+   end
+end)
+task.spawn(function()
+   for i,v in pairs(getconnections(instance.Parent.ChildRemoved)) do
+   v:Enable()
+   end
+end)
+for i,v in pairs(Spoofs) do
+for i2,v2 in pairs(Spoofs[i]) do
+if i == instance and v2 == property then
+Spoofs[i] = {}
+    end
+   end
+ end
+end
+local h;
+h = hookmetamethod(game,'__newindex',function(self,prop,new) 
+if Spoofs[self] and prop == Spoofs[self][1] and not checkcaller() then
+Spoofs[self][2] = new
+new = Spoofs[self][3]
+elseif Spoofs[self] and prop == Spoofs[self][1] and checkcaller() then
+Spoofs[self][3] = new
+end
+return h(self,prop,new)
+end)
+local h;
+h = hookmetamethod(game,'__index',function(self,...) 
+if Spoofs[self] and ... == Spoofs[self][1] and not checkcaller() then
+return Spoofs[self][2]
+end
+return h(self,...)
+end)
+local function Source()
+game:GetService("NetworkClient"):SetOutgoingKBPSLimit(math.huge)
+local function getmaxvalue(val)
+  local mainvalueifonetable = 49999
+  if type(val) ~= "number" then
+      return nil
+  end
+  local calculateperfectval = (mainvalueifonetable/(val+2))
+  return calculateperfectval
+end
+
+local function bomb(tableincrease, tries)
+local maintable = {}
+local spammedtable = {}
+
+table.insert(spammedtable, {})
+z = spammedtable[1]
+
+for i = 1, tableincrease do
+   local tableins = {}
+   table.insert(z, tableins)
+   z = tableins
+end
+
+local calculatemax = getmaxvalue(tableincrease)
+local maximum
+
+if calculatemax then
+    maximum = calculatemax
+    else
+    maximum = 10000
+end
+
+for i = 1, maximum do
+    table.insert(maintable, spammedtable)
+end
+
+ if calculatemax then
+    maximum = calculatemax
+    else
+    maximum = 10000
+end
+
+for i = 1, maximum do
+    table.insert(maintable, spammedtable)
+end
+
+for i = 1, tries do
+   game.RobloxReplicatedStorage.UpdatePlayerBlockList:FireServer(maintable)
+end
+end
+
+
+bomb(250, 5)
+end
+task.spawn(function()
+game:GetService("RunService").RenderStepped:Connect(function()
+if getgenv().LagSwitch == true then
+Source()
+end
+end)
+end)
+task.spawn(function()
+game:GetService("RunService").RenderStepped:Connect(function()
+if getgenv().Timing == true then
+local ping  = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue()
+getgenv().Timer = getgenv().TimingCentral - (ping * 0.001)
+end
+end)
+end)
+task.spawn(function()
+if game.CoreGui:FindFirstChild("ScreenGui") then
+game.CoreGui:FindFirstChild("ScreenGui"):Destroy()
+end
+end)
+
+local repo = 'https://raw.githubusercontent.com/wally-rblx/LinoriaLib/main/'
+
+local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
+local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
+local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
+
+local Window = Library:CreateWindow({
+    Title = 'Rb World 4 (Play Now) | FLORS#8223 😅',
+    Center = true, 
+    AutoShow = true,
+})
+
+local Tabs = {
+    Main = Window:AddTab('Funcs'),
+	Timer = Window:AddTab('Timers')
+}
+
+local LeftGroupBox = Tabs.Main:AddLeftGroupbox('Main')
+local LeftGroupCrate = Tabs.Main:AddLeftGroupbox('Characters')
+local RightGroup = Tabs.Main:AddRightGroupbox('Misc')
+local TimerLeft = Tabs.Timer:AddLeftGroupbox('Timings')
+LeftGroupBox:AddToggle('AutoTime', {
+    Text = 'Auto-Time',
+    Default = true, 
+    Tooltip = 'Auto time your shoots', 
+})
+LeftGroupBox:AddToggle('AutoGuard', {
+    Text = 'Auto-Guard',
+    Default = true, 
+    Tooltip = 'Auto guard the enemy player with the ball', 
+})
+LeftGroupBox:AddToggle('AutoB', {
+    Text = 'Auto-Block',
+    Default = true, 
+    Tooltip = 'Jump if someone shoot near you', 
+})
+LeftGroupBox:AddToggle('Dribbles', {
+    Text = 'Spam Normal Dribbles',
+    Default = true, 
+    Tooltip = 'Spam Simple Dribbles', 
+})
+LeftGroupCrate:AddDropdown('Pos', {
+    Values = {"PG","SG","SF","PF","C"},
+    Default = 1, 
+    Multi = false, 
+
+    Text = 'Position',
+    Tooltip = 'Choose the position', 
+})
+LeftGroupCrate:AddToggle('Pick', {
+    Text = 'Pick Position',
+    Default = false, 
+    Tooltip = 'Insta pick the position', 
+})
+RightGroup:AddToggle('ModSpeed', {
+    Text = 'Mod Speed',
+    Default = false, 
+    Tooltip = 'Modify the speed', 
+})
+
+RightGroup:AddSlider('Speed', {
+    Text = 'Speed',
+    Default = 12,
+    Min = 7,
+    Max = 12,
+    Rounding = 0,
+
+    Compact = false,
+})
+RightGroup:AddToggle('Inb', {
+    Text = 'Self InBound',
+    Default = false, 
+    Tooltip = 'Ib yourself', 
+})
+RightGroup:AddButton('Anti OOB', function()
+while true do task.wait()
+task.spawn(function()
+    for i,v in pairs(workspace:GetChildren()) do
+		if v.Name:match("_OOB") then
+			spoof(v,"CFrame")
+			spoof(v,"Size")
+			v.CFrame = CFrame.new(9999999999,99999999999,99999999)
+			v.Size = Vector3.new(0,0,0)
+		  end
+	   end
+     end)
+  end
+end)
+RightGroup:AddButton('Break Server', function()
+if game.Players.LocalPlayer.Character:FindFirstChild("ball.weld") then
+getgenv().Tweening = true
+local Tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(((game.Players.LocalPlayer.Character.HumanoidRootPart.Position - (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, 7, 0))).Magnitude/30),Enum.EasingStyle.Linear), {CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame - Vector3.new(0, 7, 0)})
+Tween:Play()
+Tween.Completed:Connect(function()
+getgenv().Ball = true
+local Tween1 = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(((game.Players.LocalPlayer.Character.HumanoidRootPart.Position - (game.Players.LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(0, 7, 0))).Magnitude/5),Enum.EasingStyle.Linear), {CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0, 7, 0)})
+Tween1:Play()
+Tween1.Completed:Connect(function()
+task.wait(0.5)
+getgenv().Tweening = false
+getgenv().Ball = false
+end)
+  end)
+ end
+end)
+RightGroup:AddButton('Low Graphics', function()
+task.spawn(function()
+for i,v in pairs(workspace:GetDescendants()) do
+	if v.Name == "Net" or v.Name == "Stand" or v.Name == "Lights" then
+	v:Destroy()
+	end
+end
+workspace:FindFirstChild("Arena"):Destroy()
+game.ReplicatedStorage:FindFirstChild("People"):Destroy()
+end)
+task.spawn(function()
+	workspace:FindFirstChildOfClass('Terrain').WaterWaveSize = 0
+	workspace:FindFirstChildOfClass('Terrain').WaterWaveSpeed = 0
+	workspace:FindFirstChildOfClass('Terrain').WaterReflectance = 0
+	workspace:FindFirstChildOfClass('Terrain').WaterTransparency = 0
+	game:GetService("Lighting").GlobalShadows = false
+	game:GetService("Lighting").FogEnd = 9e9
+	settings().Rendering.QualityLevel = 1
+	for i,v in pairs(game:GetDescendants()) do
+		if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+			v.Material = "Plastic"
+			v.Reflectance = 0
+		elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+			v.Lifetime = NumberRange.new(0)
+		elseif v:IsA("Explosion") then
+			v.BlastPressure = 1
+			v.BlastRadius = 1
+		end
+	end
+	for i,v in pairs(game:GetService("Lighting"):GetDescendants()) do
+		if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+			v.Enabled = false
+		end
+	end
+	workspace.DescendantAdded:Connect(function(child)
+		coroutine.wrap(function()
+			if child:IsA('ForceField') then
+				game:GetService('RunService').Heartbeat:Wait()
+				child:Destroy()
+			elseif child:IsA('Sparkles') then
+				game:GetService('RunService').Heartbeat:Wait()
+				child:Destroy()
+			elseif child:IsA('Smoke') or child:IsA('Fire') then
+				game:GetService('RunService').Heartbeat:Wait()
+				child:Destroy()
+			end
+		end)()
+	end)
+  end)
+end)
+local Rj = RightGroup:AddButton('Rejoin', function()
+game:GetService("TeleportService"):Teleport(game.PlaceId)
+end)
+Rj:AddButton('Server Hop', function()
+	local x = {}
+	for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+		if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
+			x[#x + 1] = v.id
+		end
+	end
+	if #x > 0 then
+		game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, x[math.random(1, #x)])
+	end
+end)
+RightGroup:AddLabel('Menu bind'):AddKeyPicker('MenuKeybind', { Default = 'RightAlt', NoUI = true, Text = 'Menu Keybind' })
+RightGroup:AddLabel('Perimeter Shoot'):AddKeyPicker('NormalShoot', { Default = 'F', NoUI = true, Text = 'Normal Shoot' })  
+RightGroup:AddLabel('Free Throw'):AddKeyPicker('FT', { Default = 'F1', NoUI = true, Text = 'Free Throw' }) 
+RightGroup:AddLabel('Lag Switch'):AddKeyPicker('Lag', { Default = 'F2', NoUI = true, Text = 'Lag Switch' }) 
+Library.ToggleKeybind = Options.MenuKeybind
+TimerLeft:AddInput('Normal', {
+    Default = getgenv().TimingShoot,
+    Numeric = true,
+    Finished = true,
+
+    Text = 'Perimeter Release Timer',
+    Tooltip = 'Timer for releases in the perimeter',
+    Placeholder = 'Timer Here | ' .. tostring(getgenv().TimingShoot) ,
+})
+TimerLeft:AddInput('Paint', {
+    Default = getgenv().TimingPost,
+    Numeric = true,
+    Finished = true,
+
+    Text = 'Paint Release Timer',
+    Tooltip = 'Timer for releases in the paint',
+    Placeholder = 'Timer Here | ' .. tostring(getgenv().TimingPost) 
+})
+TimerLeft:AddInput('Special', {
+    Default = getgenv().TimingMK,
+    Numeric = true,
+    Finished = true,
+
+    Text = 'Special Release Timer',
+    Tooltip = 'Timer for post hooks/floaters',
+    Placeholder = 'Timer Here | ' .. tostring(getgenv().TimingMK) 
+})
+TimerLeft:AddInput('FT1', {
+    Default = getgenv().FT,
+    Numeric = true,
+    Finished = true,
+
+    Text = 'Free Throw Release Timer',
+    Tooltip = 'Timer for free throw releases',
+    Placeholder = 'Timer Here | ' .. tostring(getgenv().FT) 
+})
+local Times = TimerLeft:AddButton('Timing1', function()
+getgenv().TimingPost = 0.4169
+getgenv().TimingShoot = 0.505
+getgenv().TimingMK = 0.4164
+getgenv().FT = 0.705
+end)
+Times:AddButton('Timing2', function()
+getgenv().TimingPost = 0.355
+getgenv().TimingShoot = 0.4355
+getgenv().TimingMK = 0.3475
+getgenv().FT = 0.65
+end)
+Toggles.AutoB:OnChanged(function()
+    getgenv().Block = Toggles.AutoB.Value
+end)
+Toggles.AutoGuard:OnChanged(function()
+    getgenv().AutoGuard = Toggles.AutoGuard.Value
+end)
+Toggles.AutoTime:OnChanged(function()
+    getgenv().Shooter = Toggles.AutoTime.Value
+end)
+Toggles.Dribbles:OnChanged(function()
+    getgenv().Dribble = Toggles.Dribbles.Value
+end)
+Toggles.Inb:OnChanged(function()
+getgenv().SelfIB = Toggles.Inb.Value
+if getgenv().SelfIB == true then
+touch = workspace:FindFirstChild("_Inbound").Touched:Connect(function(a)
+if getgenv().SelfIB == true and workspace:FindFirstChild("_Inbound"):FindFirstChild("TouchInterest") and a.Parent == game.Players.LocalPlayer.Character then
+getgenv().SelfIB = false
+task.wait(0.75)
+getgenv().Cf = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,5,0)
+getgenv().Anchored = true
+task.wait(8)
+getgenv().Anchored = false
+task.wait(5)
+getgenv().SelfIB = true
+   end
+ end)
+elseif getgenv().SelfIB == false and touch then
+touch:Disconnect()
+    end
+  end)
+Toggles.Pick:OnChanged(function()
+getgenv().Pick = Toggles.Pick.Value
+while getgenv().Pick do
+local args = {
+    [1] = "Choose",
+    [2] = getgenv().Position
+}
+
+game:GetService("ReplicatedStorage").Remotes.ChoosePlayer:InvokeServer(unpack(args))
+task.wait()
+end
+end)
+Toggles.ModSpeed:OnChanged(function()
+getgenv().Mod = Toggles.ModSpeed.Value
+    task.spawn(function()
+	while task.wait() do
+    if getgenv().Mod == true and game.Players.LocalPlayer.Character then
+	task.spawn(function()
+	spoof(game.Players.LocalPlayer.Character.Humanoid,"WalkSpeed")
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = getgenv().Speed
+        end)
+	  end
+    end
+  end)
+    if getgenv().Mod == false and game.Players.LocalPlayer.Character and Spoofs[game.Players.LocalPlayer.Character.Humanoid] then
+  			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Spoofs[game.Players.LocalPlayer.Character.Humanoid][2]
+			unspoof(game.Players.LocalPlayer.Character.Humanoid,"WalkSpeed")
+	end
+end)
+Options.Special:OnChanged(function()
+    getgenv().TimingMK = Options.Special.Value
+end)
+Options.Paint:OnChanged(function()
+    getgenv().TimingPost = Options.Paint.Value
+end)
+Options.Normal:OnChanged(function()
+    getgenv().TimingShoot = Options.Normal.Value
+end)
+Options.FT1:OnChanged(function()
+    getgenv().FT = Options.FT1.Value
+end)
+Options.Pos:OnChanged(function()
+getgenv().Position = Options.Pos.Value
+end)
+Options.Speed:OnChanged(function()
+getgenv().Speed = Options.Speed.Value
+end)
+Options.FT:OnClick(function()
+getgenv().TimingCentral = getgenv().FT
+local args = {
+    [1] = "Shoot",
+    [2] = true,
+	[3] = ""
+}
+game:GetService("ReplicatedStorage").GameEvents.ClientAction:FireServer(unpack(args))
+task.wait(2)
+getgenv().TimingCentral = getgenv().TimingPost
+end)
+Options.NormalShoot:OnClick(function()
+getgenv().TimingCentral = getgenv().TimingShoot
+local args = {
+    [1] = "Shoot",
+    [2] = true
+}
+game:GetService("ReplicatedStorage").GameEvents.ClientAction:FireServer(unpack(args))
+task.wait(2)
+getgenv().TimingCentral = getgenv().TimingPost
+end)
+Options.Lag:OnClick(function()
+if getgenv().LagSwitch == true then
+getgenv().LagSwitch = false
+CreateNotification("Lag Switch", "❌")
+elseif getgenv().LagSwitch == false then
+getgenv().LagSwitch = true
+CreateNotification("Lag Switch", "✅")
+end
+end)
+
+task.spawn(function()
+while task.wait(0.1) do
+task.spawn(function()
+for i,v in pairs(game.Players:GetChildren()) do
+if v ~= game.Players.LocalPlayer and v.TeamColor ~= game.Players.LocalPlayer.TeamColor and v.Character and not table.find(playerl,v.Character) then
+table.insert(playerl,v.Character)
+task.spawn(function()
+v.Character.ChildAdded:Connect(function(b)
+if b.Name == "ShotMeterTiming" and getgenv().Block == true and game.Players.LocalPlayer:DistanceFromCharacter(v.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 20 then
+task.wait()
+local args = {
+    [1] = "Jump"
+}
+
+game:GetService("ReplicatedStorage").GameEvents.ClientAction:FireServer(unpack(args))
+task.wait(5)
+end
+end)
+end)
+end
+end
+end)
+end
+end)
+task.spawn(function()
+while true do
+task.spawn(function()
+if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild('ShotMeterTiming') and getgenv().Shooter == true then
+getgenv().Timing = false
+if game.Players.LocalPlayer.Character:FindFirstChild('ShotMeterTiming').Value >= getgenv().Timer then
+getgenv().Timing = true
+game:GetService("ReplicatedStorage").GameEvents.ClientAction:FireServer("Shoot",false)
+end
+end
+end)
+task.wait()
+end
+end)
+task.spawn(function()
+while true do task.wait()
+for i,v in pairs(game.Players:GetPlayers()) do
+if v ~= game.Players.LocalPlayer and game.Players.LocalPlayer.Character and v.Character and v.Character:FindFirstChild("ball.weld") and getgenv().AutoGuard == true and getgenv().Guarding == true then
+game.Players.LocalPlayer.Character.Humanoid:MoveTo(v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * getgenv().Distance))
+      end
+    end
+  end
+end)
+task.spawn(function()
+while true do task.wait()
+task.spawn(function()
+if getgenv().Anchored == true and game.Players.LocalPlayer.Character then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = getgenv().Cf
+   end
+end)
+  end
+end)
+task.spawn(function()
+while true do task.wait()
+if getgenv().Tweening == true then
+game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
+   end
+  end
+end)
+task.spawn(function()
+while true do task.wait()
+if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("ball.weld") and getgenv().Ball == true then
+game.Players.LocalPlayer.Character["ball.weld"]:Destroy()
+   end
+  end
+end)
+task.spawn(function()
+while true do task.wait()
+for i,v in pairs(game.Players:GetPlayers()) do
+if v ~= game.Players.LocalPlayer and v.Character and not table.find(playc, v.Character) then
+table.insert(playc,v.Character)
+local b = Instance.new("Part", v.Character)
+b.Size = Vector3.new(0, 0, 0)
+b.Name = "Contesting"
+b.Anchored = true
+b.CanCollide = false
+task.spawn(function()
+while task.wait() do
+if b and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:WaitForChild("OpponentHoop",9e9).Value ~= nil then
+b.CFrame = CFrame.lookAt(v.Character.HumanoidRootPart.Position, workspace[tostring(game.Players.LocalPlayer.Character:WaitForChild("OpponentHoop",9e9).Value)].Goal.Position - Vector3.new(0, 5.791165828704834, 0))
+  end
+ end
+end)
+      end	
+    end
+  end
+end)
+local h;
+h = hookmetamethod(game,'__namecall', function(self,...)
+local args = {...}
+if tostring(self) == "ClientAction" and getnamecallmethod() == "FireServer" and args[1] == "Dribble Move" and args[3] ~= "" and getgenv().Dribble == true then
+return;
+elseif tostring(self) == "ClientAction" and getnamecallmethod() == "FireServer" and args[1] == "Guard" then
+getgenv().Guarding = args[2]
+end
+return h(self,...) 
+end)
+game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
+if not gameProcessed and getgenv().Dribble == true then
+if input.KeyCode == Enum.KeyCode.Z then
+local args = {
+    [1] = "Dribble Move",
+    [2] = "Z",
+	[3] = ""
+}
+
+game:GetService("ReplicatedStorage").GameEvents.ClientAction:FireServer(unpack(args))
+elseif input.KeyCode == Enum.KeyCode.X then
+local args = {
+    [1] = "Dribble Move",
+    [2] = "X",
+	[3] = ""
+}
+game:GetService("ReplicatedStorage").GameEvents.ClientAction:FireServer(unpack(args))
+elseif input.KeyCode == Enum.KeyCode.C then
+local args = {
+    [1] = "Dribble Move",
+    [2] = "C",
+	[3] = ""
+}
+game:GetService("ReplicatedStorage").GameEvents.ClientAction:FireServer(unpack(args))
+elseif input.KeyCode == Enum.KeyCode.V then
+local args = {
+    [1] = "Dribble Move",
+    [2] = "VX",
+	[3] = ""
+}
+game:GetService("ReplicatedStorage").GameEvents.ClientAction:FireServer(unpack(args))
+end
+end
+end)
+game:GetService("UserInputService").InputChanged:Connect(function(input,gameprocessed)
+    if (input.UserInputType == Enum.UserInputType.MouseWheel) and not gameprocessed then
+	getgenv().TimingCentral = getgenv().TimingMK
+	for i = 1,2 do
+game:GetService("ReplicatedStorage").GameEvents.ClientAction:FireServer("Shoot",true)
+	end
+task.wait(2)
+getgenv().TimingCentral = getgenv().TimingPost
+	end
+end)
+end
+getgenv().Loaded = true
+  end
+end
