@@ -72,6 +72,14 @@ if Spoofs[self] and Spoofs[self][...] and not checkcaller() then
 end
 return h(self,...)
 end)
+task.spawn(function()
+while task.wait() do 
+task.spawn(function()
+spoof(game.Players.LocalPlayer.Character.Humanoid,"WalkSpeed")
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 12
+end)
+end
+end)
 local h;
 h = hookmetamethod(game,'__namecall', function(self,...)
 local args = {...}
@@ -113,13 +121,9 @@ task.spawn(function()
 while true do task.wait()
 for i,v in pairs(game.Players:GetPlayers()) do
 if v ~= game.Players.LocalPlayer and game.Players.LocalPlayer.Character and v.Character and v.Character:FindFirstChild("ball.weld") and getgenv().AutoGuard == true and getgenv().Guarding == true then
-spoof(game.Players.LocalPlayer.Character.Humanoid,"WalkSpeed")
-game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 12
 game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9):MoveTo(v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * getgenv().Distance))
-elseif getgenv().AutoGuard == false or getgenv().Guarding == false then
-unspoof(game.Players.LocalPlayer.Character.Humanoid,"WalkSpeed")
 	  end
-      end
+    end
   end
 end)
 task.spawn(function()
