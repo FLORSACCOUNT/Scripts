@@ -208,7 +208,7 @@ end)
 game:GetService("RunService").RenderStepped:Connect(function()
 task.spawn(function()
 if getgenv().holding == true and getgenv().Special == false and (game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart",9e9).Position - workspace:WaitForChild(tostring(game.Players.LocalPlayer.Character:WaitForChild("MyHoop",9e9).Value),9e9).Goal.Position).Magnitude > 18 then
-getgenv().Timer = 0.6545
+getgenv().Timer = 0.66
 end
 end)
 end)
