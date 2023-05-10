@@ -116,10 +116,10 @@ if v ~= game.Players.LocalPlayer and game.Players.LocalPlayer.Character and v.Ch
 spoof(game.Players.LocalPlayer.Character.Humanoid,"WalkSpeed")
 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 12
 game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9):MoveTo(v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * getgenv().Distance))
-	  end
 elseif getgenv().AutoGuard == false or getgenv().Guarding == false then
 unspoof(game.Players.LocalPlayer.Character.Humanoid,"WalkSpeed")
-    end
+	  end
+      end
   end
 end)
 task.spawn(function()
