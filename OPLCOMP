@@ -1,4 +1,4 @@
-local WhiteL = loadstring(game:HttpGet("https://raw.githubusercontent.com/FLORSACCOUNT/HWID/main/Tatakai%20White%20List"))()
+local WhiteL = loadstring(game:HttpGet("https://raw.githubusercontent.com/FLORSACCOUNT/HWID/main/OPLWH"))()
 local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
 for i,v in pairs(WhiteL) do
 if v == hwid then
