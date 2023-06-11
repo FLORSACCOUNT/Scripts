@@ -2,8 +2,15 @@ local WhiteL = loadstring(game:HttpGet("https://raw.githubusercontent.com/FLORSA
 local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
 for i,v in pairs(WhiteL) do
 if v == hwid then
-for i,v in pairs(workspace.Merchants:GetChildren()) do
-if v.Name == "QuestMerchant" and v.HumanoidRootPart.CFrame ~= CFrame.new(1548.90002, 263.798401, 2132.40039, 0, 0, 1, 0, 1, -0, -1, 0, 0) then
+game.Players.LocalPlayer.Idled:Connect(function()
+game:GetService("VirtualUser"):CaptureController()
+game:GetService("VirtualUser"):ClickButton2(Vector2.new())
+end)
+if not isfile("Servers.json") then
+writefile("Servers.json",game:GetService("HttpService"):JSONEncode({"Start"}))
+end
+for i,v in pairs(workspace:WaitForChild("Merchants",9e9):GetChildren()) do
+if v.Name == "QuestMerchant" and v:WaitForChild("HumanoidRootPart",9e9).CFrame ~= CFrame.new(1548.90002, 263.798401, 2132.40039, 0, 0, 1, 0, 1, -0, -1, 0, 0) then
 v:Destroy()
  end
 end
@@ -11,16 +18,36 @@ getgenv().Tp = true;
 getgenv().DupeCompass = true;
 getgenv().Webhook = true;
 getgenv().GetCompass = false;
-
+local compassk = getgenv().compass
 local time = os.time()
 local Players = game:GetService("Players")
 local plr = Players.LocalPlayer
-
 repeat
     task.wait()
-until plr.PlayerGui.Load.Frame.Visible
-
-
+until plr.PlayerGui:WaitForChild("Load",9e9):WaitForChild("Frame",9e9).Visible
+local servertab = {}
+table.insert(servertab,readfile("Servers.json"))
+for i,v in pairs(servertab) do
+if not string.gsub(v,"-",""):match(string.gsub(game.JobId,"-","")) then
+appendfile("Servers.json",game:GetService("HttpService"):JSONEncode({game.JobId}))
+elseif string.gsub(v,"-",""):match(string.gsub(game.JobId,"-","")) then
+if not workspace:FindFirstChild("Compass") then
+delfile("Servers.json")
+game.Players.LocalPlayer:Kick("Filha da puta roubo")
+game:GetService("RunService").RenderStepped:Connect(function()
+	local x = {}
+	for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+		if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
+			x[#x + 1] = v.id
+		end
+	end
+	if #x > 0 then
+		game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, x[math.random(1, #x)])
+	end
+end)
+end
+        end
+    end
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TeleportService = game:GetService("TeleportService")
 
@@ -102,7 +129,7 @@ end
 local function DupeCompass()
     local compass = {}
     local CompassWeekly = 0
-    local compassk = 50
+    local compassl = workspace["UserData"]["User_".. plr.UserId].Data.CompassTokens.Value
     if workspace.UserData["User_".. plr.UserId].Data.QQ_Weekly3.Value >= 5 and not  workspace.UserData["User_".. plr.UserId].Data.QQQ_Weekly3.Value then
         CompassWeekly = 1
     end
@@ -122,7 +149,7 @@ local function DupeCompass()
                 table.insert(compass,v)
             end
         end
-    until #compass >= compassk
+    until #compass >= compassk or #compass >= compassl
     plr:Kick("Rejoining")
     if getgenv().Webhook then
         SendWeebHook()
@@ -165,10 +192,9 @@ end
 end
 task.wait(3.5)
 game.Players.LocalPlayer.Character.Humanoid.Health = 0
-task.wait(10)
 repeat
-    task.wait()
-until plr.PlayerGui.Load.Frame.Visible
+task.wait()
+until plr.PlayerGui:WaitForChild("Load",9e9):WaitForChild("Frame",9e9).Visible
 			if plr.PlayerGui.Load.Frame.Visible == true then
 				for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Load.Frame.Load.MouseButton1Click)) do
 					v:Fire()
@@ -251,5 +277,15 @@ Section:AddButton({
 		end
 	end
 })
+task.wait(50)
+	local x = {}
+	for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+		if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
+			x[#x + 1] = v.id
+		end
+	end
+	if #x > 0 then
+		game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, x[math.random(1, #x)])
+	end
    end
 end
