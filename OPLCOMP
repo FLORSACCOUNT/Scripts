@@ -51,7 +51,6 @@ end
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TeleportService = game:GetService("TeleportService")
 
-_G.webhook = getgenv().web
 local http = game:GetService("HttpService")
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "Main Hub", HidePremium = false, SaveConfig = true, IntroEnabled = false})
@@ -117,7 +116,7 @@ function SendWeebHook()
     }
 
     local s = request({
-        Url = _G.webhook,
+        Url = getgenv().web,
         Method = "POST",
         Headers = {
             ["Content-Type"] = "application/json"
