@@ -51,7 +51,7 @@ end
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TeleportService = game:GetService("TeleportService")
 
-_G.webhook = "https://discord.com/api/webhooks/1116438897417789461/wI2zi_Rnh00OLpPeyWB8IZ0TX0x07kFT6s00iBEgMRbDH9_PzUnhnsV8y1b36NIRQ43S"
+_G.webhook = getgenv().web
 local http = game:GetService("HttpService")
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "Main Hub", HidePremium = false, SaveConfig = true, IntroEnabled = false})
