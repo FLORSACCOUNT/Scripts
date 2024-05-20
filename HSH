@@ -1,11 +1,17 @@
 print("Executed !")
+local playerl = {}
 getgenv().CanBlock = true
 task.spawn(function()
 while task.wait(0.1) do
-task.spawn(function()
 for i,v in pairs(game.Players:GetPlayers()) do
-if v ~= game.Players.LocalPlayer then
+if v ~= game.Players.LocalPlayer and not table.find(playerl,v) then
+table.insert(playerl,v)
+       end
+     end
+   end
+end)
 game.Players.LocalPlayer.PlayerGui.Meters.ChildAdded:Connect(function(b)
+for i,v in pairs(playerl) do
 if b.Name:match(v.Name) and getgenv().CanBlock == true then
 getgenv().CanBlock = false
 local realpl = v
@@ -18,10 +24,6 @@ getgenv().CanBlock = true
 end
 end
 end
-end)
-end
-end
-end)
 end
 end)
 game:GetService("RunService").RenderStepped:Connect(function()
