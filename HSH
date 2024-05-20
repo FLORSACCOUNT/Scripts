@@ -46,15 +46,15 @@ getgenv().Timer = 0.625
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Reg" then
-getgenv().Timer = 0.475
+getgenv().Timer = 0.51
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Layup" then
-getgenv().Timer = 0.25
+getgenv().Timer = 0.45
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Moving" then
-getgenv().Timer = 0.455
+getgenv().Timer = 0.5
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Dunk" then
@@ -62,7 +62,7 @@ getgenv().Timer = 0.5
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "PostFade" then
-getgenv().Timer = 0.575
+getgenv().Timer = 0.625
 
 getgenv().Sh = true
 task.spawn(function()
