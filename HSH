@@ -12,7 +12,7 @@ end)
 game.Players.LocalPlayer.PlayerGui.Meters.ChildAdded:Connect(function(b)
 for i,v in pairs(playerl) do
 if b.Name:match(v.Name) and v.Character and game.Players.LocalPlayer:DistanceFromCharacter(v.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 15 then
-firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump[Activated])
+firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["Activated"])
 end
 end
 end)
@@ -70,7 +70,7 @@ getgenv().Timer = 0.295
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Moving" then
-getgenv().Timer = 0.4
+getgenv().Timer = 0.45
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Dunk" then
