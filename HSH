@@ -14,7 +14,7 @@ for i,v in pairs(playerl) do
 if b.Name:match(v.Name) then
 local realpl = v
 if game.Players.LocalPlayer:DistanceFromCharacter(realpl.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 15 then
-task.wait(0.25 - (game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue() * 0.001))
+task.wait()
 local Signals = {"Activated", "MouseButton1Down", "MouseButton2Down", "MouseButton1Click", "MouseButton2Click"}
 for i,v in pairs(Signals) do 
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump[v])
