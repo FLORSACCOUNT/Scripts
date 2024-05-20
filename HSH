@@ -18,7 +18,7 @@ end
 end)
 game:GetService("RunService").RenderStepped:Connect(function()
 task.spawn(function()
-if getgenv().Sh == true and game.Players.LocalPlayer.PlayerGui.ShotMeter.Enabled == true then
+if getgenv().Sh == true then
 getgenv().Sh = false
 task.wait(getgenv().Timer)
 local args = {
