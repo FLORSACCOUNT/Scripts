@@ -58,7 +58,7 @@ local args = {...}
 if tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "Shootball" or args[1]["Action"] == "Post" or args[1]["Action"] == "StopMeter") and not checkcaller() then
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Fade" then
-getgenv().Timer = 0.465
+getgenv().Timer = 0.43
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Reg" then
@@ -70,7 +70,7 @@ getgenv().Timer = 0.295
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Moving" then
-getgenv().Timer = 0.435
+getgenv().Timer = 0.415
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Dunk" then
