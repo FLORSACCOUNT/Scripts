@@ -21,22 +21,7 @@ task.spawn(function()
 if getgenv().Sh == true then
 getgenv().Sh = false
 task.wait(getgenv().Timer)
-local args = {
-    [1] = {
-        ["Action"] = "StopMeter",
-        ["PumpFake"] = false
-    }
-}
-
-game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
-local args = {
-    [1] = {
-        ["Action"] = "ShootBall",
-        ["ClientTime"] = 0
-    }
-}
-
-game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
+firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Shoot["MouseButton1Down"])
            end
       end)
 end)
