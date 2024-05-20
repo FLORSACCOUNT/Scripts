@@ -4,8 +4,8 @@ while task.wait(0.1) do
 task.spawn(function()
 for i,v in pairs(game.Players:GetPlayers()) do
 if v ~= game.Players.LocalPlayer then
-game.Players.LocalPlayer.PlayerGui.Meters:ChildAdded:Connect(function()
-if b.name:match(v.Name) and game.Players.LocalPlayer:DistanceFromCharacter(v.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 15 then
+game.Players.LocalPlayer.PlayerGui.Meters.ChildAdded:Connect(function(b)
+if b.Name:match(v.Name) and game.Players.LocalPlayer:DistanceFromCharacter(v.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 15 then
 task.wait(0.25 - (game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue() * 0.001))
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["Activated"])
 end
