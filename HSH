@@ -11,7 +11,7 @@ table.insert(playerl,v)
 end)
 game.Players.LocalPlayer.PlayerGui.Meters.ChildAdded:Connect(function(b)
 for i,v in pairs(playerl) do
-if game.Players.LocalPlayer:DistanceFromCharacter(realpl.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 15 then
+if b.Name:match(v.Name) and game.Players.LocalPlayer:DistanceFromCharacter(v.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 15 then
 local Signals = {"Activated", "MouseButton1Down", "MouseButton2Down", "MouseButton1Click", "MouseButton2Click"}
 for i,v in pairs(Signals) do 
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump[v])
