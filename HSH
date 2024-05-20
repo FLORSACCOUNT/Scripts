@@ -23,7 +23,16 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
+if getgenv().Post == true then
+local args = {
+    [1] = {
+        ["Action"] = "Post",
+        ["Val"] = false
+    }
+}
 
+game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
+end
            end
       end)
 end)
@@ -56,6 +65,11 @@ elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and a
 getgenv().Timer = 0.3
 
 getgenv().Sh = true
+task.spawn(function()
+getgenv().Post = true
+task.wait(0.75)
+getgenv().Post = false
+end)
 end
 return h(self,...)
 end)
