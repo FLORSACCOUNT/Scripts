@@ -52,11 +52,10 @@ elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and a
 getgenv().Timer = 0.39
 
 getgenv().Sh = true
-task.spawn(function()
-getgenv().Post = true
-task.wait(0.75)
-getgenv().Post = false
-end)
+elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "PostHook" then
+getgenv().Timer = 0.4
+
+getgenv().Sh = true
 end
 return h(self,...)
 end)
