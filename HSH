@@ -1,0 +1,66 @@
+print("Executed !")
+
+game:GetService("RunService").RenderStepped:Connect(function()
+task.spawn(function()
+if getgenv().Sh == true and game.Players.LocalPlayer.PlayerGui.ShotMeter.Enabled == true then
+getgenv().Sh = false
+task.wait(getgenv().Timer - game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue() * 0.001)
+task.wait(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue() * 0.001)
+task.spawn(function()
+local args = {
+    [1] = {
+        ["Action"] = "StopMeter",
+        ["PumpFake"] = false
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
+end)
+local args = {
+    [1] = {
+        ["Action"] = "ShootBall",
+        ["ClientTime"] = 0
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
+
+           end
+      end)
+end)
+local h;
+h = hookmetamethod(game,'__namecall',function(self,...)
+local args = {...}
+if tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "Shootball" or args[1]["Action"] == "StopMeter") and not checkcaller() then
+return;
+elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Fade" then
+getgenv().Timer = 0.5
+
+getgenv().Sh = true
+elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Reg" then
+getgenv().Timer = 0.335
+
+getgenv().Sh = true
+elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Layup" then
+getgenv().Timer = 0.25
+
+getgenv().Sh = true
+elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Moving" then
+getgenv().Timer = 0.35
+
+getgenv().Sh = true
+elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Dunk" then
+getgenv().Timer = 0.35
+
+getgenv().Sh = true
+elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Postfade" then
+getgenv().Timer = 0.375
+
+getgenv().Sh = true
+end
+return h(self,...)
+end)
+task.spawn(function()
+workspace["_NpcCrown"]:Destroy()
+workspace["Extra"]:Destroy()
+end)
