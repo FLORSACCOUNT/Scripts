@@ -1,16 +1,21 @@
 print("Executed !")
+getgenv().CanBlock = true
 task.spawn(function()
 while task.wait(0.1) do
 task.spawn(function()
 for i,v in pairs(game.Players:GetPlayers()) do
 if v ~= game.Players.LocalPlayer then
 game.Players.LocalPlayer.PlayerGui.Meters.ChildAdded:Connect(function(b)
-print(b)
-if b.Name:match(v.Name) and game.Players.LocalPlayer:DistanceFromCharacter(v.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 15 then
+if b.Name:match(v.Name) and getgenv().CanBlock == true then
+getgenv().CanBlock = false
+local realpl = v
+if game.Players.LocalPlayer:DistanceFromCharacter(realpl.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 15 then
 task.wait(0.25 - (game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue() * 0.001))
 local Signals = {"Activated", "MouseButton1Down", "MouseButton2Down", "MouseButton1Click", "MouseButton2Click"}
 for i,v in pairs(Signals) do 
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump[v])
+getgenv().CanBlock = true
+end
 end
 end
 end)
