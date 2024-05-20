@@ -11,14 +11,10 @@ table.insert(playerl,v)
 end)
 game.Players.LocalPlayer.PlayerGui.Meters.ChildAdded:Connect(function(b)
 for i,v in pairs(playerl) do
-if b.Name:match(v.Name) then
-local realpl = v
 if game.Players.LocalPlayer:DistanceFromCharacter(realpl.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 15 then
-task.wait()
 local Signals = {"Activated", "MouseButton1Down", "MouseButton2Down", "MouseButton1Click", "MouseButton2Click"}
 for i,v in pairs(Signals) do 
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump[v])
-end
 end
 end
 end
@@ -81,7 +77,7 @@ getgenv().Timer = 0.6
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Dunk" then
-getgenv().Timer = 0.385
+getgenv().Timer = 0.45
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "PostFade" then
