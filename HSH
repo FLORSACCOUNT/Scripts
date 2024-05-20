@@ -61,27 +61,27 @@ local args = {...}
 if tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "Shootball" or args[1]["Action"] == "Post" or args[1]["Action"] == "StopMeter") and not checkcaller() then
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Fade" then
-getgenv().Timer = 0.625
+getgenv().Timer = 0.625 + 0.15
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Reg" then
-getgenv().Timer = 0.585
+getgenv().Timer = 0.585 + 0.15
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Layup" then
-getgenv().Timer = 0.485
+getgenv().Timer = 0.485 + 0.15
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Moving" then
-getgenv().Timer = 0.6
+getgenv().Timer = 0.6 + 0.15
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Dunk" then
-getgenv().Timer = 0.45
+getgenv().Timer = 0.45 + 0.15
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "PostFade" then
-getgenv().Timer = 0.65
+getgenv().Timer = 0.65 + 0.15
 
 getgenv().Sh = true
 task.spawn(function()
