@@ -50,7 +50,7 @@ getgenv().Timer = 0.585
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Layup" then
-getgenv().Timer = 0.5
+getgenv().Timer = 0.485
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Moving" then
