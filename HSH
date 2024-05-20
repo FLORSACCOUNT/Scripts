@@ -21,7 +21,6 @@ task.spawn(function()
 if getgenv().Sh == true and game.Players.LocalPlayer.PlayerGui.ShotMeter.Enabled == true then
 getgenv().Sh = false
 task.wait(getgenv().Timer)
-task.spawn(function()
 local args = {
     [1] = {
         ["Action"] = "StopMeter",
@@ -30,7 +29,6 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
-end)
 local args = {
     [1] = {
         ["Action"] = "ShootBall",
@@ -39,16 +37,6 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
-if getgenv().Post == true then
-local args = {
-    [1] = {
-        ["Action"] = "Post",
-        ["Val"] = false
-    }
-}
-
-game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
-end
            end
       end)
 end)
