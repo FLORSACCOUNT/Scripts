@@ -21,7 +21,7 @@ task.spawn(function()
 if getgenv().Sh == true then
 getgenv().Sh = false
 task.wait(getgenv().Timer)
-firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Shoot["MouseButton1Down"])
+firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Shoot["MouseButton1Up"])
            end
       end)
 end)
