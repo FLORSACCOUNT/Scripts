@@ -62,7 +62,7 @@ getgenv().Timer = 0.3
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Postfade" then
-getgenv().Timer = 0.3
+getgenv().Timer = 0.2
 
 getgenv().Sh = true
 task.spawn(function()
