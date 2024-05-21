@@ -110,5 +110,4 @@ end)
 				child:Destroy()
 			end
 		end)()
-	end)
   end)
