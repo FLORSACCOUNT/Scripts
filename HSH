@@ -53,8 +53,6 @@ end)
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "BlockStart" or args[1]["Action"] == "BlockBall") and not checkcaller() then
 return;
-elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "ShootBall" and not checkcaller() then
-args[1]["ClientTime"] = 100
 end
 return h(self,...)
 end)
