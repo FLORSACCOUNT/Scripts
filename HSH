@@ -31,8 +31,9 @@ firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseBut
 end
 end
 end)
-game.Players.LocalPlayer.PlayerGui.Meters.ChildAdded:Connect(function(b)
-if b.Name:match(game.Players.LocalPlayer.Name) then
+game:GetService("RunService").RenderStepped:Connect(function()
+if getgenv().CanS == true then
+getgenv().CanS = false
 task.wait(getgenv().Timer)
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Shoot["MouseButton1Up"])
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Dunk["MouseButton1Up"])
@@ -42,11 +43,18 @@ local h;
 h = hookmetamethod(game,'__namecall',function(self,...)
 local args = {...}
 if tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "StartMeter" and not checkcaller() then
+task.spawn(function()
 args[1]["ShotType"] = "SuperFast"
 args[1]["ShotName"] = "Reg"
-return self.FireServer(self,unpack(args))
+self.FireServer(self,unpack(args))
+task.wait(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue() * 0.001)
+getgenv().CanS = true
+end)
+return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "BlockStart" or args[1]["Action"] == "BlockBall") and not checkcaller() then
 return;
+elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "ShootBall" and not checkcaller() then
+args[1]["ClientTime"] = 100
 end
 return h(self,...)
 end)
