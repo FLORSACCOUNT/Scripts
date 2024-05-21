@@ -35,8 +35,22 @@ game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().CanS == true then
 getgenv().CanS = false
 task.wait(getgenv().Timer)
-firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Shoot["MouseButton1Up"])
-firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Dunk["MouseButton1Up"])
+local args = {
+    [1] = {
+        ["Action"] = "StopMeter",
+        ["PumpFake"] = false
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
+local args = {
+    [1] = {
+        ["Action"] = "ShootBall",
+        ["ClientTime"] = 0
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
     end
 end)
 local h;
