@@ -1,4 +1,4 @@
-getgenv().Timer = 0.2775
+getgenv().Timer = 0.279
 local playerl = {}
 task.spawn(function()
 while task.wait(0.1) do
