@@ -35,6 +35,7 @@ game.Players.LocalPlayer.PlayerGui.ShotMeter:GetPropertyChangedSignal:Connect(fu
 if game.Players.LocalPlayer.PlayerGui.ShotMeter.Enabled == true then
 task.wait(getgenv().Timer - game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue() * 0.001)
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Shoot["MouseButton1Up"])
+firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Dunk["MouseButton1Up"])
     end
 end)
 local h;
