@@ -44,12 +44,10 @@ local h;
 h = hookmetamethod(game,'__namecall',function(self,...)
 local args = {...}
 if tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "StartMeter" and not checkcaller() then
-task.spawn(function()
 args[1]["ShotType"] = "SuperFast"
 args[1]["ShotName"] = "Reg"
 self.FireServer(self,unpack(args))
 getgenv().CanS = true
-end)
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "BlockStart" or args[1]["Action"] == "BlockBall") and not checkcaller() then
 return;
