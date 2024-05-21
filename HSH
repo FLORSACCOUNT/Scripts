@@ -28,38 +28,41 @@ end)
 local h;
 h = hookmetamethod(game,'__namecall',function(self,...)
 local args = {...}
-if  tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "StartMeter" then
+if tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Fade" then
+getgenv().Timer = 0.2
+getgenv().Sh = true
 args[1]["ShotType"] = "SuperFast"
 return self.FireServer(self,unpack(args))
-end
-if tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Fade" then
-getgenv().Timer = 0
-
-getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Reg" then
-getgenv().Timer = 0
-
+getgenv().Timer = 0.2
 getgenv().Sh = true
+args[1]["ShotType"] = "SuperFast"
+return self.FireServer(self,unpack(args))
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Layup" then
-getgenv().Timer = 0
-print("aaa")
+getgenv().Timer = 0.2
 getgenv().Sh = true
+args[1]["ShotType"] = "SuperFast"
+return self.FireServer(self,unpack(args))
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Moving" then
-getgenv().Timer = 0
-print("bbb")
+getgenv().Timer = 0.2
 getgenv().Sh = true
+args[1]["ShotType"] = "SuperFast"
+return self.FireServer(self,unpack(args))
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Dunk" then
-getgenv().Timer = 0
-
+getgenv().Timer = 0.2
 getgenv().Sh = true
+args[1]["ShotType"] = "SuperFast"
+return self.FireServer(self,unpack(args))
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "PostFade" then
-getgenv().Timer = 0
-
+getgenv().Timer = 0.2
 getgenv().Sh = true
+args[1]["ShotType"] = "SuperFast"
+return self.FireServer(self,unpack(args))
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["ShotName"] == "HookRight" or args[1]["ShotName"] == "HookLeft") then
-getgenv().Timer = 0
-
+getgenv().Timer = 0.2
 getgenv().Sh = true
+args[1]["ShotType"] = "SuperFast"
+return self.FireServer(self,unpack(args))
 end
 return h(self,...)
 end)
