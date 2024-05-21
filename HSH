@@ -48,8 +48,16 @@ task.wait(getgenv().Timer)
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Shoot["MouseButton1Up"])
 end)
 game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Dunk.MouseButton1Down:Connect(function()
-repeat task.wait()
-until game.Players.LocalPlayer.PlayerGui.ShotMeter.Enabled == true
+local args = {
+    [1] = {
+        ["Shift"] = true,
+        ["ShotType"] = "Fast",
+        ["Action"] = "StartMeter",
+        ["ShotName"] = "Reg"
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args)) 
 task.wait(getgenv().Timer)
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Dunk["MouseButton1Up"])
 end)
