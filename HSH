@@ -36,6 +36,10 @@ game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Shoot.MouseButton1Down:Co
 task.wait(getgenv().Timer)
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Shoot["MouseButton1Up"])
 end)
+game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Dunk.MouseButton1Down:Connect(function()
+task.wait(getgenv().Timer)
+firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Dunk["MouseButton1Up"])
+end)
 local h;
 h = hookmetamethod(game,'__namecall',function(self,...)
 local args = {...}
