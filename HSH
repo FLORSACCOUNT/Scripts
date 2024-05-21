@@ -35,7 +35,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().CanS == true then
 getgenv().CanS = false
 task.wait(getgenv().Timer)
-for i = 1,5 do
+task.spawn(function()
 local args = {
     [1] = {
         ["Action"] = "StopMeter",
@@ -44,6 +44,7 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
+end)
 local args = {
     [1] = {
         ["Action"] = "ShootBall",
@@ -52,8 +53,6 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
-task.wait(0.1)      
-      end
    end
 end)
 local h;
