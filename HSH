@@ -77,12 +77,11 @@ return;
 end
 return h(self,...)
 end)
-task.spawn(function()
-workspace["Lights"]:Destroy()
-workspace["Junk"]:Destroy()
-workspace["_NpcCrown"]:Destroy()
-workspace["Extra"]:Destroy()
-end)
+for i,v in pairs(workspace:GetChildren()) do
+if v.Name == "Lights" or v.Name == "Junk" or v.Name == "_NpcCrown" or v.Name == "Extra" then
+v:Destroy()
+    end
+end
 	workspace:FindFirstChildOfClass('Terrain').WaterWaveSize = 0
 	workspace:FindFirstChildOfClass('Terrain').WaterWaveSpeed = 0
 	workspace:FindFirstChildOfClass('Terrain').WaterReflectance = 0
