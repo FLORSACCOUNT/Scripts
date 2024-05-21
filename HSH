@@ -34,8 +34,16 @@ end
 end
 end)
 game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Shoot.MouseButton1Down:Connect(function()
-repeat task.wait()
-until game.Players.LocalPlayer.PlayerGui.ShotMeter.Enabled == true
+local args = {
+    [1] = {
+        ["Shift"] = true,
+        ["ShotType"] = "Fast",
+        ["Action"] = "StartMeter",
+        ["ShotName"] = "Reg"
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args)) 
 task.wait(getgenv().Timer)
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Shoot["MouseButton1Up"])
 end)
@@ -49,8 +57,6 @@ local h;
 h = hookmetamethod(game,'__namecall',function(self,...)
 local args = {...}
 if tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] and not checkcaller() then
-args[1]["ShotType"] = "SuperFast"
-self.FireServer(self,unpack(args))
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "BlockStart" or args[1]["Action"] == "BlockBall") and not checkcaller() then
 return;
