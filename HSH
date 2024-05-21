@@ -45,6 +45,7 @@ local args = {...}
 if tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "StartMeter" and not checkcaller() then
 args[1]["ShotType"] = "SuperFast"
 args[1]["ShotName"] = "Reg"
+getgenv().CanS = true
 self.FireServer(self,unpack(args))
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "BlockStart" or args[1]["Action"] == "BlockBall") and not checkcaller() then
