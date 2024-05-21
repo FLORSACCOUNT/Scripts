@@ -34,7 +34,7 @@ end
 end
 end)
 game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Shoot.MouseButton1Down:Connect(function()
-task.wait(getgenv().Timer)
+task.wait(getgenv().Timer - (game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue() * 0.001))
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Shoot["MouseButton1Up"])
 end)
 game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Dunk.MouseButton1Down:Connect(function()
