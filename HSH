@@ -13,7 +13,6 @@ end)
 game.Players.LocalPlayer.PlayerGui.Meters.ChildAdded:Connect(function(b)
 for i,v in pairs(playerl) do
 if b.Name:match(v.Name) and v.Character and game.Players.LocalPlayer:DistanceFromCharacter(v.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 15 then
-task.wait(0.25 - (game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue() * 0.001))
 local args = {
     [1] = {
         ["Action"] = "BlockStart"
