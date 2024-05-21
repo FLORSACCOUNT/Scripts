@@ -21,6 +21,7 @@ task.spawn(function()
 if getgenv().Sh == true then
 getgenv().Sh = false
 task.wait(getgenv().Timer)
+print("fskfakfsa")
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Shoot["MouseButton1Up"])
            end
       end)
