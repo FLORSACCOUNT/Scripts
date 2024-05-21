@@ -47,7 +47,7 @@ task.wait(0.15)
 local args = {
     [1] = {
         ["Action"] = "ShootBall",
-        ["ClientTime"] = 9191921
+        ["ClientTime"] = 0
     }
 }
 
