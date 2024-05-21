@@ -1,4 +1,4 @@
--- waiting forcmonnn
+-- waiting forcmonnnAAAAAAAAAAAAAAAAA
 setfpscap(40)
 getgenv().Timer = 0.35
 local playerl = {}
