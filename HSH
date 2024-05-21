@@ -29,7 +29,7 @@ local h;
 h = hookmetamethod(game,'__namecall',function(self,...)
 local args = {...}
 if  tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "StartMeter then
-args[1]["ShotType"] = "Fast"
+args[1]["ShotType"] = "SuperFast"
 return self.FireServer(self,unpack(args))
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Fade" then
 getgenv().Timer = 0
@@ -41,11 +41,11 @@ getgenv().Timer = 0
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Layup" then
 getgenv().Timer = 0
-
+print("aaa")
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Moving" then
 getgenv().Timer = 0
-
+print("bbb")
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Dunk" then
 getgenv().Timer = 0
