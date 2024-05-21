@@ -4,7 +4,7 @@ local playerl = {}
 task.spawn(function()
 while task.wait(0.1) do
 if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character.Skills:FindFirstChild("Post Technician") then
-type = "HookRight"
+type = "PostFade"
 else
 type = "Reg"
 end
