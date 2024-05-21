@@ -31,8 +31,8 @@ firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseBut
 end
 end
 end)
-game.Players.LocalPlayer.PlayerGui.ShotMeter:GetPropertyChangedSignal("Enabled"):Connect(function()
-if game.Players.LocalPlayer.PlayerGui.ShotMeter.Enabled == true then
+game.Players.LocalPlayer.PlayerGui.Meters.ChildAdded:Connect(function(b)
+if b.Name:match(game.Players.LocalPlayer.Name) then
 task.wait(getgenv().Timer)
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Shoot["MouseButton1Up"])
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Dunk["MouseButton1Up"])
