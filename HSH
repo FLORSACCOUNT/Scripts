@@ -33,6 +33,7 @@ end
 end
 end)
 game:GetService("RunService").RenderStepped:Connect(function()
+ping = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue() * 0.001
 if getgenv().CanS == true then
 getgenv().CanS = false
 task.wait(getgenv().Timer)
@@ -48,7 +49,7 @@ args[1]["ShotType"] = "SuperFast"
 args[1]["ShotName"] = "Reg"
 self.FireServer(self,unpack(args))
 task.spawn(function()
-task.wait(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue() * 0.001)
+task.wait(ping)
 getgenv().CanS = true
 end)
 return;
