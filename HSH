@@ -47,7 +47,10 @@ if tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[
 args[1]["ShotType"] = "SuperFast"
 args[1]["ShotName"] = "Reg"
 self.FireServer(self,unpack(args))
+task.spawn(function()
+task.wait(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue() * 0.001)
 getgenv().CanS = true
+end)
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "BlockStart" or args[1]["Action"] == "BlockBall") and not checkcaller() then
 return;
