@@ -1,4 +1,4 @@
-getgenv().Timer = 0.2325
+getgenv().Timer = 0.3
 local playerl = {}
 task.spawn(function()
 while task.wait(0.1) do
@@ -43,7 +43,7 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
-task.wait(0.1)
+task.wait(0.15)
 local args = {
     [1] = {
         ["Action"] = "ShootBall",
