@@ -29,7 +29,7 @@ local h;
 h = hookmetamethod(game,'__namecall',function(self,...)
 local args = {...}
 if tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Fade" then
-getgenv().Timer = 0.4285
+getgenv().Timer = 0.42925
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Reg" then
@@ -37,7 +37,7 @@ getgenv().Timer = 0.4
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Layup" then
-getgenv().Timer = 0.295
+getgenv().Timer = 0.3
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "Moving" then
@@ -49,11 +49,11 @@ getgenv().Timer = 0.315
 
 getgenv().Sh = true
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "PostFade" then
-getgenv().Timer = 0.39
+getgenv().Timer = 0.405
 
 getgenv().Sh = true
-elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"] == "PostHook" then
-getgenv().Timer = 0.4
+elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["ShotName"]:match("Hook") then
+getgenv().Timer = 0.365
 
 getgenv().Sh = true
 end
