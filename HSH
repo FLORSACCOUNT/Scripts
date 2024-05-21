@@ -71,6 +71,7 @@ end
 return h(self,...)
 end)
 task.spawn(function()
+workspace["Lights"]:Destroy()
 workspace["_NpcCrown"]:Destroy()
 workspace["Extra"]:Destroy()
 end)
