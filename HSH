@@ -1,4 +1,4 @@
-getgenv().Timer = 0.27925
+getgenv().Timer = 0.2795
 local playerl = {}
 task.spawn(function()
 while task.wait(0.1) do
@@ -60,7 +60,7 @@ if tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "StartMeter" and not checkcaller() then
 args[1]["ShotType"] = "SuperFast"
-args[1]["ShotName"] = "Reg"
+args[1]["ShotName"] = "Layup"
 task.spawn(function()
 task.wait(getgenv().Timer)
 getgenv().CC = true
