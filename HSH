@@ -1,4 +1,3 @@
-setfpscap(40)
 getgenv().Timer = 0.3375
 local playerl = {}
 task.spawn(function()
