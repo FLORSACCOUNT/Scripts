@@ -1,4 +1,4 @@
-getgenv().Timer = 0.5
+getgenv().Timer = 0.3325
 local playerl = {}
 task.spawn(function()
 while task.wait(0.1) do
@@ -33,7 +33,7 @@ end
 end)
 game.Players.LocalPlayer.PlayerGui.ShotMeter:GetPropertyChangedSignal("Enabled"):Connect(function()
 if game.Players.LocalPlayer.PlayerGui.ShotMeter.Enabled == true then
-task.wait(getgenv().Timer - game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue() * 0.001)
+task.wait(getgenv().Timer)
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Shoot["MouseButton1Up"])
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Dunk["MouseButton1Up"])
     end
