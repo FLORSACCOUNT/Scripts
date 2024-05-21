@@ -32,6 +32,13 @@ end
 end
 end)
 game:GetService("RunService").RenderStepped:Connect(function()
+if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character.Skills:FindFirstChild("Post Technician") then
+getgenv().Type = "HookLeft"
+else
+getgenv().Type = "Reg"
+end
+end)
+game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().CanS == true then
 getgenv().CanS = false
 task.wait(getgenv().Timer)
@@ -61,7 +68,7 @@ if tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "StartMeter" and not checkcaller() then
 args[1]["ShotType"] = "SuperFast"
-args[1]["ShotName"] = "Reg"
+args[1]["ShotName"] = getgenv().Type
 getgenv().CanS = true
 self.FireServer(self,unpack(args))
 return;
