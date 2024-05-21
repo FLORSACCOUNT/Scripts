@@ -34,6 +34,7 @@ end)
 game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().CC == true then
 getgenv().CC = false
+task.wait(getgenv().Timer)
 local args = {
     [1] = {
         ["Action"] = "StopMeter",
@@ -60,12 +61,10 @@ if tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "StartMeter" and not checkcaller() then
 args[1]["ShotType"] = "SuperFast"
-args[1]["ShotName"] = "Layup"
-task.spawn(function()
-task.wait(getgenv().Timer)
+args[1]["ShotName"] = "Reg"
 getgenv().CC = true
-end)
-return self.FireServer(self,unpack(args))
+self.FireServer(self,unpack(args))
+return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "BlockStart" or args[1]["Action"] == "BlockBall") and not checkcaller() then
 return;
 end
