@@ -35,7 +35,6 @@ game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().CanS == true then
 getgenv().CanS = false
 task.wait(getgenv().Timer)
-task.spawn(function()
 local args = {
     [1] = {
         ["Action"] = "StopMeter",
@@ -44,7 +43,6 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
-end)
 local args = {
     [1] = {
         ["Action"] = "ShootBall",
@@ -65,6 +63,8 @@ getgenv().CanS = true
 self.FireServer(self,unpack(args))
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "BlockStart" or args[1]["Action"] == "BlockBall") and not checkcaller() then
+return;
+elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "Shootball" or args[1]["Action"] == "StopMeter") and not checkcaller() then
 return;
 end
 return h(self,...)
