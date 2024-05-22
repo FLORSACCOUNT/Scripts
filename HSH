@@ -27,7 +27,7 @@ local args = {
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Guard["MouseButton1Down"])
-task.wait(3.5)
+task.wait(1.75)
 local args = {
     [1] = {
         ["Action"] = "Guarding",
