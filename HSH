@@ -8,7 +8,7 @@ type = "PostFade"
 else
 type = "Reg"
 end
-for i,v in pairs(game.Players:GetPlayers()) do
+for i,v in game.Players:GetPlayers() do
 if v ~= game.Players.LocalPlayer and not table.find(playerl,v) then
 table.insert(playerl,v)
        end
@@ -16,7 +16,7 @@ table.insert(playerl,v)
    end
 end)
 game.Players.LocalPlayer.PlayerGui.Meters.ChildAdded:Connect(function(b)
-for i,v in pairs(playerl) do
+for i,v in playerl do
 if b.Name:match(v.Name) and v.Character and game.Players.LocalPlayer:DistanceFromCharacter(v.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 15 then
 local args = {
     [1] = {
@@ -76,7 +76,7 @@ return;
 end
 return h(self,...)
 end)
-for i,v in pairs(workspace:GetChildren()) do
+for i,v in workspace:GetChildren() do
 if v.Name == "Lights" or v.Name == "_NpcCrown" then
 v:Destroy()
     end
