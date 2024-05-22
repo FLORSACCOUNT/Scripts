@@ -20,20 +20,21 @@ for i,v in playerl do
 if b.Name:match(v.Name) and v.Character and game.Players.LocalPlayer:DistanceFromCharacter(v.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 15 then
 local args = {
     [1] = {
-        ["Action"] = "BlockStart"
+        ["Action"] = "Guarding",
+        ["Val"] = true
     }
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
+task.wait(1)
 local args = {
     [1] = {
-        ["Action"] = "BlockBall"
+        ["Action"] = "Guarding",
+        ["Val"] = false
     }
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
-firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseButton1Down"])
-firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseButton1Up"])
 end
 end
 end)
