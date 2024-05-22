@@ -26,7 +26,7 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
-task.wait(1)
+task.wait(3.5)
 local args = {
     [1] = {
         ["Action"] = "Guarding",
