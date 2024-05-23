@@ -2,7 +2,7 @@ getgenv().Timer = 0.2825
 local type = "Reg"
 local playerl = {}
 task.spawn(function()
-while task.wait(0.1) do
+while task.wait(1) do
 if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character.Skills:FindFirstChild("Post Technician") then
 type = "PostFade"
 else
@@ -15,14 +15,50 @@ table.insert(playerl,v)
      end
    end
 end)
+game.Players.LocalPlayer.Backpack.CurrentBall:GetPropertyChangedSignal("Value"):Connect(function()
+if game.Players.LocalPlayer.Backpack.CurrentBall == nil then
+print("a")
+local args = {
+    [1] = {
+        ["Action"] = "Guarding",
+        ["Val"] = true
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
+elseif game.Players.LocalPlayer.Backpack.CurrentBall ~= nil then
+print("b")
+local args = {
+    [1] = {
+        ["Action"] = "Guarding",
+        ["Val"] = false
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
+    end
+end)
 game.Players.LocalPlayer.PlayerGui.Meters.ChildAdded:Connect(function(b)
-for i,v in playerl do
+for i,v in pairs(playerl) do
 if b.Name:match(v.Name) and v.Character and game.Players.LocalPlayer:DistanceFromCharacter(v.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 15 then
-firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Guard["MouseButton1Down"])
-task.wait(3.5)
-firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Guard["MouseButton1Up"])
-end
-end
+firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseButton1Down"])
+local args = {
+    [1] = {
+        ["Action"] = "BlockStart"
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
+local args = {
+    [1] = {
+        ["Action"] = "BlockBall"
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
+firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseButton1Up"])
+     end
+   end
 end)
 game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().CC == true then
