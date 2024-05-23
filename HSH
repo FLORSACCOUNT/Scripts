@@ -1,3 +1,4 @@
+print("HSH SCRIPT EXECUTED ...")
 getgenv().Timer = 0.2825
 local type = "Reg"
 local playerl = {}
