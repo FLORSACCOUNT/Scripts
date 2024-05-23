@@ -3,6 +3,8 @@ local type = "Reg"
 local playerl = {}
 task.spawn(function()
 while task.wait(1) do
+if game.Players.LocalPlayer.Backpack.CurrentBall.Value == nil then
+print("a")
 local args = {
     [1] = {
         ["Action"] = "Guarding",
@@ -12,7 +14,7 @@ local args = {
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
 elseif game.Players.LocalPlayer.Backpack.CurrentBall.Value ~= nil then
-print("b)
+print("b")
 local args = {
     [1] = {
         ["Action"] = "Guarding",
