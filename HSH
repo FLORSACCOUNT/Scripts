@@ -15,29 +15,6 @@ table.insert(playerl,v)
      end
    end
 end)
-game.Players.LocalPlayer.Backpack.CurrentBall:GetPropertyChangedSignal("Value"):Connect(function()
-if game.Players.LocalPlayer.Backpack.CurrentBall == nil then
-print("a")
-local args = {
-    [1] = {
-        ["Action"] = "Guarding",
-        ["Val"] = true
-    }
-}
-
-game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
-elseif game.Players.LocalPlayer.Backpack.CurrentBall ~= nil then
-print("b")
-local args = {
-    [1] = {
-        ["Action"] = "Guarding",
-        ["Val"] = false
-    }
-}
-
-game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
-    end
-end)
 game.Players.LocalPlayer.PlayerGui.Meters.ChildAdded:Connect(function(b)
 for i,v in pairs(playerl) do
 if b.Name:match(v.Name) and v.Character and game.Players.LocalPlayer:DistanceFromCharacter(v.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 15 then
@@ -61,6 +38,29 @@ firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseBut
    end
 end)
 game:GetService("RunService").RenderStepped:Connect(function()
+task.spawn(function()
+task.wait(0.5)
+if game.Players.LocalPlayer.Backpack.CurrentBall == nil then
+print("a")
+local args = {
+    [1] = {
+        ["Action"] = "Guarding",
+        ["Val"] = true
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
+elseif game.Players.LocalPlayer.Backpack.CurrentBall ~= nil then
+print("b)
+local args = {
+    [1] = {
+        ["Action"] = "Guarding",
+        ["Val"] = false
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
+end)
 if getgenv().CC == true then
 getgenv().CC = false
 task.wait(getgenv().Timer)
