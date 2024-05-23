@@ -19,7 +19,7 @@ game.Players.LocalPlayer.PlayerGui.Meters.ChildAdded:Connect(function(b)
 for i,v in playerl do
 if b.Name:match(v.Name) and v.Character and game.Players.LocalPlayer:DistanceFromCharacter(v.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 15 then
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Guard["MouseButton1Down"])
-task.wait(1.75)
+task.wait(3.5)
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Guard["MouseButton1Up"])
 end
 end
