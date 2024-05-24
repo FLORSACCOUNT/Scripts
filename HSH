@@ -43,7 +43,7 @@ if getgenv().CC == true then
 getgenv().CC = false
 	local ActiveTracks = game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks()
 	for _, v in pairs(ActiveTracks) do
-		v:AdjustSpeed(1)
+		v:AdjustSpeed(0)
 	end
 task.wait(getgenv().Timer)
 local args = {
