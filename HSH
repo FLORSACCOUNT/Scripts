@@ -53,8 +53,10 @@ game:GetService("RunService").RenderStepped:Connect(function()
 for i, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
 if tostring(v):match("Moving") or tostring(v):match("RegBase") or tostring(v):match("LayUpBase") or tostring(v):match("PostFadeBase") or tostring(v):match("BaseDunk") or tostring(v):match("FadeBase")  then
 v:AdjustSpeed(getgenv().Speed)
+      end
    end
-end
+end)
+game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().CC == true then
 getgenv().CC = false
 task.wait(getgenv().Timer)
