@@ -74,12 +74,12 @@ return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "StartMeter" and args[1]["ShotName"] and not checkcaller() then
 args[1]["ShotType"] = "SuperFast"
 args[1]["ShotName"] = type
-for i, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
-print(i,v)
-v:AdjustSpeed(getgenv().Speed)
-end
 getgenv().CC = true
 self.FireServer(self,unpack(args))
+for i, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
+if v ~= "Run" then
+v:AdjustSpeed(getgenv().Speed)
+end
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "BlockStart" or args[1]["Action"] == "BlockBall") and not checkcaller() then
 return;
