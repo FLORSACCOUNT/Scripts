@@ -50,6 +50,11 @@ firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseBut
     end
 end)
 game:GetService("RunService").RenderStepped:Connect(function()
+for i, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
+if tostring(v):match("Moving") or tostring(v):match("RegBase") or tostring(v):match("LayUpBase") or tostring(v):match("PostFadeBase") or tostring(v):match("BaseDunk") or tostring(v):match("FadeBase")  then
+v:AdjustSpeed(getgenv().Speed)
+   end
+end
 if getgenv().CC == true then
 getgenv().CC = false
 task.wait(getgenv().Timer)
@@ -80,11 +85,6 @@ args[1]["ShotType"] = "SuperFast"
 args[1]["ShotName"] = type
 getgenv().CC = true
 self.FireServer(self,unpack(args))
-for i, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
-if tostring(v):match("Moving") or tostring(v):match("RegBase") or tostring(v):match("LayUpBase") or tostring(v):match("PostFadeBase") or tostring(v):match("BaseDunk") or tostring(v):match("FadeBase")  then
-v:AdjustSpeed(getgenv().Speed)
-   end
-end
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "BlockStart" or args[1]["Action"] == "BlockBall") and not checkcaller() then
 return;
