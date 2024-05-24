@@ -41,7 +41,10 @@ end)
 game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().CC == true then
 getgenv().CC = false
-firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Off.Shoot["MouseButton1Down"])
+	local ActiveTracks = game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks()
+	for _, v in pairs(ActiveTracks) do
+		v:AdjustSpeed(1)
+	end
 task.wait(getgenv().Timer)
 local args = {
     [1] = {
