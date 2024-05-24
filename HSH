@@ -79,6 +79,7 @@ self.FireServer(self,unpack(args))
 for i, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
 if v ~= "Run" then
 v:AdjustSpeed(getgenv().Speed)
+   end
 end
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "BlockStart" or args[1]["Action"] == "BlockBall") and not checkcaller() then
