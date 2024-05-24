@@ -1,6 +1,6 @@
 print("HSH SCRIPT EXECUTED ...")
 getgenv().Timer = 0.2825
-getgenv().Speed = 4
+getgenv().Speed = 5.5
 local type = "Reg"
 local playerl = {}
 task.spawn(function()
@@ -42,10 +42,7 @@ end)
 game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().CC == true then
 getgenv().CC = false
-	local ActiveTracks = game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks()
-	for _, v in pairs(ActiveTracks) do
-		v:AdjustSpeed(getgenv().Speed)
-	end
+local ActiveTracks = game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks()
 task.wait(getgenv().Timer)
 local args = {
     [1] = {
@@ -55,7 +52,7 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
-task.wait(0.15)
+task.wait(0.175)
 local args = {
     [1] = {
         ["Action"] = "ShootBall",
@@ -64,7 +61,7 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
-	for _, v in pairs(ActiveTracks) do
+	for _, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
 		v:AdjustSpeed(1)
 	end 
     end
@@ -77,6 +74,9 @@ return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "StartMeter" and args[1]["ShotName"] and not checkcaller() then
 args[1]["ShotType"] = "SuperFast"
 args[1]["ShotName"] = type
+for _, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
+v:AdjustSpeed(getgenv().Speed)
+end
 getgenv().CC = true
 self.FireServer(self,unpack(args))
 return;
