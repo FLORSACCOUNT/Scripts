@@ -75,6 +75,7 @@ elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and a
 args[1]["ShotType"] = "SuperFast"
 args[1]["ShotName"] = type
 for _, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
+print(v)
 v:AdjustSpeed(getgenv().Speed)
 end
 getgenv().CC = true
