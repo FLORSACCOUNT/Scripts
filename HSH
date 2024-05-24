@@ -77,7 +77,7 @@ args[1]["ShotName"] = type
 getgenv().CC = true
 self.FireServer(self,unpack(args))
 for i, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
-if v ~= "Run" then
+if tostring(v) ~= "Run" then
 print(i,v)
 v:AdjustSpeed(getgenv().Speed)
    end
