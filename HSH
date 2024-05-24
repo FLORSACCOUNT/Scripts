@@ -52,7 +52,6 @@ end)
 game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().CC == true then
 getgenv().CC = false
-local ActiveTracks = game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks()
 task.wait(getgenv().Timer)
 local args = {
     [1] = {
@@ -69,6 +68,7 @@ local args = {
         ["ClientTime"] = 0
     }
 }
+    end
 end)
 local h;
 h = hookmetamethod(game,'__namecall',function(self,...)
