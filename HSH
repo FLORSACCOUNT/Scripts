@@ -1,6 +1,6 @@
 print("HSH SCRIPT EXECUTED ...")
 getgenv().Timer = 0.2825
-getgenv().Speed = 5.5
+getgenv().Speed = 100
 local type = "Reg"
 local playerl = {}
 task.spawn(function()
@@ -17,9 +17,13 @@ table.insert(playerl,v)
      end
    end
 end)
-game.Players.LocalPlayer.PlayerGui.Meters.ChildAdded:Connect(function(b)
-for i,v in pairs(playerl) do
-if b.Name:match(v.Name) and v.Character and game.Players.LocalPlayer:DistanceFromCharacter(v.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 15 then
+task.spawn(function()
+while task.wait() do
+task.spawn(function()
+for i,v2 in pairs(playerl) do
+for i,v in v2.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
+if tostring(v):match("Moving") or tostring(v):match("RegBase") or tostring(v):match("LayUpBase") or tostring(v):match("PostFadeBase") or tostring(v):match("BaseDunk") or tostring(v):match("FadeBase")  then
+if b.Name:match(v2.Name) and v2.Character and game.Players.LocalPlayer:DistanceFromCharacter(v2.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 15 then
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseButton1Down"])
 
 local args = {
@@ -38,8 +42,11 @@ local args = {
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
 
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseButton1Up"])
-     end
-   end
+                   end
+                end
+            end
+        end)
+    end
 end)
 game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().CC == true then
@@ -61,12 +68,6 @@ local args = {
         ["ClientTime"] = 0
     }
 }
-
-game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
-	for _, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
-		v:AdjustSpeed(1)
-	end 
-    end
 end)
 local h;
 h = hookmetamethod(game,'__namecall',function(self,...)
@@ -79,7 +80,7 @@ args[1]["ShotName"] = type
 getgenv().CC = true
 self.FireServer(self,unpack(args))
 for i, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
-if not tostring(v):match("Run") and not tostring(v):match("Dribble") then
+if tostring(v):match("Moving") or tostring(v):match("RegBase") or tostring(v):match("LayUpBase") or tostring(v):match("PostFadeBase") or tostring(v):match("BaseDunk") or tostring(v):match("FadeBase")  then
 v:AdjustSpeed(getgenv().Speed)
    end
 end
