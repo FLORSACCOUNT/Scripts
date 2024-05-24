@@ -41,25 +41,6 @@ firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseBut
      end
    end
 end)
-local stealing = false
-game:GetService("RunService").RenderStepped:Connect(function()
-if stealing == true then
-local args = {
-    [1] = {
-        ["Action"] = "Reach"
-    }
-}
-
-game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
-task.wait(0.25)
-    end
-end)
-game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Steal.MouseButton1Down:Connect(function()
-stealing = true
-end)
-game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Steal.MouseButton1Up:Connect(function()
-stealing = false
-end)
 game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().CC == true then
 getgenv().CC = false
