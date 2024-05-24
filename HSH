@@ -1,5 +1,6 @@
 print("HSH SCRIPT EXECUTED ...")
 getgenv().Timer = 0.2825
+getgenv().Speed = 4
 local type = "Reg"
 local playerl = {}
 task.spawn(function()
@@ -43,7 +44,7 @@ if getgenv().CC == true then
 getgenv().CC = false
 	local ActiveTracks = game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks()
 	for _, v in pairs(ActiveTracks) do
-		v:AdjustSpeed(2.5)
+		v:AdjustSpeed(getgenv().Speed)
 	end
 task.wait(getgenv().Timer)
 local args = {
