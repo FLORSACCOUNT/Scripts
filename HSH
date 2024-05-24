@@ -1,6 +1,6 @@
 print("HSH SCRIPT EXECUTED ...")
 getgenv().Timer = 0.2825
-getgenv().Speed = 100
+getgenv().Speed = 10
 local type = "Reg"
 local playerl = {}
 task.spawn(function()
