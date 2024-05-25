@@ -1,5 +1,5 @@
 print("HSH SCRIPT EXECUTED ...")
-getgenv().Timer = 0.2825
+getgenv().Timer = 0.28
 getgenv().Speed = 1.25
 local type = "Reg"
 local playerl = {}
@@ -76,7 +76,7 @@ local args = {...}
 if tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "Shootball" or args[1]["Action"] == "StopMeter") and not checkcaller() then
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "StartMeter" and args[1]["ShotName"] and not checkcaller() then
-args[1]["ShotType"] = "SuperFast"
+args[1]["ShotType"] = "Fast"
 if args[1]["ShotName"] ~= "Dunk" then
 args[1]["ShotName"] = type
 end
