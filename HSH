@@ -141,7 +141,7 @@ if not tostring(v):match("Run") and not tostring(v):match("Dribble") and not tos
 v:AdjustSpeed(getgenv().Speed)
    end
 end
-elseif  tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "Guard and not checkcaller() then
+elseif  tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "Guard" and not checkcaller() then
 if args[1]["Val"] == true then
 getgenv().Guarding = false
 elseif args[1]["Val"] == false then
