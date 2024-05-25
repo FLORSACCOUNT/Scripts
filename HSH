@@ -1,9 +1,57 @@
 print("HSH SCRIPT EXECUTED ...")
 getgenv().Timer = 0.285
 getgenv().Speed = 1.25
+getgenv().Distance = 5
 getgenv().ShootingSpeed = 0.3
 local type = "Reg"
 local playerl = {}
+local hoops = {}
+local playc = {}
+local aimp;
+task.spawn(function()
+while true do task.wait()
+for i,v in workspace.Hoops:GetChildren() do
+local bb = math.min(game.Players.LocalPlayer:DistanceFromCharacter(v.AimPart.Position))
+if game.Players.LocalPlayer:DistanceFromCharacter(v.AimPart.Position) == bb then
+aimp = v.AimPart.Position
+            end
+      end
+end)
+task.spawn(function()
+while true do task.wait()
+for i,v in pairs(game.Players:GetPlayers()) do
+if v ~= game.Players.LocalPlayer and v.Character and not table.find(playc, v.Character) then
+table.insert(playc,v.Character)
+local b = Instance.new("Part", v.Character)
+b.Size = Vector3.new(0, 0, 0)
+b.Name = "Contesting"
+b.Anchored = true
+b.CanCollide = false
+task.spawn(function()
+while task.wait() do
+if b and v.Character and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:WaitForChild("OpponentHoop",9e9).Value ~= nil then
+b.CFrame = CFrame.lookAt(v.Character:WaitForChild("HumanoidRootPart",9e9).Position, aimp)
+  end
+ end
+end)
+      end
+    end
+  end
+end)
+task.spawn(function()
+while true do task.wait()
+for i,v in pairs(game.Players:GetPlayers()) do
+if v ~= game.Players.LocalPlayer and game.Players.LocalPlayer.Character and v.Character and v.Backpack.CurrentBall ~= nil and getgenv().Guarding == true then
+if v.Character.Humanoid.MoveDirection.Magnitude == 0 or v.Character.Humanoid.MoveDirection.Z < 0 then
+getgenv().Distance = 5
+elseif v.Character.Humanoid.MoveDirection.Z > 0 then
+getgenv().Distance = 7
+end
+game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9):MoveTo(v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * getgenv().Distance))
+                   end
+             end
+       end
+end)
 task.spawn(function()
 while task.wait(0.1) do
 if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character.Skills:FindFirstChild("Post Technician") then
@@ -91,6 +139,12 @@ for i, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnima
 if not tostring(v):match("Run") and not tostring(v):match("Dribble") and not tostring(v):match("BaseDunk") and not tostring(v):match("StandDunk") then
 v:AdjustSpeed(getgenv().Speed)
    end
+end
+elseif  tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "Guard and not checkcaller() then
+if args[1]["Val"] == true then
+getgenv().Guarding = false
+elseif args[1]["Val"] == false then
+getgenv().Guarding = true
 end
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "BlockStart" or args[1]["Action"] == "BlockBall") and not checkcaller() then
