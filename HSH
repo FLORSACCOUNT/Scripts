@@ -15,7 +15,8 @@ local bb = math.min(game.Players.LocalPlayer:DistanceFromCharacter(v.AimPart.Pos
 if game.Players.LocalPlayer:DistanceFromCharacter(v.AimPart.Position) == bb then
 aimp = v.AimPart.Position
             end
-      end
+         end
+     end
 end)
 task.spawn(function()
 while true do task.wait()
