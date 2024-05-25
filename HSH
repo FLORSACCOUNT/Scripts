@@ -76,7 +76,7 @@ local args = {...}
 if tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "Shootball" or args[1]["Action"] == "StopMeter") and not checkcaller() then
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "StartMeter" and args[1]["ShotName"] and not checkcaller() then
-args[1]["ShotType"] = "Fast"
+args[1]["ShotType"] = "Normal"
 if args[1]["ShotName"] ~= "Dunk" then
 args[1]["ShotName"] = type
 end
