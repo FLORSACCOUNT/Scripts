@@ -82,6 +82,7 @@ if args[1]["ShotName"] ~= "Dunk" then
 args[1]["ShotName"] = type
 getgenv().ShootingSpeed = 0.3
 elseif args[1]["ShotName"] == "Dunk" then
+args[1]["DunkType"] = "Stand"
 getgenv().ShootingSpeed = 1.5
 end
 getgenv().CC = true
