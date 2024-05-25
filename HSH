@@ -83,7 +83,7 @@ end
 getgenv().CC = true
 self.FireServer(self,unpack(args))
 for i, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
-if not tostring(v):match("Run") and not tostring(v):match("Dribble") then
+if not tostring(v):match("Run") and not tostring(v):match("Dribble") and not tostring(v):match("BaseDunk") and not tostring(v):match("StandDunk") then
 v:AdjustSpeed(getgenv().Speed)
    end
 end
