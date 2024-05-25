@@ -11,8 +11,7 @@ local aimp;
 task.spawn(function()
 while true do task.wait()
 for i,v in workspace.Hoops:GetChildren() do
-local bb = math.min(game.Players.LocalPlayer:DistanceFromCharacter(v.AimPart.Position))
-if game.Players.LocalPlayer:DistanceFromCharacter(v.AimPart.Position) == bb then
+if game.Players.LocalPlayer:DistanceFromCharacter(v.AimPart.Position) <= 60 then
 aimp = v.AimPart.Position
             end
          end
@@ -143,9 +142,9 @@ v:AdjustSpeed(getgenv().Speed)
 end
 elseif  tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "Guard" and not checkcaller() then
 if args[1]["Val"] == true then
-getgenv().Guarding = false
-elseif args[1]["Val"] == false then
 getgenv().Guarding = true
+elseif args[1]["Val"] == false then
+getgenv().Guarding = false
 end
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "BlockStart" or args[1]["Action"] == "BlockBall") and not checkcaller() then
