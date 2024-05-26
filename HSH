@@ -47,7 +47,7 @@ game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9).WalkToPoint = (v
              end
        end
 end)
-game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Guard.MouseButton1Down:Connect(function()
+game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Run.Cam.MouseButton1Down:Connect(function()
 local args = {
     [1] = {
         ["Action"] = "Guarding",
@@ -58,8 +58,7 @@ local args = {
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
 getgenv().Guarding = true
 end)
-game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Guard.MouseButton1Up:Connect(function()
-wait(100)
+game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Run.Cam.MouseButton1Up:Connect(function()
 local args = {
     [1] = {
         ["Action"] = "Guarding",
