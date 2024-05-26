@@ -48,7 +48,7 @@ elseif v.Character.Humanoid.MoveDirection.Z > 0 then
 getgenv().Distance = 7
 end
 print("bbasdas")
-game.Players.LocalPlayer.Character.Humanoid:MoveTo(v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * getgenv().Distance))
+game.Players.LocalPlayer.Character.Humanoid:MoveTo(v.Character.Contesting.Position)
                    end
              end
        end
