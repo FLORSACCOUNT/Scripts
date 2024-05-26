@@ -56,9 +56,9 @@ while true do task.wait()
 for i,v in pairs(game.Players:GetPlayers()) do
 if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and v.Backpack.CurrentBall.Value ~= nil and getgenv().Guarding == true and game.Players.LocalPlayer:DistanceFromCharacter(v.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 25 then
 if v.Character.Humanoid.MoveDirection.Magnitude == 0 or v.Character.Humanoid.MoveDirection.Z < 0 then
-getgenv().Distance = 5
+getgenv().Distance = 4
 elseif v.Character.Humanoid.MoveDirection.Z > 0 then
-getgenv().Distance = 7
+getgenv().Distance = 6
 end
 target = v
     if (v.Character.Humanoid.MoveDirection.Magnitude == 0 or math.round(v.Character.Humanoid.MoveDirection.Z) == -1 or math.round(v.Character.Humanoid.MoveDirection.Z) == 1) and math.round(v.Character.Humanoid.MoveDirection.X) ~= 1 and math.round(v.Character.Humanoid.MoveDirection.X) ~= -1 and not Guard.IsPlaying then
