@@ -30,7 +30,7 @@ b.CanCollide = false
 task.spawn(function()
 while task.wait() do
 if b and v.Character and game.Players.LocalPlayer.Character then
-b.CFrame = CFrame.lookAt(v.Character:WaitForChild("HumanoidRootPart",9e9).Position, aimp.Position)
+b.CFrame = v.Character:WaitForChild("HumanoidRootPart",9e9).CFrame
   end
  end
 end)
