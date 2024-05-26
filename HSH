@@ -42,7 +42,7 @@ task.spawn(function()
 while true do task.wait()
 for i,v in pairs(game.Players:GetPlayers()) do
 if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and v.Backpack.CurrentBall.Value ~= nil and getgenv().Guarding == true then
-game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9).WalkToPoint = (v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * 6))
+game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9).WalkToPoint = (v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * 4.5))
                    end
              end
        end
