@@ -9,15 +9,6 @@ local hoops = {}
 local playc = {}
 local target;
 local aimp = workspace.Hoops:GetChildren()[1].AimPart
-task.spawn(function()
-while true do task.wait()
-for i,v in workspace.Hoops:GetChildren() do
-if game.Players.LocalPlayer:DistanceFromCharacter(v.AimPart.Position) <= 65 then
-aimp = v.AimPart
-            end
-         end
-     end
-end)
 local Track = Instance.new("Animation",game.Players.LocalPlayer.Character)
 Track.AnimationId = "rbxassetid://15376687911"
 local Guard = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(Track)
@@ -51,8 +42,48 @@ end)
     end
   end
 end)
+game:GetService("RunService").RenderStepped:Connect(function()
 task.spawn(function()
-while true do task.wait()
+for i, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
+if tostring(v):match("Moving") or tostring(v):match("DefaultIdle") or tostring(v):match("Hook") or tostring(v):match("RegBase") or tostring(v):match("LayUpBase") or tostring(v):match("PostFadeBase") or tostring(v):match("FadeBase")  then
+v:AdjustSpeed(getgenv().Speed)
+      end
+   end
+end)
+task.spawn(function()
+if getgenv().CC == true then
+getgenv().CC = false
+task.wait(getgenv().Timer)
+local args = {
+    [1] = {
+        ["Action"] = "StopMeter",
+        ["PumpFake"] = false
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
+task.wait(getgenv().ShootingSpeed)
+local args = {
+    [1] = {
+        ["Action"] = "ShootBall",
+        ["ClientTime"] = 0
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
+	for _, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
+		v:AdjustSpeed(1)
+	end 
+    end
+end)
+task.spawn(function()
+for i,v in workspace.Hoops:GetChildren() do
+if game.Players.LocalPlayer:DistanceFromCharacter(v.AimPart.Position) <= 65 then
+aimp = v.AimPart
+            end
+         end
+end)
+task.spawn(function()
 for i,v in pairs(game.Players:GetPlayers()) do
 if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and v.Backpack.CurrentBall.Value ~= nil and getgenv().Guarding == true and game.Players.LocalPlayer:DistanceFromCharacter(v.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 25 then
 if v.Character.Humanoid.MoveDirection.Magnitude == 0 or v.Character.Humanoid.MoveDirection.Z < 0 then
@@ -86,9 +117,7 @@ GuardL:Play()
 getgenv().CT = true
                      end
                 end
-             end
 end)
-game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().CT == true then
 game.Players.LocalPlayer.Character.Humanoid:MoveTo(target.Character.Contesting.Position + (target.Character.Contesting.CFrame.lookVector * getgenv().Distance))
 task.wait()
@@ -138,7 +167,7 @@ getgenv().CT = false
 getgenv().Guarding = false
 end)
 task.spawn(function()
-while task.wait(0.1) do
+while task.wait(5) do
 if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character.Skills:FindFirstChild("Post Technician") then
 type = "HookRight"
 else
@@ -169,39 +198,6 @@ firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseBut
 end)
        end
      end
-   end
-end)
-game:GetService("RunService").RenderStepped:Connect(function()
-if getgenv().CC == true then
-getgenv().CC = false
-task.wait(getgenv().Timer)
-local args = {
-    [1] = {
-        ["Action"] = "StopMeter",
-        ["PumpFake"] = false
-    }
-}
-
-game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
-task.wait(getgenv().ShootingSpeed)
-local args = {
-    [1] = {
-        ["Action"] = "ShootBall",
-        ["ClientTime"] = 0
-    }
-}
-
-game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
-	for _, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
-		v:AdjustSpeed(1)
-	end 
-    end
-end)
-game:GetService("RunService").RenderStepped:Connect(function()
-for i, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
-if tostring(v):match("Moving") or tostring(v):match("DefaultIdle") or tostring(v):match("Hook") or tostring(v):match("RegBase") or tostring(v):match("LayUpBase") or tostring(v):match("PostFadeBase") or tostring(v):match("FadeBase")  then
-v:AdjustSpeed(getgenv().Speed)
-      end
    end
 end)
 local h;
