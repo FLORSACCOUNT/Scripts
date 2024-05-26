@@ -41,12 +41,7 @@ end)
 task.spawn(function()
 while true do task.wait()
 for i,v in pairs(game.Players:GetPlayers()) do
-if v ~= game.Players.LocalPlayer and game.Players.LocalPlayer.Character and v.Character and v.Character:FindFirstChild("Humanoid") and v.Backpack.CurrentBall.Value ~= nil and getgenv().Guarding == true then
-if v.Character.Humanoid.MoveDirection.Magnitude == 0 or v.Character.Humanoid.MoveDirection.Z < 0 then
-getgenv().Distance = 1
-elseif v.Character.Humanoid.MoveDirection.Z > 0 then
-getgenv().Distance = 1
-end
+if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and v.Backpack.CurrentBall.Value ~= nil and getgenv().Guarding == true then
 game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9):MoveTo(v.Character.Contesting.Position)
                    end
              end
