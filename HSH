@@ -2,7 +2,7 @@ print("HSH SCRIPT EXECUTED ...")
 getgenv().Timer = 0.285
 getgenv().Speed = 1.25
 getgenv().Distance = 1
-getgenv().ShootingSpeed = 0.3
+getgenv().ShootingSpeed = 0.25
 local type = "Reg"
 local playerl = {}
 local hoops = {}
@@ -213,7 +213,7 @@ elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and a
 args[1]["ShotType"] = "SuperFast"
 if args[1]["ShotName"] ~= "Dunk" then
 args[1]["ShotName"] = type
-getgenv().ShootingSpeed = 0.3
+getgenv().ShootingSpeed = 0.25
 elseif args[1]["ShotName"] == "Dunk" then
 args[1]["DunkType"] = "Stand"
 getgenv().ShootingSpeed = 1.5
