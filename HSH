@@ -24,11 +24,11 @@ local Guard = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animat
 Guard.Priority = Enum.AnimationPriority.Action2
 local TrackR = Instance.new("Animation",game.Players.LocalPlayer.Character)
 TrackR.AnimationId = "rbxassetid://15376685605"
-local GuardR = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(Track)
+local GuardR = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(TrackR)
 GuardR.Priority = Enum.AnimationPriority.Action2
 local TrackL = Instance.new("Animation",game.Players.LocalPlayer.Character)
 TrackL.AnimationId = "rbxassetid://15376683616"
-local GuardL = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(Track)
+local GuardL = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(TrackL)
 GuardL.Priority = Enum.AnimationPriority.Action2
 task.spawn(function()
 while true do task.wait()
