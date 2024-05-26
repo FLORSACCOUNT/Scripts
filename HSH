@@ -121,9 +121,9 @@ end)
 game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Run.Cam.MouseButton1Up:Connect(function()
 if Guard.IsPlaying then
 Guard:Stop()
-if GuardR.IsPlaying then
+elseif GuardR.IsPlaying then
 GuardR:Stop()
-if GuardL.IsPlaying then
+elseif GuardL.IsPlaying then
 GuardL:Stop()
 end
 local args = {
