@@ -47,8 +47,7 @@ getgenv().Distance = 5
 elseif v.Character.Humanoid.MoveDirection.Z > 0 then
 getgenv().Distance = 7
 end
-print("bbasdas")
-game.Players.LocalPlayer.Character.Humanoid:MoveTo(v.Character.Contesting.Position)
+game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9):MoveTo(v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * getgenv().Distance))
                    end
              end
        end
@@ -143,13 +142,11 @@ v:AdjustSpeed(getgenv().Speed)
 end
 elseif  tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "Guarding" and not checkcaller() then
 if args[1]["Val"] == true then
-print("baba")
-getgenv().Guarding = false
-elseif args[1]["Val"] == false then
-print("bubu")
 getgenv().Guarding = true
+elseif args[1]["Val"] == false then
+getgenv().Guarding = false
 end
-return;
+return self.FireServer(self,unpack(args))
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "BlockStart" or args[1]["Action"] == "BlockBall") and not checkcaller() then
 return;
 end
