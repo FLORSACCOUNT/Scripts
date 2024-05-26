@@ -49,9 +49,8 @@ if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild(
 if v.Character.Humanoid.MoveDirection.Magnitude == 0 or v.Character.Humanoid.MoveDirection.Z < 0 then
 while task.wait() do
 for i, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
-if not tostring(v):match("Run") and not tostring(v):match("Dribble") and tostring(v) ~= "DefaultIdle" then
-print(i,v)
-      end
+if not tostring(v):match("Animation") then
+v:Stop()
    end
 end
 getgenv().Distance = 4
