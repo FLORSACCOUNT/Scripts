@@ -84,16 +84,15 @@ GuardR:Play()
 GuardL:Play()
     end
 getgenv().CT = true
-   end
-end
+                     end
+                end
              end
-       end
 end)
 game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().CT == true then
 game.Players.LocalPlayer.Character.Humanoid:MoveTo(target.Character.Contesting.Position + (target.Character.Contesting.CFrame.lookVector * getgenv().Distance))
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.lookAt(game.Players.LocalPlayer.Character.HumanoidRootPart.Position,target.Character.Contesting.Position)     
-end
+     end
   end)
 game.Players.LocalPlayer.Backpack.CurrentBall.Changed:Connect(function()
 if game.Players.LocalPlayer.Backpack.CurrentBall.Value ~= nil then
