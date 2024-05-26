@@ -17,7 +17,7 @@ aimp = v.AimPart
          end
      end
 end)
-local Track = instance.new("Animation",game.Players.LocalPlayer.Character)
+local Track = Instance.new("Animation",game.Players.LocalPlayer.Character)
 Track.AnimationId = "rbxassetid://15376687911"
 local Anim12 = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(Track)
 task.spawn(function()
