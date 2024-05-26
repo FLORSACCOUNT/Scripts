@@ -11,7 +11,7 @@ local aimp;
 task.spawn(function()
 while true do task.wait()
 for i,v in workspace.Hoops:GetChildren() do
-if game.Players.LocalPlayer:DistanceFromCharacter(v.AimPart.Position) <= 60 then
+if game.Players.LocalPlayer:DistanceFromCharacter(v.AimPart.Position) <= 150 then
 aimp = v.AimPart
             end
          end
