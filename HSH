@@ -7,7 +7,6 @@ local type = "Reg"
 local playerl = {}
 local hoops = {}
 local playc = {}
-local target;
 local aimp = workspace.Hoops:GetChildren()[1].AimPart
 task.spawn(function()
 while true do task.wait()
@@ -55,7 +54,6 @@ task.spawn(function()
 while true do task.wait()
 for i,v in pairs(game.Players:GetPlayers()) do
 if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and v.Backpack.CurrentBall.Value ~= nil and getgenv().Guarding == true and game.Players.LocalPlayer:DistanceFromCharacter(v.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 25 then
-target = v
 if v.Character.Humanoid.MoveDirection.Magnitude == 0 or v.Character.Humanoid.MoveDirection.Z < 0 then
 getgenv().Distance = 4
 elseif v.Character.Humanoid.MoveDirection.Z > 0 then
@@ -83,20 +81,15 @@ GuardR:Play()
         end
 GuardL:Play()
     end
-getgenv().CanTurn = true
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.lookAt(game.Players.LocalPlayer.Character.HumanoidRootPart.Position,target.Character.Contesting.Position)
 game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9).WalkToPoint = (target.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * getgenv().Distance))   
 end
              end
        end
 end)
 game:GetService("RunService").RenderStepped:Connect(function()
-if getgenv().CanTurn == true then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.lookAt(game.Players.LocalPlayer.Character.HumanoidRootPart.Position,target.Character.Contesting.Position)
-    end
-end)
 game.Players.LocalPlayer.Backpack.CurrentBall.Changed:Connect(function()
 if game.Players.LocalPlayer.Backpack.CurrentBall.Value ~= nil then
-getgenv().CanTurn = false
 if Guard.IsPlaying then
 Guard:Stop()
 elseif GuardR.IsPlaying then
@@ -134,7 +127,6 @@ local args = {
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
 getgenv().Guarding = false
-getgenv().CanTurn = false
 end)
 task.spawn(function()
 while task.wait(0.1) do
