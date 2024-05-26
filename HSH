@@ -7,7 +7,7 @@ local type = "Reg"
 local playerl = {}
 local hoops = {}
 local playc = {}
-local aimp;
+local aimp = workspace.Hoops:GetChildren()[1].AimPart
 task.spawn(function()
 while true do task.wait()
 for i,v in workspace.Hoops:GetChildren() do
