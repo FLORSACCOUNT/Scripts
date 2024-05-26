@@ -47,6 +47,12 @@ game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9):MoveTo(v.Charact
              end
        end
 end)
+game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Guard.MouseButton1Down:Connect(function()
+getgenv().Guarding = true
+end)
+game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Guard.MouseButton1Up:Connect(function()
+getgenv().Guarding = false
+end)
 task.spawn(function()
 while task.wait(0.1) do
 if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character.Skills:FindFirstChild("Post Technician") then
@@ -138,14 +144,6 @@ end
 return self.FireServer(self,unpack(args))
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "BlockStart" or args[1]["Action"] == "BlockBall") and not checkcaller() then
 return;
-elseif  tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "Guarding" and not checkcaller() then
-if args[1]["Val"] == true then
-getgenv().Guarding = true
-end
-if args[1]["Val"] == false then
-print("bubu")
-getgenv().Guarding = false
-end
 end
 return h(self,...)
 end)
