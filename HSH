@@ -53,6 +53,7 @@ if not tostring(v):match("Animation") then
 v:Stop()
    end
 end
+if v.Character.Humanoid.MoveDirection.Magnitude == 0 or v.Character.Humanoid.MoveDirection.Z < 0 then
 getgenv().Distance = 4
 elseif v.Character.Humanoid.MoveDirection.Z > 0 then
 getgenv().Distance = 6.5
