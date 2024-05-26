@@ -18,7 +18,6 @@ aimp = v.AimPart
      end
 end)
 local Track = Instance.new("Animation",game.Players.LocalPlayer.Character)
-Track.Name = "GUARDINGANIMATION"
 Track.AnimationId = "rbxassetid://15376687911"
 local Anim12 = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(Track)
 Anim12.Priority = Enum.AnimationPriority.Action3
@@ -48,10 +47,12 @@ while true do task.wait()
 for i,v in pairs(game.Players:GetPlayers()) do
 if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and v.Backpack.CurrentBall.Value ~= nil and getgenv().Guarding == true and game.Players.LocalPlayer:DistanceFromCharacter(v.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 25 then
 if v.Character.Humanoid.MoveDirection.Magnitude == 0 or v.Character.Humanoid.MoveDirection.Z < 0 then
-for i,v in pairs(game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:GetPlayingAnimationTracks())
-if tostring(v) == "GUARDINGANIMATION" then
-v:Stop()
-    end
+while task.wait() do
+for i, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
+if not tostring(v):match("Run") and not tostring(v):match("Dribble") and tostring(v) ~= "DefaultIdle" then
+print(i,v)
+      end
+   end
 end
 getgenv().Distance = 4
 elseif v.Character.Humanoid.MoveDirection.Z > 0 then
