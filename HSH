@@ -56,7 +56,7 @@ game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("MoveDirect
         movings = "right"
     elseif math.round(game.Players.LocalPlayer.Character.Humanoid.MoveDirection.X) == 1 then
         movings = "left"
-    elseif game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude == 0 and (math.round(game.Players.LocalPlayer.Character.Humanoid.MoveDirection.X) == 1 or math.round(game.Players.LocalPlayer.Character.Humanoid.MoveDirection.X) == -1) then
+    elseif game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude == 0 and (math.round(game.Players.LocalPlayer.Character.Humanoid.MoveDirection.X) ~= 1 or math.round(game.Players.LocalPlayer.Character.Humanoid.MoveDirection.X) ~= -1) then
         movings = "stand"
     end
 end)
