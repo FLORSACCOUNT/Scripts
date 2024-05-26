@@ -86,10 +86,10 @@ end)
      end
    end
 end)
-game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.MouseButton1Down:Connect(function()
+game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Guard.MouseButton1Down:Connect(function()
 getgenv().Guarding = true
 end)
-game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.MouseButton1Up:Connect(function()
+game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Guard.MouseButton1Up:Connect(function()
 getgenv().Guarding = false
 end)
 game:GetService("RunService").RenderStepped:Connect(function()
