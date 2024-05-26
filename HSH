@@ -59,21 +59,21 @@ getgenv().Distance = 4
 elseif v.Character.Humanoid.MoveDirection.Z > 0 then
 getgenv().Distance = 6.5
 end
-    if v.Humanoid.MoveDirection.Magnitude == 0 and (math.round(v.Character.Humanoid.MoveDirection.X) ~= 1 or math.round(v.Character.Humanoid.MoveDirection.X) ~= -1) and not Guard.IsPlaying then
+    if v.Character.Humanoid.MoveDirection.Magnitude == 0 and math.round(v.Character.Humanoid.MoveDirection.X) ~= 1 and math.round(v.Character.Humanoid.MoveDirection.X) ~= -1 and not Guard.IsPlaying then
         if GuardR.IsPlaying then
         GuardR:Stop()
         elseif GuardL.IsPlaying then
         GuardL:Stop()
         end
 Guard:Play()
-    elseif math.round(game.Players.LocalPlayer.Character.Humanoid.MoveDirection.X) == -1 and not GuardR.IsPlaying then
+    elseif math.round(v.Character.Humanoid.MoveDirection.X) == -1 and not GuardR.IsPlaying then
         if GuardL.IsPlaying then
         GuardL:Stop()
         elseif Guard.IsPlaying then
         Guard:Stop()
         end
 GuardR:Play()
-    elseif math.round(game.Players.LocalPlayer.Character.Humanoid.MoveDirection.X) == 1 and not GuardL.IsPlaying then
+    elseif math.round(v.Character.Humanoid.MoveDirection.X) == 1 and not GuardL.IsPlaying then
         if GuardR.IsPlaying then
         GuardR:Stop()
         elseif Guard.IsPlaying then
