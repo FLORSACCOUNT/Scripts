@@ -7,6 +7,7 @@ local type = "Reg"
 local playerl = {}
 local hoops = {}
 local playc = {}
+local target;
 local aimp = workspace.Hoops:GetChildren()[1].AimPart
 task.spawn(function()
 while true do task.wait()
@@ -55,10 +56,11 @@ while true do task.wait()
 for i,v in pairs(game.Players:GetPlayers()) do
 if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and v.Backpack.CurrentBall.Value ~= nil and getgenv().Guarding == true and game.Players.LocalPlayer:DistanceFromCharacter(v.Character:WaitForChild("HumanoidRootPart",9e9).Position) <= 25 then
 if v.Character.Humanoid.MoveDirection.Magnitude == 0 or v.Character.Humanoid.MoveDirection.Z < 0 then
-getgenv().Distance = 4
+getgenv().Distance = 5
 elseif v.Character.Humanoid.MoveDirection.Z > 0 then
-getgenv().Distance = 6.5
+getgenv().Distance = 7
 end
+target = v
     if (v.Character.Humanoid.MoveDirection.Magnitude == 0 or math.round(v.Character.Humanoid.MoveDirection.Z) == -1 or math.round(v.Character.Humanoid.MoveDirection.Z) == 1) and math.round(v.Character.Humanoid.MoveDirection.X) ~= 1 and math.round(v.Character.Humanoid.MoveDirection.X) ~= -1 and not Guard.IsPlaying then
         if GuardR.IsPlaying then
         GuardR:Stop()
@@ -81,7 +83,7 @@ GuardR:Play()
         end
 GuardL:Play()
     end
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.lookAt(game.Players.LocalPlayer.Character.HumanoidRootPart.Position,v.Character.Contesting.Position)
+getgenv().CT = true
 game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9).WalkToPoint = (v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * getgenv().Distance))   
 end
              end
@@ -89,6 +91,7 @@ end
 end)
 game.Players.LocalPlayer.Backpack.CurrentBall.Changed:Connect(function()
 if game.Players.LocalPlayer.Backpack.CurrentBall.Value ~= nil then
+getgenv().CT = false
 if Guard.IsPlaying then
 Guard:Stop()
 elseif GuardR.IsPlaying then
@@ -97,6 +100,11 @@ elseif GuardL.IsPlaying then
 GuardL:Stop()
       end
    end
+end)
+game.RunService("RenderStepped"):Connect(function()
+if getgenv().CT == true then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.lookAt(game.Players.LocalPlayer.Character.HumanoidRootPart.Position,target.Character.Contesting.Position)
+    end
 end)
 game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Run.Cam.MouseButton1Down:Connect(function()
 local args = {
@@ -125,6 +133,7 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
+getgenv().CT = false
 getgenv().Guarding = false
 end)
 task.spawn(function()
