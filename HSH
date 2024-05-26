@@ -84,7 +84,7 @@ GuardR:Play()
 GuardL:Play()
     end
 getgenv().CanTurn = true
-game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9).WalkToPoint = (v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * getgenv().Distance))   
+game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9).WalkToPoint = (target.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * getgenv().Distance))   
 end
              end
        end
