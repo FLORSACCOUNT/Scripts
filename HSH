@@ -234,7 +234,12 @@ end
 return h(self,...)
 end)
 for i,v in workspace:GetChildren() do
-if v.Name == "Lights" or v.Name == "_NpcCrown" then
+if v.Name == "Lights" or v.Name == "_NpcCrown" or v.Name == "LampPost" or v.Name == "Extra" then
+v:Destroy()
+    end
+end
+for i,v in workspace.Junk:GetChildren() do
+if v.Name == "Tree" or v.Name == "Model" or v.Name == "light" then
 v:Destroy()
     end
 end
