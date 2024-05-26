@@ -8,6 +8,7 @@ local playerl = {}
 local hoops = {}
 local playc = {}
 local aimp;
+local moving = "standing"
 task.spawn(function()
 while true do task.wait()
 for i,v in workspace.Hoops:GetChildren() do
