@@ -82,8 +82,7 @@ GuardR:Play()
 GuardL:Play()
     end
 
-local look = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart",9e9), TweenInfo.new(((v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * getgenv().Distance)).Magnitude/15),Enum.EasingStyle.Linear), {CFrame = CFrame.lookAt(game.Players.LocalPlayer.Character.HumanoidRootPart.Position,v.Character.Contesting.Position)})
-look:Play()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.lookAt(game.Players.LocalPlayer.Character.HumanoidRootPart.Position,v.Character.Contesting.Position)
 game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9).WalkToPoint = (v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * getgenv().Distance))
                    end
              end
