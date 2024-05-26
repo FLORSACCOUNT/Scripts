@@ -82,7 +82,7 @@ end
         elseif Guard.IsPlaying then
         Guard:Stop()
         end
-    elseif movings == "left and not GuardL.IsPlaying then
+    elseif movings == "left" and not GuardL.IsPlaying then
         GuardL:Play()
         if GuardR.IsPlaying then
         GuardR:Stop()
