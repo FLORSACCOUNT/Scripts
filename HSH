@@ -143,8 +143,10 @@ v:AdjustSpeed(getgenv().Speed)
 end
 elseif  tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "Guarding" and not checkcaller() then
 if args[1]["Val"] == true then
+print("baba")
 getgenv().Guarding = false
 elseif args[1]["Val"] == false then
+print("bubu")
 getgenv().Guarding = true
 end
 return;
