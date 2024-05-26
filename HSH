@@ -81,17 +81,20 @@ GuardR:Play()
         end
 GuardL:Play()
     end
-task.spawn(function()
-task.wait(0.2)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.lookAt(game.Players.LocalPlayer.Character.HumanoidRootPart.Position,v.Character.Contesting.Position)
-end)
+getgenv().CanTurn = true
 game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9).WalkToPoint = (v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * getgenv().Distance))   
 end
              end
        end
 end)
+game:GetService("RunService").RenderStepped:Connect(function()
+if getgenv().CanTurn == true then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.lookAt(game.Players.LocalPlayer.Character.HumanoidRootPart.Position,v.Character.Contesting.Position)
+    end
+end)
 game.Players.LocalPlayer.Backpack.CurrentBall.Changed:Connect(function()
 if game.Players.LocalPlayer.Backpack.CurrentBall.Value ~= nil then
+getgenv().CanTurn = false
 if Guard.IsPlaying then
 Guard:Stop()
 elseif GuardR.IsPlaying then
@@ -129,6 +132,7 @@ local args = {
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
 getgenv().Guarding = false
+getgenv().CanTurn = false
 end)
 task.spawn(function()
 while task.wait(0.1) do
