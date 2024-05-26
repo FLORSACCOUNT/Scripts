@@ -146,7 +146,6 @@ elseif args[1]["Val"] == false then
 print("bubu")
 getgenv().Guarding = false
 end
-return self.FireServer(self,unpack(args))
 end
 return h(self,...)
 end)
