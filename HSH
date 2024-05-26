@@ -20,7 +20,7 @@ end)
 local Track = Instance.new("Animation",game.Players.LocalPlayer.Character)
 Track.AnimationId = "rbxassetid://15376687911"
 local Anim12 = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(Track)
-Anim12.Priority = Enum.AnimationPriority.Action3
+Anim12.Priority = Enum.AnimationPriority.Action
 task.spawn(function()
 while true do task.wait()
 for i,v in pairs(game.Players:GetPlayers()) do
