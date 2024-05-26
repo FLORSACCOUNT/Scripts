@@ -30,7 +30,7 @@ b.CanCollide = false
 task.spawn(function()
 while task.wait() do
 if b and v.Character and game.Players.LocalPlayer.Character then
-b.CFrame = v.Character:WaitForChild("HumanoidRootPart",9e9).CFrame
+b.CFrame = CFrame.lookAt(v.Character:WaitForChild("HumanoidRootPart",9e9).Position, aimp.Position)
   end
  end
 end)
@@ -144,6 +144,13 @@ end
 return self.FireServer(self,unpack(args))
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "BlockStart" or args[1]["Action"] == "BlockBall") and not checkcaller() then
 return;
+elseif  tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "Guarding" and not checkcaller() then
+if args[1]["Val"] == true then
+getgenv().Guarding = true
+elseif args[1]["Val"] == false then
+getgenv().Guarding = false
+end
+return self.FireServer(self,unpack(args))
 end
 return h(self,...)
 end)
