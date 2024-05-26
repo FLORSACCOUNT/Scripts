@@ -17,6 +17,9 @@ aimp = v.AimPart
          end
      end
 end)
+local Track = instance.new("Animation",game.Players.LocalPlayer.Character)
+Track.AnimationId = "rbxassetid://15376687911"
+local Anim12 = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(Track)
 task.spawn(function()
 while true do task.wait()
 for i,v in pairs(game.Players:GetPlayers()) do
@@ -48,6 +51,7 @@ game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9).WalkToPoint = (v
        end
 end)
 game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Run.Cam.MouseButton1Down:Connect(function()
+Anim12:Play()
 local args = {
     [1] = {
         ["Action"] = "Guarding",
@@ -59,6 +63,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPla
 getgenv().Guarding = true
 end)
 game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Run.Cam.MouseButton1Up:Connect(function()
+Anim12:Stop()
 local args = {
     [1] = {
         ["Action"] = "Guarding",
