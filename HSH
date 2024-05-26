@@ -12,7 +12,7 @@ task.spawn(function()
 while true do task.wait()
 for i,v in workspace.Hoops:GetChildren() do
 if game.Players.LocalPlayer:DistanceFromCharacter(v.AimPart.Position) <= 60 then
-aimp = v.AimPart.Position
+aimp = v.AimPart
             end
          end
      end
@@ -30,7 +30,7 @@ b.CanCollide = false
 task.spawn(function()
 while task.wait() do
 if b and v.Character and game.Players.LocalPlayer.Character and aimp then
-b.CFrame = CFrame.lookAt(v.Character:WaitForChild("HumanoidRootPart",9e9).Position, aimp)
+b.CFrame = CFrame.lookAt(v.Character:WaitForChild("HumanoidRootPart",9e9).Position, aimp.Position)
   end
  end
 end)
@@ -41,13 +41,14 @@ end)
 task.spawn(function()
 while true do task.wait()
 for i,v in pairs(game.Players:GetPlayers()) do
-if v ~= game.Players.LocalPlayer and game.Players.LocalPlayer.Character and v.Character and getgenv().Guarding == true then
+if v ~= game.Players.LocalPlayer and game.Players.LocalPlayer.Character and v.Character and v.Character.Humanoid and getgenv().Guarding == true then
 if v.Character.Humanoid.MoveDirection.Magnitude == 0 or v.Character.Humanoid.MoveDirection.Z < 0 then
 getgenv().Distance = 5
 elseif v.Character.Humanoid.MoveDirection.Z > 0 then
 getgenv().Distance = 7
 end
-game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9):MoveTo(v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * getgenv().Distance))
+print("bbasdas")
+game.Players.LocalPlayer.Character.Humanoid:MoveTo(v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * getgenv().Distance))
                    end
              end
        end
