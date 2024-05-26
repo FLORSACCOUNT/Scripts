@@ -69,26 +69,26 @@ elseif v.Character.Humanoid.MoveDirection.Z > 0 then
 getgenv().Distance = 6.5
 end
     if movings == "stand" and not Guard.IsPlaying then
-        Guard:Play()
         if GuardR.IsPlaying then
         GuardR:Stop()
         elseif GuardL.IsPlaying then
         GuardL:Stop()
         end
+Guard:Play()
     elseif movings == "right" and not GuardR.IsPlaying then
-        GuardR:Play()
         if GuardL.IsPlaying then
         GuardL:Stop()
         elseif Guard.IsPlaying then
         Guard:Stop()
         end
+GuardR:Play()
     elseif movings == "left" and not GuardL.IsPlaying then
-        GuardL:Play()
         if GuardR.IsPlaying then
         GuardR:Stop()
         elseif Guard.IsPlaying then
         Guard:Stop()
         end
+GuardL:Play()
     end
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.lookAt(game.Players.LocalPlayer.Character.HumanoidRootPart.Position,v.Character.Contesting.Position)
 game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9).WalkToPoint = (v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * 4))
