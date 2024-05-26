@@ -41,7 +41,7 @@ end)
 task.spawn(function()
 while true do task.wait()
 for i,v in pairs(game.Players:GetPlayers()) do
-if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and v.Backpack.CurrentBall.Value ~= nil and getgenv().Guarding == true then
+if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and v.Backpack.CurrentBall.Value ~= nil and not getgenv().Guarding == true then
 game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9):MoveTo(v.Character.Contesting.Position)
                    end
              end
