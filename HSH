@@ -8,6 +8,9 @@ local playerl = {}
 local hoops = {}
 local playc = {}
 local aimp = workspace.Hoops:GetChildren()[1].AimPart
+local function AngleBetween(vectorA, vectorB)
+	return math.acos(math.clamp(vectorA:Dot(vectorB), -1, 1))
+end
 task.spawn(function()
 while true do task.wait()
 for i,v in workspace.Hoops:GetChildren() do
@@ -82,7 +85,16 @@ GuardR:Play()
 GuardL:Play()
     end
 
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.lookAt(game.Players.LocalPlayer.Character.HumanoidRootPart.Position,v.Character.Contesting.Position)
+	local dt = task.wait()
+	local currentLookVector = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector
+	local targetLookVector = (v.Character.Contesting.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Unit
+	
+	local angleTowardsTarget = AngleBetween(currentLookVector, targetLookVector)
+	
+	local rotationAngleTowardsTarget = math.min(angleTowardsTarget, dt*1)
+	
+	local axis = currentLookVector:Cross(targetLookVector)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.fromAxisAngle(axis, rotationAngleTowardsTarget)*game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9):MoveTo(v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * getgenv().Distance))
                    end
              end
