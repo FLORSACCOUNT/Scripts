@@ -54,10 +54,13 @@ end)
 game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("MoveDirection"):Connect(function()
     if math.round(game.Players.LocalPlayer.Character.Humanoid.MoveDirection.X) == -1 then
         movings = "right"
+print("right")
     elseif math.round(game.Players.LocalPlayer.Character.Humanoid.MoveDirection.X) == 1 then
         movings = "left"
+print("left")
     elseif game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude == 0 and (math.round(game.Players.LocalPlayer.Character.Humanoid.MoveDirection.X) ~= 1 or math.round(game.Players.LocalPlayer.Character.Humanoid.MoveDirection.X) ~= -1) then
         movings = "stand"
+print("stand")
     end
 end)
 task.spawn(function()
