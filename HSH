@@ -19,8 +19,16 @@ aimp = v.AimPart
 end)
 local Track = Instance.new("Animation",game.Players.LocalPlayer.Character)
 Track.AnimationId = "rbxassetid://15376687911"
-local Anim12 = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(Track)
-Anim12.Priority = Enum.AnimationPriority.Movement
+local Guard = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(Track)
+Guard.Priority = Enum.AnimationPriority.Action2
+local TrackR = Instance.new("Animation",game.Players.LocalPlayer.Character)
+TrackR.AnimationId = "rbxassetid://15376685605"
+local GuardR = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(Track)
+GuardR.Priority = Enum.AnimationPriority.Action2
+local TrackL = Instance.new("Animation",game.Players.LocalPlayer.Character)
+TrackL.AnimationId = "rbxassetid://15376683616"
+local GuardL = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(Track)
+GuardL.Priority = Enum.AnimationPriority.Action2
 task.spawn(function()
 while true do task.wait()
 for i,v in pairs(game.Players:GetPlayers()) do
@@ -42,6 +50,15 @@ end)
     end
   end
 end)
+game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("MoveDirection"):Connect(function()
+    if math.round(Humanoid.MoveDirection.X) == -1 then
+        movings = "right"
+    elseif math.round(Humanoid.MoveDirection.X) == 1 then
+        movings = "left"
+    elseif game.Players.LocalPlayer.Humanoid.MoveDirection.Magnitude == 0 then
+        movings = "stand"
+    end
+end)
 task.spawn(function()
 while true do task.wait()
 for i,v in pairs(game.Players:GetPlayers()) do
@@ -51,6 +68,28 @@ getgenv().Distance = 4
 elseif v.Character.Humanoid.MoveDirection.Z > 0 then
 getgenv().Distance = 6.5
 end
+    if movings == "stand" and not Guard.IsPlaying then then
+        Guard:Play()
+        if GuardR.IsPlaying then
+        GuardR:Stop()
+        elseif GuardL.IsPlaying then
+        GuardL:Stop()
+        end
+    elseif movings == "right" and not GuardR.IsPlaying then
+        GuardR:Play()
+        if GuardL.IsPlaying then
+        GuardL:Stop()
+        elseif Guard.IsPlaying then
+        Guard:Stop()
+        end
+    elseif movings == "left and not GuardL.IsPlaying then
+        GuardL:Play()
+        if GuardR.IsPlaying then
+        GuardR:Stop()
+        elseif Guard.IsPlaying then
+        Guard:Stop()
+        end
+    end
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.lookAt(game.Players.LocalPlayer.Character.HumanoidRootPart.Position,v.Character.Contesting.Position)
 game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9).WalkToPoint = (v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * 4))
                    end
@@ -59,11 +98,16 @@ game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9).WalkToPoint = (v
 end)
 game.Players.LocalPlayer.Backpack.CurrentBall.Changed:Connect(function()
 if game.Players.LocalPlayer.Backpack.CurrentBall.Value ~= nil then
-Anim12:Stop()
+if Guard.IsPlaying then
+Guard:Stop()
+if GuardR.IsPlaying then
+GuardR:Stop()
+if GuardL.IsPlaying then
+GuardL:Stop()
+      end
    end
 end)
 game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Run.Cam.MouseButton1Down:Connect(function()
-Anim12:Play()
 local args = {
     [1] = {
         ["Action"] = "Guarding",
@@ -75,7 +119,13 @@ game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPla
 getgenv().Guarding = true
 end)
 game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Run.Cam.MouseButton1Up:Connect(function()
-Anim12:Stop()
+if Guard.IsPlaying then
+Guard:Stop()
+if GuardR.IsPlaying then
+GuardR:Stop()
+if GuardL.IsPlaying then
+GuardL:Stop()
+end
 local args = {
     [1] = {
         ["Action"] = "Guarding",
