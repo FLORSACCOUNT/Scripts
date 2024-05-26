@@ -68,7 +68,7 @@ getgenv().Distance = 4
 elseif v.Character.Humanoid.MoveDirection.Z > 0 then
 getgenv().Distance = 6.5
 end
-    if movings == "stand" and not Guard.IsPlaying then then
+    if movings == "stand" and not Guard.IsPlaying then
         Guard:Play()
         if GuardR.IsPlaying then
         GuardR:Stop()
