@@ -41,7 +41,7 @@ end)
 task.spawn(function()
 while true do task.wait()
 for i,v in pairs(game.Players:GetPlayers()) do
-if v ~= game.Players.LocalPlayer and game.Players.LocalPlayer.Character and v.Character and v.Backpack.CurrentBall ~= nil and getgenv().Guarding == true then
+if v ~= game.Players.LocalPlayer and game.Players.LocalPlayer.Character and v.Character and getgenv().Guarding == true then
 if v.Character.Humanoid.MoveDirection.Magnitude == 0 or v.Character.Humanoid.MoveDirection.Z < 0 then
 getgenv().Distance = 5
 elseif v.Character.Humanoid.MoveDirection.Z > 0 then
@@ -140,7 +140,7 @@ if not tostring(v):match("Run") and not tostring(v):match("Dribble") and not tos
 v:AdjustSpeed(getgenv().Speed)
    end
 end
-elseif  tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "Guard" and not checkcaller() then
+elseif  tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "Guarding" and not checkcaller() then
 if args[1]["Val"] == true then
 getgenv().Guarding = true
 elseif args[1]["Val"] == false then
