@@ -82,7 +82,7 @@ GuardR:Play()
 GuardL:Play()
     end
 game.Players.LocalPlayer.Character.TRoot.CFrame = CFrame.lookAt(game.Players.LocalPlayer.Character.HumanoidRootPart.Position,v.Character.Contesting.Position)
-game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9).WalkToPoint = (target.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * getgenv().Distance))   
+game.Players.LocalPlayer.Character:WaitForChild("Humanoid",9e9).WalkToPoint = (v.Character.Contesting.Position + (v.Character.Contesting.CFrame.lookVector * getgenv().Distance))   
 end
              end
        end
