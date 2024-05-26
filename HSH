@@ -1,7 +1,7 @@
 print("HSH SCRIPT EXECUTED ...")
 getgenv().Timer = 0.285
 getgenv().Speed = 1.25
-getgenv().Distance = 5
+getgenv().Distance = 1
 getgenv().ShootingSpeed = 0.3
 local type = "Reg"
 local playerl = {}
@@ -29,7 +29,7 @@ b.Anchored = true
 b.CanCollide = false
 task.spawn(function()
 while task.wait() do
-if b and v.Character and game.Players.LocalPlayer.Character and aimp then
+if b and v.Character and game.Players.LocalPlayer.Character then
 b.CFrame = CFrame.lookAt(v.Character:WaitForChild("HumanoidRootPart",9e9).Position, aimp.Position)
   end
  end
