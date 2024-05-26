@@ -143,9 +143,9 @@ v:AdjustSpeed(getgenv().Speed)
 end
 elseif  tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "Guarding" and not checkcaller() then
 if args[1]["Val"] == true then
-getgenv().Guarding = true
-elseif args[1]["Val"] == false then
 getgenv().Guarding = false
+elseif args[1]["Val"] == false then
+getgenv().Guarding = true
 end
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "BlockStart" or args[1]["Action"] == "BlockBall") and not checkcaller() then
