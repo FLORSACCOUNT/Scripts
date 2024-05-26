@@ -87,7 +87,6 @@ end
              end
        end
 end)
-game:GetService("RunService").RenderStepped:Connect(function()
 game.Players.LocalPlayer.Backpack.CurrentBall.Changed:Connect(function()
 if game.Players.LocalPlayer.Backpack.CurrentBall.Value ~= nil then
 if Guard.IsPlaying then
