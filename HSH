@@ -29,7 +29,7 @@ b.Anchored = true
 b.CanCollide = false
 task.spawn(function()
 while task.wait() do
-if b and v.Character and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:WaitForChild("OpponentHoop",9e9).Value ~= nil then
+if b and v.Character and game.Players.LocalPlayer.Character then
 b.CFrame = CFrame.lookAt(v.Character:WaitForChild("HumanoidRootPart",9e9).Position, aimp)
   end
  end
