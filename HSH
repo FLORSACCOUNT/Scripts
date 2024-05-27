@@ -99,13 +99,6 @@ target = v
         GuardL:Stop()
         end
 Guard:Play()
-    elseif math.round(v.Character.Humanoid.MoveDirection.X) == 1 and not GuardR.IsPlaying then
-        if GuardL.IsPlaying then
-        GuardL:Stop()
-        elseif Guard.IsPlaying then
-        Guard:Stop()
-        end
-GuardR:Play()
     elseif math.round(v.Character.Humanoid.MoveDirection.X) == -1 and not GuardL.IsPlaying then
         if GuardR.IsPlaying then
         GuardR:Stop()
@@ -113,6 +106,13 @@ GuardR:Play()
         Guard:Stop()
         end
 GuardL:Play()
+    elseif math.round(v.Character.Humanoid.MoveDirection.X) == 1 and not GuardR.IsPlaying then
+        if GuardL.IsPlaying then
+        GuardL:Stop()
+        elseif Guard.IsPlaying then
+        Guard:Stop()
+        end
+GuardR:Play()
     end
 getgenv().CT = true
                      end
