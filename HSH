@@ -78,7 +78,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPla
 end)
 task.spawn(function()
 for i,v in workspace.Hoops:GetChildren() do
-if game.Players.LocalPlayer:DistanceFromCharacter(v.AimPart.Position) <= 100 then
+if game.Players.LocalPlayer:DistanceFromCharacter(v.AimPart.Position) <= 70 then
 aimp = v.AimPart
             end
          end
