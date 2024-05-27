@@ -235,7 +235,7 @@ v:Destroy()
     end
 end
 for i,v in workspace.Junk:GetChildren() do
-if v.Name == "Tree" or v.Name == "light" or v.Name == "Model" then
+if v.Name == "Tree" or v.Name == "light" then
 v:Destroy()
     end
 end
