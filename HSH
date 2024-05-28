@@ -225,6 +225,11 @@ local args = {...}
 if tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "Shootball" or args[1]["Action"] == "StopMeter") and not checkcaller() then
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "StartMeter" and args[1]["ShotName"] and not checkcaller() then
+task.spawn(function()
+getgenv().CanR = false
+task.wait(3.5)
+getgenv().CanR = true
+end)
 args[1]["ShotType"] = "SuperFast"
 if args[1]["ShotName"] ~= "Dunk" then
 args[1]["ShotName"] = type
