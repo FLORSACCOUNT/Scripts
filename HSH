@@ -1,6 +1,7 @@
 print("HSH SCRIPT EXECUTED ...")
 getgenv().Timer = 0.285
 getgenv().Speed = 1.5
+getgenv().CanR = true
 getgenv().Distance = 1
 getgenv().ShootingSpeed = 0.35
 local type = "Reg"
@@ -45,7 +46,8 @@ end)
 game:GetService("RunService").RenderStepped:Connect(function()
 task.spawn(function()
 for i,v in workspace.Balls:GetChildren() do
-if v.Position.Y > game.Players.LocalPlayer.Character.Head.Position.Y and game.Players.LocalPlayer:DistanceFromCharacter(v.Position) <= 10 then
+if v.Position.Y > game.Players.LocalPlayer.Character.Head.Position.Y and game.Players.LocalPlayer:DistanceFromCharacter(v.Position) <= 10 and getgenv().CanR == true then
+getgenv().CanR = false
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseButton1Down"])
 local args = {
     [1] = {
@@ -55,6 +57,7 @@ local args = {
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseButton1Up"])
+getgenv().CanR = true
       end
    end
 end)
