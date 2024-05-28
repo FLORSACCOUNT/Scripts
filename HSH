@@ -45,6 +45,7 @@ end)
 end)
 game:GetService("RunService").RenderStepped:Connect(function()
 task.spawn(function()
+task.wait(0.1)
 for i,v in workspace.Balls:GetChildren() do
 if v.Position.Y > game.Players.LocalPlayer.Character.Head.Position.Y and game.Players.LocalPlayer:DistanceFromCharacter(v.Position) <= 10 and getgenv().CanR == true then
 getgenv().CanR = false
