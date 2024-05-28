@@ -46,7 +46,7 @@ end)
 game:GetService("RunService").RenderStepped:Connect(function()
 task.spawn(function()
 for i,v in workspace.Balls:GetChildren() do
-if (v.Position.Y - game.Players.LocalPlayer.Character.Head.Position.Y) >= 7.5 and game.Players.LocalPlayer:DistanceFromCharacter(v.Position) <= 7.5 and getgenv().CanR == true then
+if (v.Position.Y - game.Players.LocalPlayer.Character.Head.Position.Y) >= 4.5 and game.Players.LocalPlayer:DistanceFromCharacter(v.Position) <= 7.5 and getgenv().CanR == true then
 getgenv().CanR = false
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseButton1Down"])
 local args = {
@@ -231,16 +231,21 @@ local args = {...}
 if tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (args[1]["Action"] == "Shootball" or args[1]["Action"] == "StopMeter") and not checkcaller() then
 return;
 elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "StartMeter" and args[1]["ShotName"] and not checkcaller() then
+args[1]["ShotType"] = "SuperFast"
+if args[1]["ShotName"] ~= "Dunk" then
+task.spawn(function()
+getgenv().CanR = false
+task.wait(2.5)
+getgenv().CanR = true
+end)
+args[1]["ShotName"] = type
+getgenv().ShootingSpeed = 0.25
+elseif args[1]["ShotName"] == "Dunk" then
 task.spawn(function()
 getgenv().CanR = false
 task.wait(5.5)
 getgenv().CanR = true
 end)
-args[1]["ShotType"] = "SuperFast"
-if args[1]["ShotName"] ~= "Dunk" then
-args[1]["ShotName"] = type
-getgenv().ShootingSpeed = 0.25
-elseif args[1]["ShotName"] == "Dunk" then
 args[1]["DunkType"] = "Stand"
 getgenv().ShootingSpeed = 1.5
 end
