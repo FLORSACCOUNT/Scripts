@@ -46,7 +46,7 @@ end)
 game:GetService("RunService").RenderStepped:Connect(function()
 task.spawn(function()
 for i,v in workspace.Balls:GetChildren() do
-if v.Position.Y > game.Players.LocalPlayer.Character.Head.Position.Y and game.Players.LocalPlayer:DistanceFromCharacter(v.Position) <= 7.5 and getgenv().CanR == true then
+if v.Position.Y > game.Players.LocalPlayer.Character.Head.Position.Y and game.Players.LocalPlayer:DistanceFromCharacter(v.Position) <= 10 and getgenv().CanR == true then
 getgenv().CanR = false
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseButton1Down"])
 local args = {
