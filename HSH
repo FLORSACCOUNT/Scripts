@@ -226,6 +226,8 @@ elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and (
 return;
 elseif  tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "Guarding" and not checkcaller() then
 return;
+elseif tostring(self) == "Actions" and getnamecallmethod() == "FireServer" and args[1]["Action"] == "Handles" and not checkcaller() then
+return;
 end
 return h(self,...)
 end)
