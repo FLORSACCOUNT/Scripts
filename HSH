@@ -237,6 +237,8 @@ end
 for i,v in workspace.Junk:GetChildren() do
 if v.Name == "Tree" or v.Name == "light" then
 v:Destroy()
+elseif (v.Name == "Model" or v.Name == "Models") and game.PlaceId == 15578311687 then
+v:Destroy()
     end
 end
 	workspace:FindFirstChildOfClass('Terrain').WaterWaveSize = 0
