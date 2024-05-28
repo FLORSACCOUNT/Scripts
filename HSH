@@ -44,6 +44,21 @@ end)
 end)
 game:GetService("RunService").RenderStepped:Connect(function()
 task.spawn(function()
+for i,v in workspace.Balls:GetChildren() do
+if v.Position.Y > game.Players.LocalPlayer.Character.Head.Position.Y and game.Players.LocalPlayer:DistanceFromCharacter(v.Position) <= 10 then
+firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseButton1Down"])
+local args = {
+    [1] = {
+        ["Action"] = "GetRebound"
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
+firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseButton1Up"])
+      end
+   end
+end)
+task.spawn(function()
 for i, v in game.Players.LocalPlayer.Character.Humanoid.Animator:GetPlayingAnimationTracks() do
 if tostring(v):match("Moving") or tostring(v):match("DefaultIdle") or tostring(v):match("Hook") or tostring(v):match("RegBase") or tostring(v):match("LayUpBase") or tostring(v):match("PostFadeBase") or tostring(v):match("FadeBase")  then
 v:AdjustSpeed(getgenv().Speed)
