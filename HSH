@@ -1,9 +1,9 @@
 print("HSH SCRIPT EXECUTED ...")
 getgenv().Timer = 0.285
-getgenv().Speed = 1.5
+getgenv().Speed = 1.25
 getgenv().CanR = true
 getgenv().Distance = 1
-getgenv().ShootingSpeed = 0.35
+getgenv().ShootingSpeed = 0.425
 local type = "Reg"
 local playerl = {}
 local hoops = {}
