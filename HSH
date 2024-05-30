@@ -14,17 +14,17 @@ local Track = Instance.new("Animation",game.Players.LocalPlayer.Character)
 Track.AnimationId = "rbxassetid://15376687911"
 local Guard = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(Track)
 Guard.Priority = Enum.AnimationPriority.Action2
-Guard:AdjustSpeed(0.5)
+Guard:AdjustSpeed(0.25)
 local TrackR = Instance.new("Animation",game.Players.LocalPlayer.Character)
 TrackR.AnimationId = "rbxassetid://15376685605"
 local GuardR = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(TrackR)
 GuardR.Priority = Enum.AnimationPriority.Action2
-GuardR:AdjustSpeed(0.5)
+GuardR:AdjustSpeed(0.25)
 local TrackL = Instance.new("Animation",game.Players.LocalPlayer.Character)
 TrackL.AnimationId = "rbxassetid://15376683616"
 local GuardL = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(TrackL)
 GuardL.Priority = Enum.AnimationPriority.Action2
-GuardL:AdjustSpeed(0.5)
+GuardL:AdjustSpeed(0.25)
 task.spawn(function()
 while true do task.wait()
 for i,v in pairs(game.Players:GetPlayers()) do
@@ -242,7 +242,7 @@ task.wait(2.5)
 getgenv().CanR = true
 end)
 args[1]["ShotName"] = type
-getgenv().ShootingSpeed = 0.325
+getgenv().ShootingSpeed = 0.4
 elseif args[1]["ShotName"] == "Dunk" then
 task.spawn(function()
 getgenv().CanR = false
