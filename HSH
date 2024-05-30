@@ -1,6 +1,6 @@
 print("HSH SCRIPT EXECUTED ...")
-getgenv().Timer = 0.28
-getgenv().Speed = 1
+getgenv().Timer = 0.2825
+getgenv().Speed = 1.35
 getgenv().CanR = true
 getgenv().Distance = 1
 getgenv().ShootingSpeed = 0.425
