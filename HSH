@@ -1,6 +1,6 @@
 print("HSH SCRIPT EXECUTED ...")
 getgenv().Timer = 0.285
-getgenv().Speed = 1.25
+getgenv().Speed = 1
 getgenv().CanR = true
 getgenv().Distance = 1
 getgenv().ShootingSpeed = 0.425
@@ -239,7 +239,7 @@ task.wait(2.5)
 getgenv().CanR = true
 end)
 args[1]["ShotName"] = type
-getgenv().ShootingSpeed = 0.35
+getgenv().ShootingSpeed = 0.475
 elseif args[1]["ShotName"] == "Dunk" then
 task.spawn(function()
 getgenv().CanR = false
