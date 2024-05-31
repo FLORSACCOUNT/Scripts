@@ -54,7 +54,7 @@ v.Size = Vector3.new(1.2445,1.2445,1.2445)
 elseif game.Players.LocalPlayer.Backpack.CurrentBall.Value == nil then
 v.Size = Vector3.new(6,6,6)
 end
-if (v.Position.Y - game.Players.LocalPlayer.Character.Head.Position.Y) >= 4 and game.Players.LocalPlayer:DistanceFromCharacter(v.Position) <= 7.5 and getgenv().CanR == true then
+if (v.Position.Y - game.Players.LocalPlayer.Character.Head.Position.Y) >= 4 and game.Players.LocalPlayer:DistanceFromCharacter(v.Position) <= 10 and getgenv().CanR == true then
 getgenv().CanR = false
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseButton1Down"])
 local args = {
