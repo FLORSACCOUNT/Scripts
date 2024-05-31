@@ -49,6 +49,11 @@ end)
 game:GetService("RunService").RenderStepped:Connect(function()
 task.spawn(function()
 for i,v in workspace.Balls:GetChildren() do
+if game.Players.LocalPlayer.Backpack.CurrentBall.Value ~= nil then
+v.Size = Vector3.new(1.2445,1.2445,1.2445)
+elseif game.Players.LocalPlayer.Backpack.CurrentBall.Value == nil
+v.Size = Vector3.new(6,6,6)
+end
 if (v.Position.Y - game.Players.LocalPlayer.Character.Head.Position.Y) >= 4 and game.Players.LocalPlayer:DistanceFromCharacter(v.Position) <= 7.5 and getgenv().CanR == true then
 getgenv().CanR = false
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseButton1Down"])
@@ -287,7 +292,7 @@ v:Destroy()
     end
 end
 for i,v in workspace.Hoops:GetDescendants() do
-if v.Name == "Stand" or v.Name == "Rim" or v.Name == "Backboard" then
+if v.Name == "Stand" or v.Name == "Backboard" then
 v:Destroy()
     end
 end
