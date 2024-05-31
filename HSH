@@ -49,7 +49,7 @@ end)
 game:GetService("RunService").RenderStepped:Connect(function()
 task.spawn(function()
 for i,v in workspace.Balls:GetChildren() do
-if (v.Position.Y - game.Players.LocalPlayer.Character.Head.Position.Y) >= 4.5 and game.Players.LocalPlayer:DistanceFromCharacter(v.Position) <= 7.5 and getgenv().CanR == true then
+if (v.Position.Y - game.Players.LocalPlayer.Character.Head.Position.Y) >= 4.5 and game.Players.LocalPlayer:DistanceFromCharacter(v.Position) <= 12 and getgenv().CanR == true then
 getgenv().CanR = false
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseButton1Down"])
 local args = {
@@ -60,7 +60,7 @@ local args = {
 
 game:GetService("ReplicatedStorage"):WaitForChild("Lib"):WaitForChild("EventsPlayer"):WaitForChild("Actions"):FireServer(unpack(args))
 firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Def.Jump["MouseButton1Up"])
-task.wait(1)
+task.wait(0.5)
 getgenv().CanR = true
       end
    end
