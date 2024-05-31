@@ -286,6 +286,11 @@ elseif (v.Name == "Model" or v.Name == "Models") and game.PlaceId == 15578311687
 v:Destroy()
     end
 end
+for i,v in workspace.BoundsGroup:GetDescendants() do
+if v.Name == "BorderOutter" then
+v:Destroy()
+    end
+end
 	workspace:FindFirstChildOfClass('Terrain').WaterWaveSize = 0
 	workspace:FindFirstChildOfClass('Terrain').WaterWaveSpeed = 0
 	workspace:FindFirstChildOfClass('Terrain').WaterReflectance = 0
