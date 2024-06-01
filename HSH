@@ -138,7 +138,7 @@ target = v
         GuardRL:Stop()
         end
 Guard:Play()
-    elseif math.round(v.Character.Humanoid.MoveDirection.X) == 1 and not GuardL.IsPlaying and not GuardRL.IsPlaying and game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z < 0 then
+    elseif math.round(v.Character.Humanoid.MoveDirection.X) == -1 and not GuardL.IsPlaying and not GuardRL.IsPlaying and game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z < 0 then
         if GuardR.IsPlaying then
         GuardRR:Stop()
         GuardR:Stop()
@@ -147,7 +147,7 @@ Guard:Play()
         end
 GuardRL:Play()
 GuardL:Play()
-    elseif math.round(v.Character.Humanoid.MoveDirection.X) == -1 and not GuardR.IsPlaying and not GuardRR.IsPlaying and game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z < 0 then
+    elseif math.round(v.Character.Humanoid.MoveDirection.X) == 1 and not GuardR.IsPlaying and not GuardRR.IsPlaying and game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z < 0 then
         if GuardRL.IsPlaying then
         GuardL:Stop()
         GuardRL:Stop()
@@ -156,7 +156,7 @@ GuardL:Play()
         end
 GuardRR:Play()
 GuardR:Play()
-        elseif math.round(v.Character.Humanoid.MoveDirection.X) == 1 and not GuardR.IsPlaying and not GuardRR.IsPlaying and game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z > 0 then
+        elseif math.round(v.Character.Humanoid.MoveDirection.X) == -1 and not GuardR.IsPlaying and not GuardRR.IsPlaying and game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z > 0 then
         if GuardRL.IsPlaying then
         GuardL:Stop()
         GuardRL:Stop()
@@ -165,7 +165,7 @@ GuardR:Play()
         end
 GuardRR:Play()
 GuardR:Play()
-    elseif math.round(v.Character.Humanoid.MoveDirection.X) == -1 and not GuardL.IsPlaying and not GuardRL.IsPlaying and game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z > 0 then
+    elseif math.round(v.Character.Humanoid.MoveDirection.X) == 1 and not GuardL.IsPlaying and not GuardRL.IsPlaying and game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector.Z > 0 then
         if GuardR.IsPlaying then
         GuardRR:Stop()
         GuardR:Stop()
