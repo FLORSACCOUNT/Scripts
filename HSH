@@ -120,9 +120,9 @@ getgenv().Distance = 4.5
 end
 target = v
     if (v.Character.Humanoid.MoveDirection.Magnitude == 0 or math.round(v.Character.Humanoid.MoveDirection.Z) == -1 or math.round(v.Character.Humanoid.MoveDirection.Z) == 1) and math.round(v.Character.Humanoid.MoveDirection.X) ~= 1 and math.round(v.Character.Humanoid.MoveDirection.X) ~= -1 and not Guard.IsPlaying then
-        if GuardR.IsPlaying then
         Guard:Play()
         end
+
 getgenv().CT = true
                      end
                 end
