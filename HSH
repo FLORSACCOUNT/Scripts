@@ -1,5 +1,5 @@
 print("HSH SCRIPT EXECUTED ...")
-getgenv().Timer = 0.2825
+getgenv().Timer = 0.285
 getgenv().Speed = 1.35
 getgenv().CanR = true
 getgenv().Distance = 1
