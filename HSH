@@ -26,7 +26,7 @@ local GuardL = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Anima
 GuardL.Priority = Enum.AnimationPriority.Action2
 GuardL:AdjustSpeed(0.25)
 local TrackRL = Instance.new("Animation",game.Players.LocalPlayer.Character)
-TrackL.AnimationId = "rbxassetid://15376683616"
+TrackRL.AnimationId = "rbxassetid://15376683616"
 local GuardRL = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(TrackRL)
 GuardRL.Priority = Enum.AnimationPriority.Action2
 GuardRL:AdjustSpeed(0.25)
