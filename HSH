@@ -182,7 +182,6 @@ GuardRR:Stop()
 GuardR:Stop()
 GuardL:Stop()
 GuardRL:Stop()
-firesignal(game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Run.Cam.MouseButton1Up)
                      end
                 end
 end)
