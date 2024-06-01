@@ -35,11 +35,6 @@ TrackRR.AnimationId = "rbxassetid://14182861584"
 local GuardRR = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(TrackRR)
 GuardRR.Priority = Enum.AnimationPriority.Action
 GuardRR:AdjustSpeed(0.25)
-local TrackRn = Instance.new("Animation",game.Players.LocalPlayer.Character)
-TrackRn.AnimationId = "rbxassetid://14038658558"
-local GuardRn = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(TrackRn)
-GuardRn.Priority = Enum.AnimationPriority.Action
-GuardRn:AdjustSpeed(0.25)
 task.spawn(function()
 while true do task.wait()
 for i,v in pairs(game.Players:GetPlayers()) do
