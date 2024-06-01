@@ -121,26 +121,8 @@ end
 target = v
     if (v.Character.Humanoid.MoveDirection.Magnitude == 0 or math.round(v.Character.Humanoid.MoveDirection.Z) == -1 or math.round(v.Character.Humanoid.MoveDirection.Z) == 1) and math.round(v.Character.Humanoid.MoveDirection.X) ~= 1 and math.round(v.Character.Humanoid.MoveDirection.X) ~= -1 and not Guard.IsPlaying then
         if GuardR.IsPlaying then
-        GuardR:Stop()
-        elseif GuardL.IsPlaying then
-        GuardL:Stop()
+        Guard:Play()
         end
-Guard:Play()
-    elseif math.round(v.Character.Humanoid.MoveDirection.X) == -1 and not GuardL.IsPlaying then
-        if GuardR.IsPlaying then
-        GuardR:Stop()
-        elseif Guard.IsPlaying then
-        Guard:Stop()
-        end
-GuardL:Play()
-    elseif math.round(v.Character.Humanoid.MoveDirection.X) == 1 and not GuardR.IsPlaying then
-        if GuardL.IsPlaying then
-        GuardL:Stop()
-        elseif Guard.IsPlaying then
-        Guard:Stop()
-        end
-GuardR:Play()
-    end
 getgenv().CT = true
                      end
                 end
@@ -156,10 +138,6 @@ if game.Players.LocalPlayer.Backpack.CurrentBall.Value ~= nil then
 getgenv().CT = false
 if Guard.IsPlaying then
 Guard:Stop()
-elseif GuardR.IsPlaying then
-GuardR:Stop()
-elseif GuardL.IsPlaying then
-GuardL:Stop()
       end
    end
 end)
@@ -177,10 +155,6 @@ end)
 game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Run.Cam.MouseButton1Up:Connect(function()
 if Guard.IsPlaying then
 Guard:Stop()
-elseif GuardR.IsPlaying then
-GuardR:Stop()
-elseif GuardL.IsPlaying then
-GuardL:Stop()
 end
 local args = {
     [1] = {
