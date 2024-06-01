@@ -134,7 +134,7 @@ elseif v.Character.Humanoid.MoveDirection.Z > 0 then
 getgenv().Distance = 4.5
 end
 target = v
-    if (v.Character.Humanoid.MoveDirection.Magnitude == 0 or math.round(v.Character.Humanoid.MoveDirection.Z) == -1 or math.round(v.Character.Humanoid.MoveDirection.Z) == 1) and math.round(v.Character.Humanoid.MoveDirection.X) ~= 1 and math.round(v.Character.Humanoid.MoveDirection.X) ~= -1 and not Guard.IsPlaying and not GuardRn.IsPlaying then
+    if (v.Character.Humanoid.MoveDirection.Magnitude == 0 or math.round(v.Character.Humanoid.MoveDirection.Z) == -1 or math.round(v.Character.Humanoid.MoveDirection.Z) == 1) and math.round(v.Character.Humanoid.MoveDirection.X) ~= 1 and math.round(v.Character.Humanoid.MoveDirection.X) ~= -1 and not Guard.IsPlaying then
         if GuardR.IsPlaying then
         GuardR:Stop()
         GuardRR:Stop()
@@ -142,7 +142,6 @@ target = v
         GuardL:Stop()
         GuardRL:Stop()
         end
-GuardRn:Play()
 Guard:Play()
     elseif math.round(v.Character.Humanoid.MoveDirection.X) == -1 and not GuardL.IsPlaying and not GuardRL.IsPlaying then
         if GuardR.IsPlaying then
@@ -180,7 +179,6 @@ if game.Players.LocalPlayer.Backpack.CurrentBall.Value ~= nil then
 getgenv().CT = false
 if Guard.IsPlaying then
 Guard:Stop()
-GuardRn:Play()
 elseif GuardR.IsPlaying then
 GuardR:Stop()
 GuardRR:Play()
@@ -204,7 +202,6 @@ end)
 game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Run.Cam.MouseButton1Up:Connect(function()
 if Guard.IsPlaying then
 Guard:Stop()
-GuardRn:Stop()
 elseif GuardR.IsPlaying then
 GuardR:Stop()
 GuardRR:Stop()
