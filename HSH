@@ -143,7 +143,6 @@ Guard:Play()
         GuardRR:Stop()
         GuardR:Stop()
         elseif Guard.IsPlaying then
-        GuardRn:Stop()
         Guard:Stop()
         end
 GuardRL:Play()
@@ -153,7 +152,6 @@ GuardL:Play()
         GuardL:Stop()
         GuardRL:Stop()
         elseif Guard.IsPlaying then
-        GuardRn:Stop()
         Guard:Stop()
         end
 GuardRR:Play()
