@@ -192,10 +192,10 @@ if Guard.IsPlaying then
 Guard:Stop()
 elseif GuardR.IsPlaying then
 GuardR:Stop()
-GuardRR:Play()
+GuardRR:Stop()
 elseif GuardL.IsPlaying then
 GuardL:Stop()
-GuardRL:Play()
+GuardRL:Stop()
       end
    end
 end)
