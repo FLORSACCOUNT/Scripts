@@ -21,10 +21,23 @@ local GuardR = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Anima
 GuardR.Priority = Enum.AnimationPriority.Action2
 GuardR:AdjustSpeed(0.25)
 local TrackL = Instance.new("Animation",game.Players.LocalPlayer.Character)
-TrackL.AnimationId = "rbxassetid://15376683616"
+TrackL.AnimationId = "rbxassetid://14182916688"
 local GuardL = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(TrackL)
 GuardL.Priority = Enum.AnimationPriority.Action2
 GuardL:AdjustSpeed(0.25)
+local TrackRL = Instance.new("Animation",game.Players.LocalPlayer.Character)
+TrackL.AnimationId = "rbxassetid://15376683616"
+local GuardRL = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(TrackRL)
+GuardRL.Priority = Enum.AnimationPriority.Action2
+GuardRL:AdjustSpeed(0.25)
+TrackRR.AnimationId = "rbxassetid://14182861584"
+local GuardRR = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(TrackRR)
+GuardRR.Priority = Enum.AnimationPriority.Action2
+GuardRR:AdjustSpeed(0.25)
+TrackRn.AnimationId = "rbxassetid://14038658558"
+local GuardRn = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Animator:LoadAnimation(TrackRn)
+GuardRn.Priority = Enum.AnimationPriority.Action2
+GuardRn:AdjustSpeed(0.25)
 task.spawn(function()
 while true do task.wait()
 for i,v in pairs(game.Players:GetPlayers()) do
@@ -120,9 +133,29 @@ getgenv().Distance = 4.5
 end
 target = v
     if (v.Character.Humanoid.MoveDirection.Magnitude == 0 or math.round(v.Character.Humanoid.MoveDirection.Z) == -1 or math.round(v.Character.Humanoid.MoveDirection.Z) == 1) and math.round(v.Character.Humanoid.MoveDirection.X) ~= 1 and math.round(v.Character.Humanoid.MoveDirection.X) ~= -1 and not Guard.IsPlaying then
-        Guard:Play()
+        if GuardR.IsPlaying then
+        GuardR:Stop()
+        GuardRR:Stop()
+        elseif GuardL.IsPlaying then
+        GuardL:Stop()
+        GuardRL:Stop()
         end
-
+GuardRn:Play()
+    elseif math.round(v.Character.Humanoid.MoveDirection.X) == -1 and not GuardL.IsPlaying then
+        if GuardR.IsPlaying then
+        GuardRR:Stop()
+        elseif Guard.IsPlaying then
+        GuardRn:Stop()
+        end
+GuardRL:Play()
+    elseif math.round(v.Character.Humanoid.MoveDirection.X) == 1 and not GuardR.IsPlaying then
+        if GuardRL.IsPlaying then
+        GuardL:Stop()
+        elseif Guard.IsPlaying then
+        GuardRn:Stop()
+        end
+GuardRR:Play()
+    end
 getgenv().CT = true
                      end
                 end
@@ -138,6 +171,13 @@ if game.Players.LocalPlayer.Backpack.CurrentBall.Value ~= nil then
 getgenv().CT = false
 if Guard.IsPlaying then
 Guard:Stop()
+GuardRn:Play()
+elseif GuardR.IsPlaying then
+GuardR:Stop()
+GuardRR:Play()
+elseif GuardL.IsPlaying then
+GuardL:Stop()
+GuardRL:Play()
       end
    end
 end)
@@ -155,6 +195,13 @@ end)
 game.Players.LocalPlayer.PlayerGui.MobileUi.Mobile.Run.Cam.MouseButton1Up:Connect(function()
 if Guard.IsPlaying then
 Guard:Stop()
+GuardRn:Stop()
+elseif GuardR.IsPlaying then
+GuardR:Stop()
+GuardRR:Stop()
+elseif GuardL.IsPlaying then
+GuardL:Stop()
+GuardRL:Stop()
 end
 local args = {
     [1] = {
