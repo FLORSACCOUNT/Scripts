@@ -176,6 +176,12 @@ GuardRL:Play()
 GuardL:Play()
     end
 getgenv().CT = true
+else
+Guard:Stop()
+GuardRR:Stop()
+GuardR:Stop()
+GuardL:Stop()
+GuardRL:Stop()
                      end
                 end
 end)
