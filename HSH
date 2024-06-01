@@ -182,6 +182,7 @@ GuardRR:Stop()
 GuardR:Stop()
 GuardL:Stop()
 GuardRL:Stop()
+getgenv().CT = false
                      end
                 end
 end)
