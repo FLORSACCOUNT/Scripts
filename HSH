@@ -138,7 +138,7 @@ target = v
         GuardRL:Stop()
         end
 Guard:Play()
-    elseif math.round(v.Character.Humanoid.MoveDirection.X) == -1 and not GuardL.IsPlaying and not GuardRL.IsPlaying then
+    elseif math.round(v.Character.Humanoid.MoveDirection.X) == 1 and not GuardL.IsPlaying and not GuardRL.IsPlaying then
         if GuardR.IsPlaying then
         GuardRR:Stop()
         GuardR:Stop()
@@ -147,7 +147,7 @@ Guard:Play()
         end
 GuardRL:Play()
 GuardL:Play()
-    elseif math.round(v.Character.Humanoid.MoveDirection.X) == 1 and not GuardR.IsPlaying and not GuardRR.IsPlaying then
+    elseif math.round(v.Character.Humanoid.MoveDirection.X) == -1 and not GuardR.IsPlaying and not GuardRR.IsPlaying then
         if GuardRL.IsPlaying then
         GuardL:Stop()
         GuardRL:Stop()
