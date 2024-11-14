@@ -81,33 +81,7 @@ spawn(function()
     end
 end)
 
--- Memory Bypass
-spawn(function()
-    repeat task.wait() until game:IsLoaded()
 
-    local RunService = game:GetService("RunService")
-
-    local Stats = game:GetService("Stats")
-    local CurrMem = Stats:GetTotalMemoryUsageMb();
-    local Rand = 0
-
-    RunService.Stepped:Connect(function()
-        Rand = math.random(-3,3)
-    end)
-
-    local _MemBypass
-    _MemBypass = hookmetamethod(game, "__namecall", function(self,...)
-        local method = getnamecallmethod();
-
-        if not checkcaller() then
-            if typeof(self) == "Instance" and method == "GetTotalMemoryUsageMb" and self.ClassName == "Stats" then
-                return CurrMem + Rand;
-            end
-        end
-
-        return _MemBypass(self,...)
-    end)
-end)
 
 -- DecendantAdded Bypass
 for i,v in next, getconnections(game.DescendantAdded) do
@@ -166,30 +140,6 @@ local preloadBypass; preloadBypass = hookfunction(Content.PreloadAsync, function
     end
 
     return preloadBypass(a, b, c)
-end)
-
--- GetFocusedTextBox Bypass
-local _IsDescendantOf = game.IsDescendantOf
-
-local TextboxBypass
-TextboxBypass = hookmetamethod(game, "__namecall", function(self,...)
-    local method = getnamecallmethod();
-    local args = ...;
-
-    if not checkcaller() then
-        if typeof(self) == "Instance" and method == "GetFocusedTextBox" and self.ClassName == "UserInputService" then
-            local Textbox = TextboxBypass(self,...);
-            if Textbox and typeof(Textbox) == "Instance" then
-                local succ,err = pcall(function() _IsDescendantOf(Textbox, Bypassed_Dex) end)
-
-                if err and err:match("The current identity") then
-                    return nil;
-                end
-            end
-        end
-    end
-
-    return TextboxBypass(self,...);
 end)
 
 --Newproxy Bypass (Stolen from Lego Hacker (V3RM))
