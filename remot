@@ -1053,10 +1053,10 @@ local get_namecall_dump = function(script, object, ...)
 	end
 	namecall_dump[#namecall_dump + 1] = 
 	{	
-		script = namecall_script(object, object.ClassName == "RemoteEvent" and "FireServer" or "InvokeServer", ...),
+		script = namecall_script(object, object.ClassName == "RemoteEvent" and "FireServer" or "InvokeServer" or "Fire" or "Invoke", ...),
 		caller = script,
 		object = object,
-		method = object.ClassName == "RemoteEvent" and "FireServer" or "InvokeServer",
+		method = object.ClassName == "RemoteEvent" and "FireServer" or "InvokeServer" or "Fire" or "Invoke",
 		freturn = Ret
 	}
 end
