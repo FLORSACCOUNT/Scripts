@@ -83,6 +83,13 @@ task.wait(60)
 serverhop()
 end)
 
+for i,v in pairs(workspace:GetDescendants()) do
+if v.Name == "Bed" then
+v:Destroy()
+   end
+end
+
+
 for i,v in pairs(workspace.Harvestable:GetChildren()) do
 if not table.find(farm,v.Name) then
 v:Destroy()
