@@ -1,3 +1,11 @@
+local TeleportCheck = false
+local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
+game.Players.LocalPlayer.OnTeleport:Connect(function(State)
+    if (not TeleportCheck) and queueteleport then
+        TeleportCheck = true
+        queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/FLORSACCOUNT/Scripts/refs/heads/main/ASTD%20FLORS'))()")
+    end
+end)
 
 local items = {"Trait","Pure"}
 
@@ -231,7 +239,7 @@ end
 
 elseif not workspace.Map:FindFirstChild("Buildings") then
 
-game:GetService("Players").LocalPlayer.PlayerGui.GU.MenuFrame.TopFrame.InfoFrame:WaitForChild("Wave")
+game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("GU"):WaitForChild("MenuFrame"):WaitForChild("TopFrame"):WaitForChild("InfoFrame"):WaitForChild("Wave")
 
 task.spawn(function()
 
