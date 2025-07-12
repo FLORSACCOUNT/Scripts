@@ -1,3 +1,4 @@
+
 local items = {"Trait","Pure"}
 
 local sold = {}
@@ -200,6 +201,8 @@ end
 
 repeat task.wait() until cantp
 
+task.wait(1.5)
+
 game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFunction"):InvokeServer(	{
 		Chapter = i,
 		Type = "Lobby",
@@ -227,6 +230,8 @@ end
 --setup
 
 elseif not workspace.Map:FindFirstChild("Buildings") then
+
+game:GetService("Players").LocalPlayer.PlayerGui.GU.MenuFrame.TopFrame.InfoFrame:WaitForChild("Wave")
 
 task.spawn(function()
 
