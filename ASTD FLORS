@@ -237,9 +237,6 @@ task.spawn(function()
 
 while task.wait(0.2) do
 
-                local String = game:GetService("Players").LocalPlayer.PlayerGui.GU.MenuFrame.TopFrame.InfoFrame:WaitForChild("Wave").Title.Text
-                local Wave = string.gsub(String, "/15", "")
-
                 task.spawn(function()
                 if getWave() >= 15  and workspace.UnitFolder:FindFirstChild("Teiuchi") then
 
