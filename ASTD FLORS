@@ -222,7 +222,6 @@ end
 repeat task.wait() until chall[4][1] ~= nil
 task.wait(0.5)
 
-
 local found = false -- Flag para parar o loop após encontrar o primeiro item válido
 
 for i, v in ipairs(chall) do
@@ -230,7 +229,7 @@ for i, v in ipairs(chall) do
     for itemIndex, item in ipairs(items) do
         if found then break end
         for _, val in ipairs(v) do
-            if string.match(val, item) and not table.find(chall,"Random Units") and not table.find(chall,"High Cost") then
+            if string.match(val, item) and not table.find(chall[i],"Random Units") and not table.find(chall[i],"High Cost") then
 
                 repeat task.wait(1)
                     for _, pod in ipairs(workspace.Map.Buildings.ChallengePods:GetChildren()) do
@@ -248,18 +247,20 @@ for i, v in ipairs(chall) do
                 repeat task.wait() until cantp
 
                 found = i -- Marca como encontrado
+
                 break
             end
         end
     end
 end
 
-task.wait(2.5)
-
+task.wait(1)
                 task.spawn(function()
                     while true do task.wait(0.1)
+if found then
+for ik = 1,6 do
                         game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFunction"):InvokeServer({
-                            Chapter = found,
+                            Chapter = ik,
                             Type = "Lobby",
                             Name = "Challenge"..tostring(found),
                             Difficulty = diff,
@@ -267,7 +268,7 @@ task.wait(2.5)
                             Friend = false,
                             Update = true
                         })
-
+end
                         game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFunction"):InvokeServer({
                             Start = true,
                             Type = "Lobby",
@@ -275,6 +276,7 @@ task.wait(2.5)
                             Mode = "Pod"
                         })
                     end
+end
                 end)
 
 --setup
