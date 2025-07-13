@@ -210,7 +210,7 @@ for i, v in ipairs(chall) do
         for _, val in ipairs(v) do
             if string.match(val, item) and not (table.find(chall,"Random Units") or table.find(chall,"High Cost")) then
 
-repeat task.wait()
+repeat task.wait(1)
 for i,v in workspace.Map.Buildings.ChallengePods:GetChildren() do
 if v.Name == "Pod" and v.Root.SurfaceGui.Frame.WaitFrame.TimeText.Text == "" then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.PrimaryPart.CFrame
@@ -223,7 +223,7 @@ break
 end
 until game:GetService("Players").LocalPlayer.PlayerGui.MainUI.WorldFrame.WorldFrame.Visible == true
 
-repeat task.wait(1) until cantp
+repeat task.wait() until cantp
 
 task.spawn(function()
 
