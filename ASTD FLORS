@@ -160,7 +160,7 @@ local function hasProperty(object, prop)
 end
 
 for i,v in game.Players.LocalPlayer.PlayerGui:GetDescendants() do
-   local success = pcall(function() hasProperty(v, "Visible") end)) --this is the part checking if the transparency existed, make sure you write the property's name correctly
+local success = pcall(function() hasProperty(v, "Visible") end)
 
 if success and not v:IsDescendantOf(game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("WorldFrame")) and v.Name ~= "WorldFrame" then
 v.Visible = false
