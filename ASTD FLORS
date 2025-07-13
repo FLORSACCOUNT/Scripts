@@ -157,8 +157,7 @@ end
 
 if workspace.Map:FindFirstChild("Buildings") then
 
-game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("WorldFrame")
-game:GetService("Players").LocalPlayer.PlayerGui.MainUI.WorldFrame.WorldFrame.MainFrame.StageFrame.Stages.StageScroll:FindFirstChild("Challenge5")
+game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("MainUI"):WaitForChild("WorldFrame"):WaitForChild("WorldFrame"):WaitForChild("MainFrame"):WaitForChild("StageFrame"):WaitForChild("Stages"):WaitForChild("StageScroll"):WaitForChild("Challenge5")
 
 local function hasProperty(object, prop)
     local t = object[prop] --this is just done to check if the property existed, if it did nothing would happen, if it didn't an error will pop, the object[prop] is a different way of writing object.prop, (object.Transparency or object["Transparency"])
@@ -210,55 +209,56 @@ repeat task.wait() until chall[4][1] ~= nil
 task.wait(0.5)
 
 
+local found = false -- Flag para parar o loop após encontrar o primeiro item válido
+
 for i, v in ipairs(chall) do
-    for _, item in ipairs(items) do
+    if found then break end
+    for itemIndex, item in ipairs(items) do
+        if found then break end
         for _, val in ipairs(v) do
             if string.match(val, item) and not (table.find(chall,"Random Units") or table.find(chall,"High Cost")) then
 
-repeat task.wait(1)
-for i,v in workspace.Map.Buildings.ChallengePods:GetChildren() do
-if v.Name == "Pod" and v.Root.SurfaceGui.Frame.WaitFrame.TimeText.Text == "" then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.PrimaryPart.CFrame
-game:GetService('VirtualInputManager'):SendKeyEvent(true, "E", false, game)
-task.wait()
-game:GetService('VirtualInputManager'):SendKeyEvent(false, "E", false, game)
-cantp = true
-break
-       end
-end
-until game:GetService("Players").LocalPlayer.PlayerGui.MainUI.WorldFrame.WorldFrame.Visible == true
+                repeat task.wait(1)
+                    for _, pod in ipairs(workspace.Map.Buildings.ChallengePods:GetChildren()) do
+                        if pod.Name == "Pod" and pod.Root.SurfaceGui.Frame.WaitFrame.TimeText.Text == "" then
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pod.PrimaryPart.CFrame
+                            game:GetService('VirtualInputManager'):SendKeyEvent(true, "E", false, game)
+                            task.wait()
+                            game:GetService('VirtualInputManager'):SendKeyEvent(false, "E", false, game)
+                            cantp = true
+                            break
+                        end
+                    end
+                until game:GetService("Players").LocalPlayer.PlayerGui.MainUI.WorldFrame.WorldFrame.Visible == true
 
-repeat task.wait() until cantp
+                repeat task.wait() until cantp
 
-task.spawn(function()
+                task.spawn(function()
+                    while true do task.wait(0.1)
+                        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFunction"):InvokeServer({
+                            Chapter = i,
+                            Type = "Lobby",
+                            Name = "Challenge"..tostring(i),
+                            Difficulty = diff,
+                            Mode = "Pod",
+                            Friend = false,
+                            Update = true
+                        })
 
-while true do task.wait(0.1)
+                        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFunction"):InvokeServer({
+                            Start = true,
+                            Type = "Lobby",
+                            Update = true,
+                            Mode = "Pod"
+                        })
+                    end
+                end)
 
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFunction"):InvokeServer(	{
-		Chapter = i,
-		Type = "Lobby",
-		Name = "Challenge"..tostring(i),
-		Difficulty = diff,
-		Mode = "Pod",
-		Friend = false,
-		Update = true
-	})
-
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFunction"):InvokeServer(	{
-		Start = true,
-		Type = "Lobby",
-		Update = true,
-		Mode = "Pod"
-	})
-    end
-end)
+                found = true -- Marca como encontrado
                 break
             end
         end
-
-        if challenge then break end
     end
-    if challenge then break end
 end
 
 --setup
@@ -292,7 +292,9 @@ game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFu
 
 if game:GetService("Players").LocalPlayer.PlayerGui.MainUI.ResultFrame.Result.ExpandFrame.ButtonFrame.ButtonExpand.Replay:FindFirstChild("ButtonDesign") and game:GetService("Players").LocalPlayer.PlayerGui.MainUI.ResultFrame.Result.ExpandFrame.ButtonFrame.ButtonExpand.Replay.ButtonDesign.ExpandFrame.DisabledFrame.Visible == true then
 firesignal(game:GetService("Players").LocalPlayer.PlayerGui.MainUI.ResultFrame.Result.ExpandFrame.ButtonFrame.ButtonExpand.Return.Activated)
-elseif game:GetService("Players").LocalPlayer.PlayerGui.MainUI.ResultFrame.Result.ExpandFrame.ButtonFrame.ButtonExpand.Replay:FindFirstChild("ButtonDesign") and game:GetService("Players").LocalPlayer.PlayerGui.MainUI.ResultFrame.Result.ExpandFrame.ButtonFrame.ButtonExpand.Replay.ButtonDesign.ExpandFrame.DisabledFrame.Visible == false then
+end
+
+if #workspace.UnitFolder:GetChildren() >= 1 then
 game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFunction"):InvokeServer(	{
 		Type = "Map",
 		Mode = "Get"
