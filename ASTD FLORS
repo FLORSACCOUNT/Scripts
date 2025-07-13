@@ -14,7 +14,7 @@ game.Players.LocalPlayer.OnTeleport:Connect(function(State)
     end
 end)
 
-local items = {"Trait","Orb","Pure"}
+local items = {"Trait","Pure","Orb"}
 
 local sold = {}
 
