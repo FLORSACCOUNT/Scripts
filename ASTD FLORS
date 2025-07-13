@@ -420,10 +420,3 @@ waitt = 390
 elseif workspace.Map:FindFirstChild("Buildings") then
 waitt = 2350
 end
-
-print(waitt)
-task.wait(waitt)
-
-while task.wait() do 
-game:GetService("TeleportService"):Teleport(17687504411)
-end
