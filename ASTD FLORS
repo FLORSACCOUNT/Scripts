@@ -260,9 +260,9 @@ end
 
 elseif not workspace.Map:FindFirstChild("Buildings") then
 
-task.wait(5)
-
 game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("GU"):WaitForChild("MenuFrame"):WaitForChild("TopFrame"):WaitForChild("InfoFrame"):WaitForChild("Wave")
+
+task.wait(5)
 
 task.spawn(function()
 
