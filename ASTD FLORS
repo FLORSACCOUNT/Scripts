@@ -1,6 +1,4 @@
-if not game:IsLoaded() then
-    game.Loaded:Wait()
-end
+
 
         game.Players.LocalPlayer.Idled:Connect(function()
             game:GetService("VirtualUser"):CaptureController()
