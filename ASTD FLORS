@@ -428,12 +428,12 @@ setup("aot")
 
 end
 
-local waitt = 390
+local waitt = 50
 
 if not workspace.Map:FindFirstChild("Buildings") then
 waitt = 2350
 elseif workspace.Map:FindFirstChild("Buildings") then
-waitt = 390
+waitt = 50
 end
 
 print(waitt)
