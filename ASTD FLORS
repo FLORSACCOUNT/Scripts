@@ -1,4 +1,8 @@
- game.Players.LocalPlayer.Idled:Connect(function()
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+
+        game.Players.LocalPlayer.Idled:Connect(function()
             game:GetService("VirtualUser"):CaptureController()
             game:GetService("VirtualUser"):ClickButton2(Vector2.new())
         end)
@@ -194,9 +198,10 @@ spawn("Esdeath", CFrame.new(31.573410034179688, 1.526009202003479, -754.21405029
 --------------------final
 end
 
+workspace.Map:FindFirstChild("Buildings",20)
+
 if workspace.Map:FindFirstChild("Buildings") then
-task.spawn(function()
-while task.wait() do
+
 game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("WorldFrame")
 game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui", 999):WaitForChild("MainUI", 999) :WaitForChild("WorldFrame", 999):WaitForChild("WorldFrame", 999):WaitForChild("MainFrame", 999):WaitForChild("StageFrame", 999):WaitForChild("Stages", 999):WaitForChild("StageScroll", 999):WaitForChild("Challenge5", 999)
 game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui", 999):WaitForChild("MainUI", 999):WaitForChild("ResultFrame", 999):WaitForChild("Result", 999):WaitForChild("ExpandFrame", 999):WaitForChild("ButtonFrame", 999):WaitForChild("ButtonExpand", 999):WaitForChild("Return", 999)
@@ -300,10 +305,6 @@ end
                     end
 end
                 end)
-
-task.wait(10)
-end
-end)
 
 --setup
 
