@@ -412,3 +412,18 @@ elseif workspace:FindFirstChild("Red portal") then
 setup("aot")
 
 end
+
+local waitt = 390
+
+if not workspace.Map:FindFirstChild("Buildings") then
+waitt = 2350
+elseif workspace.Map:FindFirstChild("Buildings") then
+waitt = 390
+end
+
+print(waitt)
+task.wait(waitt)
+
+while task.wait() do 
+game:GetService("TeleportService"):Teleport(17687504411)
+end
