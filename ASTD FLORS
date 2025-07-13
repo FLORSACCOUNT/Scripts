@@ -417,7 +417,7 @@ local waitt = 390
 if not workspace.Map:FindFirstChild("Buildings") then
 waitt = 390
 elseif workspace.Map:FindFirstChild("Buildings") then
-waitt = 1850
+waitt = 2350
 end
 
 
