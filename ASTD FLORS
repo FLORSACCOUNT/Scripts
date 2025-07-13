@@ -321,8 +321,10 @@ game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFu
 		Mode = "Reward"
 	})
 
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GameStuff"):FireServer("SkipVoteYes")
+
 end
+
+game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GameStuff"):FireServer("SkipVoteYes")
 
 game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFunction"):InvokeServer(	{
 		Index = 3,
