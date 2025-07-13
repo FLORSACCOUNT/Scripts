@@ -119,7 +119,30 @@ spawn("Sukuna", CFrame.new(152.96690368652344, 51.84920120239258, -91.1271209716
 
             end
         end)
------------------------------------------------------
+-------------------------------------------------------
+    elseif world == "aot" then
+        local farmup = 0
+        task.spawn(function()
+            while task.wait(0.1) do
+
+                if #workspace.UnitFolder:GetChildren() == 0 or #workspace.UnitFolder:GetChildren() >= 3 then
+                    farmup = 999
+                else
+                    farmup = 0
+                end
+
+spawn("Teiuchi", CFrame.new(17.817543029785156, 1.526009202003479, -689.9090576171875, 1, 0, 0, 0, 1, 0, 0, 0, 1),farmup)
+spawn("Sukuna", CFrame.new(30.07181739807129, 3.951678514480591, -730.4588623046875, 1, 0, 0, 0, 1, 0, 0, 0, 1),5)
+
+                if workspace.UnitFolder:FindFirstChild("Sukuna") and workspace.UnitFolder.Sukuna:GetAttribute("UpgradeLevel") >= 2 then
+spawn("Gray", CFrame.new(28.962060928344727, 1.526009202003479, -753.997314453125, 1, 0, 0, 0, 1, 0, 0, 0, 1))
+spawn("Esdeath", CFrame.new(31.573410034179688, 1.526009202003479, -754.2140502929688, 1, 0, 0, 0, 1, 0, 0, 0, 1))
+                end
+
+
+            end
+        end)
+----------------------------------------------------
     elseif world == "dragonball" then
         local farmup = 0
         task.spawn(function()
@@ -354,6 +377,10 @@ setup("bleach")
 elseif workspace:FindFirstChild("Don't Care") and workspace["Don't Care"].Vfx:FindFirstChild("LampV2") then
 
 setup("dragonball")
+
+elseif workspace:FindFirstChild("Red portal") then
+
+setup("aot")
 
 end
 
