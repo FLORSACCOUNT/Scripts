@@ -157,7 +157,9 @@ end
 
 if workspace.Map:FindFirstChild("Buildings") then
 
-game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("MainUI"):WaitForChild("WorldFrame"):WaitForChild("WorldFrame"):WaitForChild("MainFrame"):WaitForChild("StageFrame"):WaitForChild("Stages"):WaitForChild("StageScroll"):WaitForChild("Challenge5")
+game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("WorldFrame")
+game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui", 999):WaitForChild("MainUI", 999) :WaitForChild("WorldFrame", 999):WaitForChild("WorldFrame", 999):WaitForChild("MainFrame", 999):WaitForChild("StageFrame", 999):WaitForChild("Stages", 999):WaitForChild("StageScroll", 999):WaitForChild("Challenge5", 999)
+
 
 local function hasProperty(object, prop)
     local t = object[prop] --this is just done to check if the property existed, if it did nothing would happen, if it didn't an error will pop, the object[prop] is a different way of writing object.prop, (object.Transparency or object["Transparency"])
@@ -233,12 +235,21 @@ for i, v in ipairs(chall) do
 
                 repeat task.wait() until cantp
 
+                found = i -- Marca como encontrado
+                break
+            end
+        end
+    end
+end
+
+task.wait(2.5)
+
                 task.spawn(function()
                     while true do task.wait(0.1)
                         game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFunction"):InvokeServer({
-                            Chapter = i,
+                            Chapter = found,
                             Type = "Lobby",
-                            Name = "Challenge"..tostring(i),
+                            Name = "Challenge"..tostring(found),
                             Difficulty = diff,
                             Mode = "Pod",
                             Friend = false,
@@ -254,19 +265,13 @@ for i, v in ipairs(chall) do
                     end
                 end)
 
-                found = true -- Marca como encontrado
-                break
-            end
-        end
-    end
-end
-
 --setup
 
 elseif not workspace.Map:FindFirstChild("Buildings") then
 
 task.wait(5)
 
+game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("GU"):WaitForChild("MenuFrame")
 game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("GU"):WaitForChild("MenuFrame"):WaitForChild("TopFrame"):WaitForChild("InfoFrame"):WaitForChild("Wave")
 
 task.spawn(function()
