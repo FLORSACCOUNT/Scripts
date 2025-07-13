@@ -198,7 +198,7 @@ spawn("Esdeath", CFrame.new(31.573410034179688, 1.526009202003479, -754.21405029
 --------------------final
 end
 
-workspace.Map:FindFirstChild("Buildings",20)
+workspace.Map:WaitForChild("Buildings",20)
 
 if workspace.Map:FindFirstChild("Buildings") then
 
