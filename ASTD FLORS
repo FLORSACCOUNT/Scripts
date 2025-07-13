@@ -157,8 +157,7 @@ end
 
 if workspace.Map:FindFirstChild("Buildings") then
 
-game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("WorldFrame")
-game:GetService("Players").LocalPlayer.PlayerGui.MainUI.WorldFrame.WorldFrame.MainFrame.StageFrame.Stages.StageScroll:FindFirstChild("Challenge5")
+game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("WorldFrame"):WaitForChild("WorldFrame"):WaitForChild("MainFrame"):WaitForChild("StageFrame"):WaitForChild("Stages"):WaitForChild("StageScroll"):WaitForChild("Challenge5")
 
 local function hasProperty(object, prop)
     local t = object[prop] --this is just done to check if the property existed, if it did nothing would happen, if it didn't an error will pop, the object[prop] is a different way of writing object.prop, (object.Transparency or object["Transparency"])
