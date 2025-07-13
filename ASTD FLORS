@@ -197,6 +197,8 @@ spawn("Esdeath", CFrame.new(31.573410034179688, 1.526009202003479, -754.21405029
 --------------------final
 end
 
+task.spawn(function()
+while task.wait(15) do 
 if workspace.Map:FindFirstChild("Buildings") then
 
 game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("WorldFrame")
@@ -304,7 +306,8 @@ end
                     end
 end
                 end)
-
+end
+end)
 --setup
 
 elseif not workspace.Map:FindFirstChild("Buildings") then
