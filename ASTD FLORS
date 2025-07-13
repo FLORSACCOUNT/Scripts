@@ -412,11 +412,3 @@ elseif workspace:FindFirstChild("Red portal") then
 setup("aot")
 
 end
-
-local waitt = 390
-
-if not workspace.Map:FindFirstChild("Buildings") then
-waitt = 390
-elseif workspace.Map:FindFirstChild("Buildings") then
-waitt = 2350
-end
