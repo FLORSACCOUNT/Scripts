@@ -14,7 +14,7 @@ game.Players.LocalPlayer.OnTeleport:Connect(function(State)
     end
 end)
 
-local items = {"Trait","Pure","Orb"}
+local items = {"Trait","Orb","Pure"}
 
 local sold = {}
 
@@ -229,7 +229,6 @@ local chall = {
 }
 
 local diff = "Hard"
-local cantp = false
 
 for number = 1, 5 do 
 if not game:GetService("Players").LocalPlayer.PlayerGui.MainUI.WorldFrame.WorldFrame.MainFrame.StageFrame.Stages.StageScroll["Challenge"..tostring(number)]:FindFirstChild("ExpandFrame") then break end
@@ -255,64 +254,59 @@ firesignal(game:GetService("Players").LocalPlayer.PlayerGui.MainUI.WorldFrame.Wo
 end
 
 repeat task.wait() until chall[4][1] ~= nil
+
 task.wait(0.5)
 
-local found = false -- Flag para parar o loop após encontrar o primeiro item válido
+local found = false
 
-for i, v in ipairs(chall) do
-    if found then break end
-    for itemIndex, item in ipairs(items) do
-        if found then break end
-        for _, val in ipairs(v) do
-            if string.match(val, item) and not table.find(chall[i],"Random Units") and not table.find(chall[i],"High Cost") then
-
-                repeat task.wait(1)
-                    for _, pod in ipairs(workspace.Map.Buildings.ChallengePods:GetChildren()) do
-                        if pod.Name == "Pod" and pod.Root.SurfaceGui.Frame.WaitFrame.TimeText.Text == "" then
-                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pod.PrimaryPart.CFrame
-                            game:GetService('VirtualInputManager'):SendKeyEvent(true, "E", false, game)
-                            task.wait()
-                            game:GetService('VirtualInputManager'):SendKeyEvent(false, "E", false, game)
-                            cantp = true
-                            break
-                        end
-                    end
-                until game:GetService("Players").LocalPlayer.PlayerGui.MainUI.WorldFrame.WorldFrame.Visible == true
-
-                repeat task.wait() until cantp
-
-                found = i -- Marca como encontrado
-
-                break
-            end
-        end
-    end
+for number = 1, #items do 
+	for challn = 1, 5 do
+		for i, v in ipairs(chall[challn]) do
+			print(v, items[number])
+			if string.match(v, items[number]) then
+                        if found then break end
+                        found = challn
+				
+				repeat task.wait(1)
+					for _, pod in ipairs(workspace.Map.Buildings.ChallengePods:GetChildren()) do
+						if pod.Name == "Pod" and pod.Root.SurfaceGui.Frame.WaitFrame.TimeText.Text == "" then
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pod.PrimaryPart.CFrame
+							game:GetService("VirtualInputManager"):SendKeyEvent(true, "E", false, game)
+							task.wait()
+							game:GetService("VirtualInputManager"):SendKeyEvent(false, "E", false, game)
+						end
+					end
+				until game:GetService("Players").LocalPlayer.PlayerGui.MainUI.WorldFrame.WorldFrame.Visible == true
+				
+			end
+		end
+	end
 end
 
-task.wait(1)
-                task.spawn(function()
-                    while true do task.wait(0.1)
-if found then
-for ik = 1,6 do
-                        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFunction"):InvokeServer({
-                            Chapter = ik,
-                            Type = "Lobby",
-                            Name = "Challenge"..tostring(found),
-                            Difficulty = diff,
-                            Mode = "Pod",
-                            Friend = false,
-                            Update = true
-                        })
-end
-                        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFunction"):InvokeServer({
-                            Start = true,
-                            Type = "Lobby",
-                            Update = true,
-                            Mode = "Pod"
-                        })
-                    end
-end
-                end)
+task.spawn(function()
+	while true do task.wait(0.1)
+		if found then
+			for challstage = 1,6 do
+				game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFunction"):InvokeServer({
+					Chapter = challstage,
+					Type = "Lobby",
+					Name = "Challenge"..tostring(found),
+					Difficulty = "Hard",
+					Mode = "Pod",
+					Friend = false,
+					Update = true
+				})
+			end
+			game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFunction"):InvokeServer({
+				Start = true,
+				Type = "Lobby",
+				Update = true,
+				Mode = "Pod"
+			})
+		end
+	end
+end)
+
 
 --setup
 
