@@ -230,7 +230,7 @@ for i, v in ipairs(chall) do
     for itemIndex, item in ipairs(items) do
         if found then break end
         for _, val in ipairs(v) do
-            if string.match(val, item) and not (table.find(chall,"Random Units") or table.find(chall,"High Cost")) then
+            if string.match(val, item) and not table.find(chall,"Random Units") and not table.find(chall,"High Cost") then
 
                 repeat task.wait(1)
                     for _, pod in ipairs(workspace.Map.Buildings.ChallengePods:GetChildren()) do
