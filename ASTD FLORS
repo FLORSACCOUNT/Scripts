@@ -1,5 +1,4 @@
 
-
         game.Players.LocalPlayer.Idled:Connect(function()
             game:GetService("VirtualUser"):CaptureController()
             game:GetService("VirtualUser"):ClickButton2(Vector2.new())
@@ -140,13 +139,24 @@ spawn("Sukuna", CFrame.new(152.96690368652344, 51.84920120239258, -91.1271209716
                 end
 
 spawn("Teiuchi", CFrame.new(17.817543029785156, 1.526009202003479, -689.9090576171875, 1, 0, 0, 0, 1, 0, 0, 0, 1),farmup)
-spawn("Sukuna", CFrame.new(30.07181739807129, 3.951678514480591, -730.4588623046875, 1, 0, 0, 0, 1, 0, 0, 0, 1),5)
+spawn("Sukuna", CFrame.new(30.07181739807129, 3.951678514480591, -730.4588623046875, 1, 0, 0, 0, 1, 0, 0, 0, 1),2)
 
                 if workspace.UnitFolder:FindFirstChild("Sukuna") and workspace.UnitFolder.Sukuna:GetAttribute("UpgradeLevel") >= 2 then
-spawn("Gray", CFrame.new(28.962060928344727, 1.526009202003479, -753.997314453125, 1, 0, 0, 0, 1, 0, 0, 0, 1))
-spawn("Esdeath", CFrame.new(31.573410034179688, 1.526009202003479, -754.2140502929688, 1, 0, 0, 0, 1, 0, 0, 0, 1))
+spawn("Gray", CFrame.new(28.962060928344727, 1.526009202003479, -753.997314453125, 1, 0, 0, 0, 1, 0, 0, 0, 1),3)
+spawn("Esdeath", CFrame.new(44.9014778137207, 1.526009202003479, -732.4254760742188, 1, 0, 0, 0, 1, 0, 0, 0, 1))
                 end
-
+                if getWave() >= 15 and workspace.UnitFolder:FindFirstChild("Esdeath") then
+task.wait(26)
+    game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFunction"):InvokeServer(    {
+        Type = "GameStuff"
+    },
+    {
+        "SpecialMove",
+        workspace.UnitFolder.Esdeath,
+        "SpecialMove",
+        "UseAbility"
+    })
+                end
 
             end
         end)
@@ -167,7 +177,7 @@ spawn("Esdeath", CFrame.new(31.573410034179688, 1.526009202003479, -754.21405029
                 spawn("Ulquiorra", CFrame.new(-220.30996704101562, 427.58001708984375, -79.07366943359375))
 
                 if workspace.UnitFolder:FindFirstChild("Ulquiorra") and workspace.UnitFolder.Ulquiorra:GetAttribute("UpgradeLevel") >= 2 then
-                spawn("Sukuna", CFrame.new(-216.07650756835938, 427.636962890625, -79.61184692382812))
+                spawn("Sukuna", CFrame.new(-216.07650756835938, 427.636962890625, -79.61184692382812),4)
                 spawn("Gray", CFrame.new(-209.5087127685547, 424.6271057128906, -71.33582305908203, 1, 0, 0, 0, 1, 0, 0, 0, 1),3)
                 end
                 
@@ -372,6 +382,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFu
 	})
 end
 
+if v.Name ~= "Esdeath" then
 game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFunction"):InvokeServer(    {
         Type = "GameStuff"
     },
@@ -381,7 +392,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFu
         "SpecialMove",
         "UseAbility"
     })
-
+end
 
 end
 
