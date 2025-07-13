@@ -206,7 +206,7 @@ task.wait(24)
 --------------------final
 end
 
-workspace.Map:WaitForChild("Buildings",5)
+workspace.Map:WaitForChild("Buildings",10)
 
 if workspace.Map:FindFirstChild("Buildings") then
 
