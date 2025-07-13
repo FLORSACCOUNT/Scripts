@@ -262,8 +262,7 @@ local found = false
 for number = 1, #items do 
 	for challn = 1, 5 do
 		for i, v in ipairs(chall[challn]) do
-			print(v, items[number])
-			if string.match(v, items[number]) then
+			if string.match(v, items[number]) and not table.find(chall[challn], "Random Units") and not table.find(chall[challn], "High Cost") then
                         if found then break end
                         found = challn
 				
