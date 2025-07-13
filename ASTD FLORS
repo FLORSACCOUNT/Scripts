@@ -7,6 +7,7 @@ end
             game:GetService("VirtualUser"):ClickButton2(Vector2.new())
         end)
 
+
 local TeleportCheck = false
 local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
 game.Players.LocalPlayer.OnTeleport:Connect(function(State)
@@ -197,15 +198,12 @@ spawn("Esdeath", CFrame.new(31.573410034179688, 1.526009202003479, -754.21405029
 --------------------final
 end
 
-task.spawn(function()
-while task.wait(15) do 
 if workspace.Map:FindFirstChild("Buildings") then
-
+task.spawn(function()
+while task.wait() do
 game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("WorldFrame")
 game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui", 999):WaitForChild("MainUI", 999) :WaitForChild("WorldFrame", 999):WaitForChild("WorldFrame", 999):WaitForChild("MainFrame", 999):WaitForChild("StageFrame", 999):WaitForChild("Stages", 999):WaitForChild("StageScroll", 999):WaitForChild("Challenge5", 999)
 game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui", 999):WaitForChild("MainUI", 999):WaitForChild("ResultFrame", 999):WaitForChild("Result", 999):WaitForChild("ExpandFrame", 999):WaitForChild("ButtonFrame", 999):WaitForChild("ButtonExpand", 999):WaitForChild("Return", 999)
-
-task.wait(5)
 
 for i = 1,50 do
 firesignal(game:GetService("Players").LocalPlayer.PlayerGui.MainUI.ResultFrame.FadeFrame.Activated)
@@ -306,8 +304,11 @@ end
                     end
 end
                 end)
+
+task.wait(20)
 end
 end)
+
 --setup
 
 elseif not workspace.Map:FindFirstChild("Buildings") then
@@ -431,7 +432,3 @@ task.wait(waitt)
 while task.wait() do 
 game:GetService("TeleportService"):Teleport(17687504411)
 end
-
-
-
-
