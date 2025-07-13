@@ -420,7 +420,7 @@ elseif workspace.Map:FindFirstChild("Buildings") then
 waitt = 2350
 end
 
-
+print(waitt)
 task.wait(waitt)
 
 while task.wait() do 
