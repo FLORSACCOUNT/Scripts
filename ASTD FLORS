@@ -7,7 +7,7 @@ end
             game:GetService("VirtualUser"):ClickButton2(Vector2.new())
         end)
 
-
+while true do task.wait()
 local TeleportCheck = false
 local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
 game.Players.LocalPlayer.OnTeleport:Connect(function(State)
@@ -426,4 +426,9 @@ task.wait(waitt)
 
 while task.wait() do 
 game:GetService("TeleportService"):Teleport(17687504411)
+end
+
+
+
+task.wait(30)
 end
