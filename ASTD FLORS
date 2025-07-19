@@ -210,7 +210,6 @@ end
 workspace:WaitForChild("Map"):WaitForChild("Buildings",10)
 
 if workspace:WaitForChild("Map"):FindFirstChild("Buildings") then
-task.wait(10)
 
 game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("WorldFrame")
 game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui", 999):WaitForChild("MainUI", 999) :WaitForChild("WorldFrame", 999):WaitForChild("WorldFrame", 999):WaitForChild("MainFrame", 999):WaitForChild("StageFrame", 999):WaitForChild("Stages", 999):WaitForChild("StageScroll", 999):WaitForChild("Challenge5", 999)
@@ -331,7 +330,6 @@ end
 if getWave() >= 15  and workspace.UnitFolder:FindFirstChild("Teiuchi") then
 
 table.insert(sold,"Teiuchi")
-task.wait(5)
 game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetFunction"):InvokeServer(	{
 		Type = "GameStuff"
 	},
